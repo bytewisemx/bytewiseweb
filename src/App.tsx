@@ -1,6 +1,4 @@
-import React from 'react';
 import logo from './assets/logonew.png';
-import escudo from './assets/escudo.png';
 import fondo from './assets/fond.png';
 import './App.css';
 
