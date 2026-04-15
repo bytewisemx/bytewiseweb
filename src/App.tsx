@@ -1,5 +1,35 @@
+﻿import { useEffect, useState, type ReactNode } from 'react';
 import logo from './assets/logonew.png';
 import fondo from './assets/fond.png';
+import escudoImg from './assets/escudo.png';
+import misionImg from './assets/mision (2).png';
+import visionImg from './assets/vidion.png';
+import {
+  HiMiniCheckBadge,
+  HiMiniClipboardDocumentCheck,
+  HiMiniLockClosed,
+  HiMiniScale,
+  HiMiniShieldCheck,
+  HiMiniSparkles
+} from 'react-icons/hi2';
+import {
+  FaBrain,
+  FaChartLine,
+  FaComments,
+  FaDatabase,
+  FaGear,
+  FaMagnifyingGlassChart,
+  FaShieldHalved,
+  FaTriangleExclamation,
+  FaUsersGear
+} from 'react-icons/fa6';
+import Carousel from './components/Carousel';
+import MagicBento from './components/MagicBento';
+import CardSwap, { Card } from './components/CardSwap';
+import ScrollReveal from './components/ScrollReveal';
+import TextType from './components/TextType';
+import ElectricBorder from './components/ElectricBorder';
+import StaggeredMenu from './components/StaggeredMenu';
 import './App.css';
 
 // SECTION 2 - ABOUT
@@ -16,228 +46,638 @@ const values = [
 const services = [
   {
     num: '01',
-    title: 'Consultoría en Ciberseguridad',
-    copy: 'Diseñamos e implementamos estrategias de ciberseguridad personalizadas para proteger los activos digitales de su organización a corto, mediano y largo plazo.',
-    includes: [
-      'Evaluación inicial de brechas y diagnóstico de activos',
-      'Plan de respuesta ante incidentes y ciberataques',
-      'Implementación de herramientas y procedimientos de seguridad',
-      'Concientización y capacitación del personal',
-      'Preparación para auditoría de certificación ISO 27001'
+    id: 'ciberseguridad-cumplimiento',
+    title: 'Consultoria en Ciberseguridad y Cumplimiento (ISO 27001 + Diagnostico Inicial)',
+    copy: 'Disenamos e implementamos estrategias integrales de ciberseguridad alineadas a estandares internacionales como ISO/IEC 27001:2022, adaptadas al nivel de madurez de su organizacion.',
+    sections: [
+      {
+        heading: 'Diagnostico inicial gratuito',
+        text: 'Evaluamos el estado actual de su empresa en materia de seguridad de la informacion y le entregamos un analisis claro de brechas, riesgos y prioridades. (Ideal para organizaciones que inician desde cero o buscan formalizar su seguridad.)'
+      },
+      {
+        heading: 'LO QUE INCLUYE:',
+        bullets: [
+          'Evaluacion de madurez y analisis de brechas',
+          'Identificacion y clasificacion de activos criticos',
+          'Plan de respuesta ante incidentes y ciberataques',
+          'Implementacion de controles, politicas y procedimientos',
+          'Capacitacion y concientizacion del personal',
+          'Acompanamiento para certificacion ISO/IEC 27001'
+        ]
+      },
+      {
+        heading: 'NIVELES DE SERVICIO:',
+        bullets: [
+          'Basico - Diagnostico y plan de accion',
+          'Intermedio - Implementacion de controles y gestion de riesgos',
+          'Avanzado - Auditoria interna y preparacion para certificacion'
+        ]
+      }
     ],
-    cta: 'Solicitar consultoría',
-    icon: 'pi-shield',
-    id: 'ciberseguridad'
+    cta: 'Solicitar diagnostico gratuito',
+    icon: 'pi-shield'
   },
   {
     num: '02',
-    title: 'Consultoría ISO 27001:2022',
-    copy: 'Le acompañamos en todo el proceso de implementación del Sistema de Gestión de Seguridad de la Información (SGSI) bajo la norma ISO 27001:2022, desde el análisis inicial hasta la certificación.',
-    includes: [
-      'Kit Básico — Consultoría inicial y análisis de brechas',
-      'Avanzado — Auditoría Interna de Seguridad',
-      'Certificación — Formación y preparación para auditoría externa'
+    id: 'lfpdppp',
+    title: 'Cumplimiento de la LFPDPPP (Proteccion de Datos Personales)',
+    copy: 'Apoyamos a su organizacion en el cumplimiento de la Ley Federal de Proteccion de Datos Personales en Posesion de los Particulares (LFPDPPP), reduciendo riesgos legales y fortaleciendo la confianza de sus clientes.',
+    sections: [
+      {
+        heading: 'POR QUE ES IMPORTANTE?',
+        text: 'El manejo inadecuado de datos personales puede derivar en sanciones economicas, danos reputacionales y perdida de clientes.'
+      },
+      {
+        heading: 'LO QUE INCLUYE:',
+        bullets: [
+          'Diagnostico de cumplimiento actual',
+          'Elaboracion de Avisos de Privacidad',
+          'Implementacion de politicas de proteccion de datos',
+          'Evaluacion de riesgos en el tratamiento de informacion',
+          'Capacitacion al personal en manejo de datos personales',
+          'Acompanamiento ante auditorias o requerimientos legales'
+        ]
+      }
     ],
-    cta: 'Conocer niveles de servicio',
-    icon: 'pi-check-circle',
-    id: 'iso-27001'
+    cta: 'Evaluar cumplimiento',
+    icon: 'pi-verified'
   },
   {
     num: '03',
-    title: 'Administración de TI por Externalización',
-    copy: 'Si su organización necesita fortalecer su área de tecnología sin crear un departamento interno, ByteWise actúa como su aliado estratégico de TI o resuelve sus requerimientos diarios eficientemente.',
-    includes: [
-      'Reducción de costos frente a un equipo interno de TI',
-      'Flexibilidad y escalabilidad según las necesidades del negocio',
-      'Acceso a conocimiento especializado sin costo de contratación',
-      'Liberación de recursos para enfocarse en el negocio principal'
+    id: 'admin-ti',
+    title: 'Administracion de TI por Externalizacion',
+    copy: 'Fortalezca su operacion tecnologica sin necesidad de crear un departamento interno. ByteWise actua como su aliado estrategico en TI.',
+    sections: [
+      {
+        heading: 'BENEFICIOS CLAVE:',
+        bullets: [
+          'Reduccion de costos operativos',
+          'Escalabilidad segun crecimiento del negocio',
+          'Acceso a especialistas sin contratacion directa',
+          'Continuidad operativa y soporte proactivo'
+        ]
+      }
     ],
-    cta: 'Solicitar cotización',
-    icon: 'pi-desktop',
-    id: 'admin-ti'
+    cta: 'Solicitar cotizacion',
+    icon: 'pi-desktop'
   },
   {
     num: '04',
-    title: 'Consultoría en Inteligencia Artificial',
-    copy: 'Identificamos y aplicamos las oportunidades de IA que generan valor real en su organización: desde la automatización de procesos hasta asistentes virtuales y campañas.',
-    includes: [],
-    cta: 'Ver más sobre Consultoría IA',
-    icon: 'pi-sparkles',
-    id: 'consultoria-ia'
+    id: 'consultoria-ia',
+    title: 'Consultoria en Inteligencia Artificial',
+    copy: 'Identificamos e implementamos soluciones de Inteligencia Artificial que generan valor real en su negocio.',
+    sections: [
+      {
+        heading: '',
+        text: 'Desde la creacion de asistentes virtuales y campanas digitales inteligentes, hasta la automatizacion de procesos operativos, ayudamos a su empresa a ser mas eficiente y competitiva.'
+      },
+      {
+        heading: 'CASOS DE USO:',
+        bullets: [
+          'Chatbots y asistentes para atencion al cliente',
+          'Automatizacion de procesos internos',
+          'Analisis de datos para toma de decisiones',
+          'Optimizacion de marketing digital'
+        ]
+      }
+    ],
+    cta: 'Ver mas sobre IA',
+    icon: 'pi-sparkles'
   },
   {
     num: '05',
-    title: 'Pentesting y Análisis de Vulnerabilidades',
-    copy: 'Evaluamos la seguridad de sus sistemas desde la perspectiva de un atacante, identificando vulnerabilidades antes de que puedan ser explotadas.',
-    includes: [
-      'Pruebas de penetración (Pentesting) controladas',
-      'Análisis de vulnerabilidades en sistemas e infraestructura',
-      'Evaluación de ingeniería social y resistencia del personal',
-      'Hardening y reforzamiento de configuraciones'
+    id: 'pentesting',
+    title: 'Pentesting y Analisis de Vulnerabilidades',
+    copy: 'Evaluamos la seguridad de su organizacion desde la perspectiva de un atacante para detectar riesgos antes de que sean explotados.',
+    sections: [
+      {
+        heading: 'SERVICIOS TECNICOS:',
+        bullets: [
+          'Pruebas de penetracion (Pentesting)',
+          'Analisis de vulnerabilidades',
+          'Evaluacion de ingenieria social',
+          'Hardening de sistemas y configuraciones'
+        ]
+      }
     ],
-    cta: 'Solicitar evaluación técnica',
-    icon: 'pi-search',
-    id: 'pentesting'
+    cta: 'Solicitar evaluacion tecnica',
+    icon: 'pi-search'
   },
   {
     num: '06',
-    title: 'Forense Informático',
-    copy: 'Servicio especializado de análisis forense digital para la investigación de incidentes de seguridad, recopilación de evidencias y respuesta ante brechas.',
-    includes: ['Servicio complementario — disponible bajo solicitud específica.'],
+    id: 'forense',
+    title: 'Forense Informatico',
+    copy: 'Servicio especializado para la investigacion de incidentes de seguridad y analisis de evidencia digital, con enfoque tecnico y legal.',
+    sections: [
+      {
+        heading: 'CAPACIDADES:',
+        bullets: [
+          'Recuperacion de informacion de dispositivos (discos duros, servidores y dispositivos moviles)',
+          'Analisis forense de informacion digital',
+          'Telefonia forense (analisis de dispositivos moviles)',
+          'Video forense',
+          'Preservacion de evidencia digital bajo estandares'
+        ]
+      },
+      {
+        heading: 'Dictamenes con validez legal',
+        text: 'Se emiten informes tecnicos con sustento metodologico, utilizables en procesos legales o administrativos en caso de ser requeridos.'
+      }
+    ],
+    note: '[ Servicio complementario - disponible bajo solicitud especifica ]',
     cta: 'Consultar disponibilidad',
-    icon: 'pi-folder-open',
-    id: 'forense'
+    icon: 'pi-folder-open'
+  },
+  {
+    num: '07',
+    id: 'desarrollo-web-sistemas',
+    title: 'Desarrollo de Sistemas y Paginas Web a la Medida',
+    copy: 'Disenamos y desarrollamos soluciones tecnologicas personalizadas alineadas a los objetivos de su negocio.',
+    sections: [
+      {
+        heading: '',
+        text: 'Desde sitios web profesionales hasta sistemas internos, creamos herramientas que optimizan procesos y mejoran la experiencia del usuario.'
+      },
+      {
+        heading: 'LO QUE INCLUYE:',
+        bullets: [
+          'Desarrollo de paginas web modernas y optimizadas',
+          'Sistemas a la medida (ERP, CRM, automatizacion interna)',
+          'Integracion con APIs y plataformas externas',
+          'Diseno enfocado en experiencia de usuario (UX/UI)',
+          'Optimizacion de rendimiento y seguridad'
+        ]
+      },
+      {
+        heading: 'ENFOQUE:',
+        text: 'Soluciones escalables, seguras y preparadas para crecimiento.'
+      }
+    ],
+    cta: 'Solicitar desarrollo',
+    icon: 'pi-code'
   }
 ];
 
 // SECTION 4 - AI
 const aiUseCases = [
-  { title: 'Chatbots y Asistentes Virtuales', desc: 'Implementamos asistentes inteligentes que atienden a sus clientes de forma inmediata, personalizada y disponible las 24 horas. Reducimos tiempos de respuesta y mejoramos la satisfacción del cliente.', icon: 'pi-comments' },
-  { title: 'Automatización de Procesos', desc: 'Identificamos tareas repetitivas de su organización y las automatizamos con IA, liberando tiempo de su equipo para actividades estratégicas, desde gestión documental hasta flujos internos.', icon: 'pi-sync' },
-  { title: 'Generación de Contenido Multimedia', desc: 'Producimos imágenes, videos y materiales visuales generados con inteligencia artificial, optimizados para comunicación corporativa. Mayor volumen de contenido, menor tiempo de producción.', icon: 'pi-image' },
-  { title: 'Campañas Digitales Inteligentes', desc: 'Diseñamos estrategias de marketing potenciadas por IA: segmentación avanzada, generación de creatividades personalizadas y análisis predictivo de resultados.', icon: 'pi-chart-line' },
-  { title: 'Análisis de Datos y Decisiones', desc: 'Transformamos los datos de su organización en inteligencia accionable. Mediante análisis predictivo identificamos patrones y apoyamos decisiones estratégicas con base en evidencia.', icon: 'pi-chart-pie' },
-  { title: 'Asistentes para Tareas Internas', desc: 'Desarrollamos asistentes para optimizar operaciones internas: soporte en HR, documentos, coordinación y atención a colaboradores, haciendo su negocio más eficiente.', icon: 'pi-users' }
-];
-
-// SECTION 5 - SOFTWARE
-const softwareSteps = [
-  { num: '01', title: 'Discovery y análisis', desc: 'Comprendemos en profundidad sus necesidades, procesos actuales y objetivos. Definimos el alcance y requerimientos.' },
-  { num: '02', title: 'Diseño y prototipo', desc: 'Diseñamos la arquitectura del sistema y la experiencia de usuario. Presentamos prototipos para validación temprana.' },
-  { num: '03', title: 'Desarrollo iterativo', desc: 'Desarrollamos el software en ciclos cortos y entregas frecuentes, permitiendo ajustes rápidos y eficaces.' },
-  { num: '04', title: 'Pruebas y calidad', desc: 'Realizamos pruebas exhaustivas de funcionamiento, seguridad y rendimiento antes de cada liberación o entrega.' },
-  { num: '05', title: 'Implementación y soporte', desc: 'Desplegamos la solución en el entorno de producción y brindamos soporte técnico continuo y estabilización.' }
-];
-
-// SECTION 6 - TEAM
-const team = [
   {
-    name: '[NOMBRE COMPLETO 1]',
-    role: 'Dirección General / Consultor Senior',
-    bio: '[BIO: Especialista en seguridad de la información con más de X años de experiencia en implementación de sistemas de gestión, auditorías ISO 27001 y consultoría estratégica para empresas de diversos sectores.]',
-    badges: ['Maestría en Seguridad de la Información', 'Auditor Interno ISO 27001:2022', 'Lead Implementer ISO 27001', 'Consultor en Inteligencia Artificial']
+    title: 'Chatbots y Asistentes Virtuales',
+    desc: 'Implementamos asistentes inteligentes que atienden a sus clientes de forma inmediata, personalizada y disponible las 24 horas. Reducimos tiempos de respuesta y mejoramos la satisfacción del cliente.',
+    icon: <FaComments />,
+    iconColor: '#38bdf8'
   },
   {
-    name: '[NOMBRE COMPLETO 2]',
-    role: '[TÍTULO / ROL]',
-    bio: '[BIO: Especialista en [área]. Experiencia en [industrias/proyectos]. Certificaciones en [mencionar].]',
-    badges: ['[Certificación 1]', '[Certificación 2]', '[Especialidad en IA / área técnica]']
+    title: 'Automatización de Procesos',
+    desc: 'Identificamos tareas repetitivas de su organización y las automatizamos con IA, liberando tiempo de su equipo para actividades estratégicas, desde gestión documental hasta flujos internos.',
+    icon: <FaGear />,
+    iconColor: '#60a5fa'
+  },
+  {
+    title: 'Generación de Contenido Multimedia',
+    desc: 'Producimos imágenes, videos y materiales visuales generados con inteligencia artificial, optimizados para comunicación corporativa. Mayor volumen de contenido, menor tiempo de producción.',
+    icon: <FaBrain />,
+    iconColor: '#a78bfa'
+  },
+  {
+    title: 'Campañas Digitales Inteligentes',
+    desc: 'Diseñamos estrategias de marketing potenciadas por IA: segmentación avanzada, generación de creatividades personalizadas y análisis predictivo de resultados.',
+    icon: <FaChartLine />,
+    iconColor: '#22d3ee'
+  },
+  {
+    title: 'Análisis de Datos y Decisiones',
+    desc: 'Transformamos los datos de su organización en inteligencia accionable. Mediante análisis predictivo identificamos patrones y apoyamos decisiones estratégicas con base en evidencia.',
+    icon: <FaMagnifyingGlassChart />,
+    iconColor: '#f59e0b'
+  },
+  {
+    title: 'Asistentes para Tareas Internas',
+    desc: 'Desarrollamos asistentes para optimizar operaciones internas: soporte en HR, documentos, coordinación y atención a colaboradores, haciendo su negocio más eficiente.',
+    icon: <FaUsersGear />,
+    iconColor: '#34d399'
+  }
+];
+
+const aiRiskCards = [
+  {
+    title: '¿PODRIAS SEGUIR OPERANDO?',
+    icon: <FaTriangleExclamation />,
+    iconColor: '#fb7185',
+    text: '¿Su área administrativa continuaría con normalidad? ¿Sus sistemas, expedientes o información crítica estarían disponibles? Sin datos, la operación se detiene.'
+  },
+  {
+    title: '¿PODRIAS RECUPERARLA?',
+    icon: <FaDatabase />,
+    iconColor: '#f59e0b',
+    text: '¿Cuenta con un plan de contingencia definido? En caso de incidente, ¿cuánto tardaría la recuperación: horas, días, semanas... o nunca?'
+  },
+  {
+    title: '¿ESTAS REALMENTE PROTEGIDO?',
+    icon: <FaShieldHalved />,
+    iconColor: '#22d3ee',
+    text: 'Muchas organizaciones creen estarlo, hasta que enfrentan un incidente real.'
+  }
+];
+
+const workProcessCarouselItems = [
+  {
+    id: 'diag-profundo',
+    title: '1. DIAGNOSTICO PROFUNDO',
+    description: 'Evaluamos riesgos, brechas, activos y procesos para entender el punto real de partida de su organizacion.',
+    icon: <FaMagnifyingGlassChart className="carousel-icon" style={{ color: '#0f172a' }} />,
+    iconBg: 'linear-gradient(145deg, #bae6fd, #7dd3fc)'
+  },
+  {
+    id: 'plan-estrategico',
+    title: '2. PLAN ESTRATEGICO',
+    description: 'Definimos una hoja de ruta clara, priorizada y alineada con objetivos de negocio, cumplimiento y continuidad.',
+    icon: <FaChartLine className="carousel-icon" style={{ color: '#0f172a' }} />,
+    iconBg: 'linear-gradient(145deg, #bfdbfe, #93c5fd)'
+  },
+  {
+    id: 'implementacion-fases',
+    title: '3. IMPLEMENTACION POR FASES',
+    description: 'Ejecutamos controles y mejoras por etapas para reducir friccion operativa y asegurar resultados sostenibles.',
+    icon: <FaGear className="carousel-icon" style={{ color: '#0f172a' }} />,
+    iconBg: 'linear-gradient(145deg, #a5f3fc, #67e8f9)'
+  },
+  {
+    id: 'acompanamiento-continuo',
+    title: '4. ACOMPANAMIENTO CONTINUO',
+    description: 'Damos seguimiento cercano para ajustes, evolucion y fortalecimiento permanente de su postura de seguridad.',
+    icon: <FaUsersGear className="carousel-icon" style={{ color: '#0f172a' }} />,
+    iconBg: 'linear-gradient(145deg, #cbd5e1, #94a3b8)'
+  }
+];
+
+const certifications = [
+  {
+    title: 'Maestría en Seguridad de la Información',
+    description:
+      'Formación avanzada en gestión de riesgos, protección de datos, gobierno de seguridad y estrategias para la continuidad del negocio.'
+  },
+  {
+    title: 'Auditor Interno ISO/IEC 27001:2022',
+    description:
+      'Capacidad para evaluar sistemas de gestión de seguridad de la información (SGSI), identificar brechas y asegurar el cumplimiento de controles conforme a estándares internacionales.'
+  },
+  {
+    title: 'Lead Implementer ISO/IEC 27001',
+    description:
+      'Experiencia en diseño, implementación y mantenimiento de SGSI, desde el diagnóstico inicial hasta la preparación para auditoría de certificación.'
+  }
+];
+
+const technicalSpecializations = [
+  {
+    title: 'Pentesting y análisis de vulnerabilidades',
+    description:
+      'Evaluación de sistemas, redes y aplicaciones desde la perspectiva de un atacante para identificar y mitigar riesgos antes de que sean explotados.'
+  },
+  {
+    title: 'Informática forense con validez legal',
+    description:
+      'Recuperación y análisis de evidencia digital en dispositivos físicos y móviles, con generación de dictámenes técnicos utilizables en procesos legales.'
+  },
+  {
+    title: 'Inteligencia Artificial aplicada',
+    description:
+      'Desarrollo e implementación de soluciones de IA para automatización de procesos, asistentes virtuales y optimización de operaciones.'
+  },
+  {
+    title: 'Desarrollo de software a la medida',
+    description:
+      'Creación de sistemas y plataformas adaptadas a necesidades específicas, integrando seguridad, escalabilidad y eficiencia operativa.'
   }
 ];
 
 // SECTION 8 - NEWS (BLOG FORMAT)
 const newsArticles = [
-  { title: '¿Por qué las empresas en Aguascalientes necesitan una estrategia de ciberseguridad en 2025?', category: 'Ciberseguridad', date: 'Ene 12, 2026' },
-  { title: 'Qué es ISO 27001 y por qué su empresa debería considerar la certificación', category: 'ISO 27001', date: 'Ene 05, 2026' },
-  { title: '5 vulnerabilidades comunes en empresas medianas y cómo prevenirlas', category: 'Ciberseguridad', date: 'Dic 28, 2025' },
-  { title: 'Inteligencia artificial en ciberseguridad: oportunidades y riesgos para organizaciones', category: 'Inteligencia Artificial', date: 'Dic 14, 2025' },
-  { title: 'Cómo preparar a su equipo ante un incidente de seguridad', category: 'Gestión de Riesgos', date: 'Nov 30, 2025' }
+  {
+    title: 'Crisis sistémica en el sector mexicano: filtraciones masivas y accesos no autorizados',
+    category: 'Ciberseguridad Nacional',
+    date: 'Mar 08, 2026',
+    image: '/News/mexico-asedio-digital.png'
+  },
+  {
+    title: 'Alerta para escuelas en México: exposición de datos personales en instituciones educativas',
+    category: 'Sector Educativo',
+    date: 'Mar 05, 2026',
+    image: '/News/school.png'
+  },
+  {
+    title: 'CURP y actas oficiales en el mercado negro: fallas críticas en control y protección de datos',
+    category: 'Protección de Datos',
+    date: 'Feb 16, 2026',
+    image: '/News/curp-mercado-negro.png'
+  },
+  {
+    title: 'Sin TI, el riesgo es mayor en 2026: por qué externalizar ciberseguridad ya no es opcional',
+    category: 'Gestión de Riesgos',
+    date: 'Feb 03, 2026',
+    image: '/News/sin-ti-riesgo-2026.png'
+  },
+  {
+    title: 'Cómo preparar a su equipo ante un incidente de seguridad',
+    category: 'Gestión de Riesgos',
+    date: 'Nov 30, 2025',
+    image: '/News/instituciones-exentas.png'
+  }
+];
+
+const trustBadgeItems = [
+  'Ciberseguridad · Cumplimiento · IA · Desarrollo Tecnológico',
+  'ISO 27001 · LFPDPPP · Pentesting · Forense · TI · Desarrollo Web',
+  '📍 Aguascalientes, México | Cobertura nacional'
+];
+
+const topMenuItems = [
+  { label: 'INICIO', ariaLabel: 'Ir al inicio', link: '#inicio' },
+  { label: 'NOSOTROS', ariaLabel: 'Ir a nosotros', link: '#sobre-bytewise' },
+  { label: 'METODOLOGIA', ariaLabel: 'Ir a como trabajamos', link: '#como-trabajamos' },
+  { label: 'SERVICIOS', ariaLabel: 'Ir a servicios', link: '#servicios' },
+  { label: 'IA', ariaLabel: 'Ir a inteligencia artificial', link: '#ia' },
+  { label: 'CONTINUIDAD', ariaLabel: 'Ir a continuidad operativa', link: '#continuidad-datos' },
+  { label: 'INCIDENTES', ariaLabel: 'Ir a respuesta ante incidentes', link: '#alerta-incidente' },
+  { label: 'EQUIPO', ariaLabel: 'Ir al equipo', link: '#equipo' },
+  { label: 'BLOG', ariaLabel: 'Ir al blog', link: '#noticias' },
+  { label: 'CONTACTO', ariaLabel: 'Ir a contacto', link: '#contacto' }
 ];
 
 function App() {
+  const [activeTrustBadge, setActiveTrustBadge] = useState(0);
+  const [selectedNewsImage, setSelectedNewsImage] = useState<{ src: string; title: string } | null>(null);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [isTinyMobileViewport, setIsTinyMobileViewport] = useState(false);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveTrustBadge(prev => (prev + 1) % trustBadgeItems.length);
+    }, 3200);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    if (!selectedNewsImage) return;
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSelectedNewsImage(null);
+    };
+    document.addEventListener('keydown', onEscape);
+    return () => document.removeEventListener('keydown', onEscape);
+  }, [selectedNewsImage]);
+
+  useEffect(() => {
+    const updateViewport = () => {
+      setIsMobileViewport(window.innerWidth <= 768);
+      setIsTinyMobileViewport(window.innerWidth <= 420);
+    };
+    updateViewport();
+    window.addEventListener('resize', updateViewport);
+    return () => window.removeEventListener('resize', updateViewport);
+  }, []);
+
+  const valueCarouselItems = values.map((value, index) => {
+    const iconList = [
+      {
+        icon: <HiMiniCheckBadge className="carousel-icon" style={{ color: '#cbd5e1' }} />,
+        bg: 'linear-gradient(145deg, #1f2937, #0f172a)'
+      },
+      {
+        icon: <HiMiniClipboardDocumentCheck className="carousel-icon" style={{ color: '#d1d5db' }} />,
+        bg: 'linear-gradient(145deg, #243447, #111827)'
+      },
+      {
+        icon: <HiMiniLockClosed className="carousel-icon" style={{ color: '#dbeafe' }} />,
+        bg: 'linear-gradient(145deg, #1e3a5f, #0f172a)'
+      },
+      {
+        icon: <HiMiniScale className="carousel-icon" style={{ color: '#e5e7eb' }} />,
+        bg: 'linear-gradient(145deg, #334155, #111827)'
+      },
+      {
+        icon: <HiMiniShieldCheck className="carousel-icon" style={{ color: '#bfdbfe' }} />,
+        bg: 'linear-gradient(145deg, #1d4ed8, #1e293b)'
+      },
+      {
+        icon: <HiMiniSparkles className="carousel-icon" style={{ color: '#dbeafe' }} />,
+        bg: 'linear-gradient(145deg, #0f4c81, #172554)'
+      }
+    ];
+
+    return {
+      id: value.title,
+      title: value.title,
+      description: value.desc,
+      icon: iconList[index % iconList.length].icon,
+      iconBg: iconList[index % iconList.length].bg
+    };
+  });
+
   const pageStyle = {
-    backgroundImage: `linear-gradient(rgba(11, 18, 36, 0.85), rgba(11, 18, 36, 0.95)), url(${fondo})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
-    backgroundAttachment: 'fixed',
-    backgroundBlendMode: 'overlay',
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.55)), url(${fondo})`,
   };
 
+  const getServiceIcon = (serviceId: string, serviceIcon: string) => {
+    if (serviceIcon === 'pi-shield') {
+      return (
+        <img
+          src={escudoImg}
+          alt="Escudo"
+          style={{ width: '42px', height: '42px', objectFit: 'contain' }}
+        />
+      );
+    }
+
+    const iconByService: Record<string, ReactNode> = {
+      lfpdppp: <FaShieldHalved style={{ color: '#7dd3fc' }} />,
+      'admin-ti': <FaUsersGear style={{ color: '#c4b5fd' }} />,
+      'consultoria-ia': <FaBrain style={{ color: '#67e8f9' }} />,
+      pentesting: <FaMagnifyingGlassChart style={{ color: '#93c5fd' }} />,
+      forense: <FaDatabase style={{ color: '#f9a8d4' }} />,
+      'desarrollo-sistemas': <FaGear style={{ color: '#fcd34d' }} />
+    };
+
+    return iconByService[serviceId] ?? <i className={`pi ${serviceIcon}`} />;
+  };
+
+  const serviceBentoItems = services.map((service) => ({
+    id: service.id,
+    anchorId: service.id,
+    color: '#0f172a',
+    label: `Servicio ${service.num}`,
+    title: service.title,
+    description: service.copy,
+    sections: service.sections,
+    note: service.note,
+    ctaText: service.cta,
+    ctaHref: '#contacto',
+    icon: getServiceIcon(service.id, service.icon)
+  }));
+
   return (
-    <div className="page" style={pageStyle}>
+    <div className="page">
+      {/* FULLSCREEN ANIMATED BACKGROUND */}
+      <div className="animated-bg" style={pageStyle}></div>
+
       {/* BACKGROUND ELEMENTS */}
       <div className="bg-geometry" aria-hidden="true">
         <div className="glow top-left"></div>
         <div className="glow bottom-right"></div>
       </div>
 
-      {/* TOPBAR */}
-      <header className="topbar">
-        <div className="brand">
-          <img src={logo} alt="ByteWise" className="brand-mark" />
-        </div>
-        <nav>
-          <a href="#sobre-bytewise">Nosotros</a>
-          <a href="#servicios">Servicios</a>
-          <a href="#ia">Inteligencia Artificial</a>
-          <a href="#noticias">Blog</a>
-          <a href="#equipo">Equipo</a>
-          <a href="#contacto" className="pill pulse-hover">Contacto</a>
-        </nav>
-      </header>
+      <StaggeredMenu
+        position="right"
+        items={topMenuItems}
+        socialItems={[]}
+        displaySocials={false}
+        displayItemNumbering={true}
+        menuButtonColor="#ffffff"
+        openMenuButtonColor="#0f172a"
+        changeMenuColorOnOpen={true}
+        colors={['#0f172a', '#1d4ed8']}
+        logoUrl={logo}
+        accentColor="#2563eb"
+        isFixed={true}
+      />
 
       <main>
-        {/* SECTION 1 — HERO */}
-        <section className="hero-section text-center">
+        {/* SECTION 1 �?" HERO */}
+        <section className="hero-section text-center" id="inicio">
           <div className="hero-content">
-            <span className="eyebrow bg-tag">Consultoría en Ciberseguridad e Inteligencia Artificial</span>
-            <h1>Protegemos su información.<br/><span className="accent">Aseguramos su futuro.</span></h1>
+            <h1 className="hero-typing">
+              <TextType
+                as="span"
+                className="hero-typing-text"
+                text={['Protegemos su información.', 'Aseguramos su futuro.']}
+                typingSpeed={75}
+                deletingSpeed={50}
+                pauseDuration={1500}
+                showCursor
+                cursorCharacter="_"
+                cursorBlinkDuration={0.5}
+                variableSpeed={null}
+              />
+            </h1>
             <p className="lede fade-in">
-              ByteWise es la firma especializada en ciberseguridad e inteligencia artificial que guía a su organización desde la evaluación inicial hasta la certificación ISO 27001:2022 y la implementación de soluciones de IA que optimizan sus operaciones. Trabajamos con empresas de todos los tamaños en Aguascalientes y México.
+              ByteWise es una firma especializada en ciberseguridad, cumplimiento normativo, inteligencia artificial y desarrollo tecnológico, que acompaña a su organización desde el diagnóstico inicial hasta la implementación de soluciones estratégicas que impulsan su crecimiento y protegen sus activos.
             </p>
             <div className="cta-group animated-fade">
-              <a href="#contacto" className="primary shadow-pulse">Solicitar diagnóstico gratuito</a>
-              <a href="#servicios" className="ghost">Conocer nuestros servicios</a>
+              <ElectricBorder
+                color="#EAF4FF"
+                speed={1.05}
+                chaos={0.14}
+                thickness={2.4}
+                borderRadius={10}
+                className="hero-electric-button"
+              >
+                <a href="#contacto" className="primary shadow-pulse">Solicitar diagnóstico gratuito</a>
+              </ElectricBorder>
+              <ElectricBorder
+                color="#22D3EE"
+                speed={1}
+                chaos={0.13}
+                thickness={2.2}
+                borderRadius={10}
+                className="hero-electric-button"
+              >
+                <a href="#servicios" className="ghost">Conocer nuestros servicios</a>
+              </ElectricBorder>
             </div>
-            <div className="trust-badges mt-6">
-              <span>ISO 27001:2022</span>
-              <span className="dot">•</span>
-              <span>Auditor Certificado</span>
-              <span className="dot">•</span>
-              <span>Consultoría en IA</span>
-              <span className="dot">•</span>
-              <span>Aguascalientes, México</span>
+            <div className="trust-badges mt-6" aria-live="polite">
+              <span key={activeTrustBadge} className="trust-badge-item">
+                {trustBadgeItems[activeTrustBadge]}
+              </span>
+              <div className="trust-badge-indicators" aria-hidden="true">
+                {trustBadgeItems.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    className={`trust-badge-dot ${index === activeTrustBadge ? 'is-active' : ''}`}
+                    onClick={() => setActiveTrustBadge(index)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SECTION 2 — SOBRE BYTEWISE */}
+        {/* SECTION 2 �?" SOBRE BYTEWISE */}
         <section className="about-section" id="sobre-bytewise">
           <div className="container">
             <div className="section-heading text-center">
               <span className="eyebrow">¿Por qué ByteWise?</span>
-              <h2>Protección Integral y Estratégica</h2>
+              <h2>Lo que nos diferencia</h2>
             </div>
-            <p className="section-p intro text-center">
-              En ByteWise entendemos que la seguridad de la información no es un lujo, es una condición indispensable para la continuidad de cualquier organización. Somos una firma de consultoría especializada en ciberseguridad e inteligencia artificial, con un enfoque práctico y alineado a estándares internacionales como la norma ISO 27001:2022.
-            </p>
-            <p className="section-p intro text-center mb-5">
-              Acompañamos a nuestros clientes en cada etapa: desde el diagnóstico inicial de brechas y vulnerabilidades, pasando por la implementación de controles de seguridad efectivos, hasta la preparación para auditoría de certificación y el mantenimiento continuo del sistema.
-            </p>
+            <div className="about-diff-panel mb-5">
+              <div className="about-diff-title">Lo que nos diferencia</div>
+              <ul className="about-diff-list">
+                <li>Diagnóstico inicial claro y accionable (sin costo)</li>
+                <li>Enfoque integral: seguridad, cumplimiento, IA y desarrollo</li>
+                <li>Implementación práctica, no solo consultoría teórica</li>
+                <li>Soluciones adaptadas al tamaño y madurez de cada organización</li>
+                <li>Acompañamiento continuo, no proyectos aislados</li>
+              </ul>
+            </div>
 
             <div className="mission-vision-grid mt-4">
               <div className="card glass-card">
-                <h3><i className="pi pi-compass mr-2"></i>Nuestra Misión</h3>
+                <h3><img src={misionImg} alt="Misión" />NUESTRA MISION</h3>
                 <p>Ofrecer servicios de ciberseguridad de calidad certificada, basados en el entendimiento profundo de las necesidades de cada cliente, estableciendo relaciones de confianza a largo plazo.</p>
               </div>
               <div className="card glass-card">
-                <h3><i className="pi pi-eye mr-2"></i>Nuestra Visión</h3>
+                <h3><img src={visionImg} alt="Visión" />NUESTRA VISION</h3>
                 <p>Ser reconocidos como la firma líder en soluciones de ciberseguridad e inteligencia artificial en Aguascalientes y México, distinguidos por un servicio personalizado y a la vanguardia del entorno digital.</p>
               </div>
             </div>
 
-            <h3 className="text-center mt-5 mb-3">Nuestros Valores</h3>
-            <div className="values-grid">
-              {values.map(v => (
-                <div key={v.title} className="value-item">
-                  <div className="value-bullet"></div>
-                  <div>
-                    <h4>{v.title}</h4>
-                    <p>{v.desc}</p>
-                  </div>
-                </div>
-              ))}
+            <h3 className="values-title text-center mt-5 mb-4">Nuestros Valores</h3>
+            <div className="values-carousel-host">
+              <div className="values-carousel-wrapper">
+                <Carousel
+                  items={valueCarouselItems}
+                  baseWidth={isMobileViewport ? 330 : 680}
+                  autoplay
+                  autoplayDelay={3000}
+                  pauseOnHover={false}
+                  loop={false}
+                  round={false}
+                />
+              </div>
             </div>
 
-            <div className="differentiator mt-5">
-              <i className="pi pi-star-fill glow-icon"></i>
-              <p><strong>La combinación de experiencia en ISO 27001:2022 e Inteligencia Artificial</strong> nos permite ofrecer una solución integral única en el mercado: seguridad robusta y procesos optimizados, bajo un mismo equipo consultor.</p>
+            <div className="differentiator">
+              <div className="diff-icon-box">
+                <img src={escudoImg} alt="Escudo ByteWise" className="diff-logo" />
+              </div>
+              <div className="diff-content">
+                <p><strong>La combinación de experiencia en ISO 27001:2022 e Inteligencia Artificial</strong> nos permite ofrecer una solución integral única en el mercado: seguridad robusta y procesos optimizados, bajo un mismo equipo consultor.</p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* SECTION 3 — SERVICIOS */}
+        <section className="workflow-section mt-5" id="como-trabajamos">
+          <div className="container">
+            <div className="section-heading text-center">
+              <span className="eyebrow">Metodologia</span>
+              <h2>Como trabajamos</h2>
+            </div>
+            <div className="workflow-carousel-stage">
+              <Carousel
+                items={workProcessCarouselItems}
+                baseWidth={isMobileViewport ? 320 : 360}
+                autoplay
+                autoplayDelay={2000}
+                pauseOnHover={false}
+                loop
+                round
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 3 �?" SERVICIOS */}
         <section className="services-section" id="servicios">
           <div className="container">
             <div className="section-heading text-center">
@@ -247,33 +687,25 @@ function App() {
             </div>
 
             <div className="services-grid mt-5">
-              {services.map(service => (
-                <div className="service-card" key={service.title} id={service.id}>
-                  <div className="card-header">
-                    <span className="service-num">{service.num}</span>
-                    <i className={`pi ${service.icon} service-icon`}></i>
-                  </div>
-                  <h3>{service.title}</h3>
-                  <p>{service.copy}</p>
-                  
-                  {service.includes && service.includes.length > 0 && (
-                    <ul className="service-includes">
-                      {service.includes.map(item => (
-                        <li key={item}><i className="pi pi-check text-blue"></i> {item}</li>
-                      ))}
-                    </ul>
-                  )}
-                  
-                  <a href="#contacto" className="service-link">
-                    &rarr; {service.cta}
-                  </a>
-                </div>
-              ))}
+              <MagicBento
+                items={serviceBentoItems}
+                textAutoHide={true}
+                enableStars
+                enableSpotlight
+                enableBorderGlow={true}
+                enableTilt={false}
+                enableMagnetism={false}
+                clickEffect
+                spotlightRadius={400}
+                particleCount={12}
+                glowColor="132, 0, 255"
+                disableAnimations={false}
+              />
             </div>
           </div>
         </section>
 
-        {/* SECTION 4 — CONSULTORÍA IA */}
+        {/* SECTION 4 �?" CONSULTORÍA IA */}
         <section className="ai-section mt-5" id="ia">
           <div className="container p-relative">
             <div className="ai-backdrop"></div>
@@ -282,106 +714,207 @@ function App() {
               <h2>IA aplicada a su negocio</h2>
               <p className="lede mx-auto">No se trata de tecnología por sí misma, sino de resultados. Nuestros consultores identifican dónde y cómo la IA puede transformar sus procesos, reducir costos y mejorar la experiencia de sus clientes.</p>
             </div>
-            <p className="section-p text-center mb-5">
+            <p className="section-p text-center mb-5 ai-intro-text">
               Un consultor de IA es el puente entre la tecnología disponible y los objetivos reales de su organización. En ByteWise analizamos sus procesos, diseñamos soluciones a la medida e implementamos herramientas que generan valor desde el primer día.
             </p>
 
             <div className="ai-grid">
-              {aiUseCases.map(ai => (
-                <div className="ai-card" key={ai.title}>
-                  <i className={`pi ${ai.icon} ai-icon`}></i>
-                  <h4>{ai.title}</h4>
-                  <p>{ai.desc}</p>
+              <div className="ai-card-swap-stage">
+                <div className="ai-card-swap-frame">
+                  <CardSwap
+                    width={isTinyMobileViewport ? 300 : isMobileViewport ? 360 : 560}
+                    height={isTinyMobileViewport ? 350 : isMobileViewport ? 390 : 420}
+                    cardDistance={92}
+                    verticalDistance={92}
+                    delay={5200}
+                    pauseOnHover={false}
+                  >
+                    {aiUseCases.map((ai) => (
+                      <Card key={ai.title} customClass="ai-swap-card">
+                        <div className="ai-swap-card-content">
+                          <span className="ai-icon" style={{ color: ai.iconColor }}>{ai.icon}</span>
+                          <h4>{ai.title}</h4>
+                          <p>{ai.desc}</p>
+                        </div>
+                      </Card>
+                    ))}
+                  </CardSwap>
                 </div>
-              ))}
+              </div>
             </div>
 
-            <div className="text-center mt-5">
+            <div className="ai-cta-block text-center">
               <a href="#contacto" className="primary large">
                 &rarr; Agendar diagnóstico de IA gratuito
               </a>
-              <p className="support-text mt-2">En 30 minutos identificamos las oportunidades de IA con mayor impacto para su organización.</p>
+              <a
+                href="https://api.whatsapp.com/message/XNBDNNUK7TYSF1?autoload=1&app_absent=0"
+                className="ai-chatbot-cta"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <i className="pi pi-comments"></i>
+                Probar nuestros chatbots para empresas e instituciones
+              </a>
+              <p className="support-text">En 30 minutos identificamos las oportunidades de IA con mayor impacto para su organización.</p>
             </div>
           </div>
         </section>
 
-        {/* SECTION 5 — DESARROLLO DE SOFTWARE */}
-        <section className="software-section mt-5" id="software">
-           <div className="container">
-              <div className="section-heading text-center">
-                <span className="eyebrow">Soluciones a Medida</span>
-                <h2>Desarrollo de Software</h2>
-                <p className="lede">Construimos las herramientas tecnológicas que su organización necesita, diseñadas específicamente para sus procesos, integraciones y objetivos de negocio.</p>
+        {/* SECTION 5 �?" CONTINUIDAD OPERATIVA */}
+        <section className="risk-data-section mt-5" id="continuidad-datos">
+          <div className="container">
+            <div className="section-heading text-center">
+              <span className="eyebrow">Continuidad Operativa</span>
+              <h2>Riesgo por pérdida de información</h2>
+            </div>
+            <div className="ai-risk-swap-stage">
+              <div className="ai-risk-intro">¿Qué pasaría si hoy pierde su información?</div>
+              <p className="ai-risk-subtitle">La operación de su empresa depende completamente de sus datos.</p>
+              <div className="ai-risk-swap-frame">
+                <CardSwap
+                  width={isTinyMobileViewport ? 285 : isMobileViewport ? 340 : 520}
+                  height={isTinyMobileViewport ? 240 : isMobileViewport ? 270 : 300}
+                  cardDistance={72}
+                  verticalDistance={65}
+                  delay={5600}
+                  pauseOnHover={false}
+                >
+                  {aiRiskCards.map((item) => (
+                    <Card key={item.title} customClass="ai-swap-card ai-risk-card">
+                      <div className="ai-swap-card-content">
+                        <span className="ai-icon" style={{ color: item.iconColor }}>{item.icon}</span>
+                        <h4>{item.title}</h4>
+                        <p>{item.text}</p>
+                      </div>
+                    </Card>
+                  ))}
+                </CardSwap>
               </div>
-              <p className="text-center mb-5 section-p">
-                Cada organización es única. Por eso en ByteWise no ofrecemos soluciones genéricas: desarrollamos software a la medida que se adapta a sus flujos de trabajo, se integra con sus sistemas existentes y escala junto con su crecimiento.
-              </p>
-
-              <div className="timeline">
-                {softwareSteps.map(step => (
-                  <div className="timeline-item" key={step.title}>
-                    <div className="step-num">{step.num}</div>
-                    <div className="step-content">
-                      <h4>{step.title}</h4>
-                      <p>{step.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="text-center mt-4">
-                <a href="#contacto" className="ghost">&rarr; Platiquemos sobre su proyecto</a>
-              </div>
-           </div>
+            </div>
+          </div>
         </section>
 
-        {/* SECTION 6 — NUESTRO EQUIPO */}
-        <section className="team-section mt-5" id="equipo">
-           <div className="container">
+        {/* SECTION 6 �?" ALERTA DE INCIDENTE */}
+        <section className="incident-alert-section mt-5" id="alerta-incidente">
+          <div className="container">
             <div className="section-heading text-center">
-              <span className="eyebrow">El equipo detrás de ByteWise</span>
-              <h2>Profesionales Certificados</h2>
-              <p className="lede">Experiencia en ciberseguridad, inteligencia artificial y gestión de tecnología, comprometidos con el crecimiento de su organización.</p>
+              <span className="eyebrow">Respuesta ante Incidentes</span>
+              <h2>IMAGINA QUE HOY SUFRES UN ROBO O ATAQUE</h2>
             </div>
 
-            <div className="team-grid mt-5">
-              {team.map((member, i) => (
-                <div className="team-card" key={i}>
-                  <div className="avatar-placeholder">
-                    <i className="pi pi-user"></i>
-                  </div>
-                  <h3>{member.name}</h3>
-                  <div className="team-role">{member.role}</div>
-                  <p className="team-bio">{member.bio}</p>
-                  <div className="badges-container">
-                    {member.badges.map(b => (
-                      <span className="badge-chip" key={b}>{b}</span>
-                    ))}
-                  </div>
+            <div className="incident-alert-card">
+              <ScrollReveal
+                baseOpacity={0.28}
+                enableBlur
+                baseRotation={1.2}
+                blurStrength={2.2}
+                highlightWords={['Pentesting', 'Forense']}
+                rotationEnd="top 78%"
+                wordAnimationEnd="top 70%"
+                containerClassName="incident-reveal incident-reveal-block"
+                textClassName="incident-reveal-text incident-reveal-titleline"
+              >
+                {'¿Sabrías qué te robaron?\n¿Tendrías evidencia para actuar?\n¿O solo descubrirías el problema cuando ya es demasiado tarde?'}
+              </ScrollReveal>
+
+              <ScrollReveal
+                baseOpacity={0.3}
+                enableBlur
+                baseRotation={1}
+                blurStrength={2}
+                highlightWords={['Pentesting', 'Forense']}
+                rotationEnd="top 80%"
+                wordAnimationEnd="top 72%"
+                containerClassName="incident-reveal incident-reveal-block"
+                textClassName="incident-reveal-text"
+              >
+                {'La mayoría de las empresas no detecta un ataque...\nhasta que el daño está hecho.'}
+              </ScrollReveal>
+
+              <ScrollReveal
+                baseOpacity={0.32}
+                enableBlur
+                baseRotation={1}
+                blurStrength={2}
+                highlightWords={['Pentesting', 'Forense']}
+                rotationEnd="top 80%"
+                wordAnimationEnd="top 72%"
+                containerClassName="incident-reveal incident-reveal-block incident-reveal-emphasis"
+                textClassName="incident-reveal-text"
+              >
+                {'Lo que no pruebas (Pentesting), no lo puedes prevenir.\nLo que no analizas (Forense), no lo puedes resolver.'}
+              </ScrollReveal>
+
+              <div className="incident-actions">
+                <p>&rarr; Evalúa tus vulnerabilidades antes de que alguien más lo haga</p>
+                <p>&rarr; Actúa con evidencia, no con suposiciones.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 6 - NUESTRO EQUIPO */}
+        <section className="team-section mt-5" id="equipo">
+          <div className="container">
+            <div className="section-heading text-center">
+              <span className="eyebrow">El equipo detrás de ByteWise</span>
+              <h2>Certificaciones y formación</h2>
+              <p className="lede">Capacidades estratégicas y técnicas para proteger, optimizar y escalar su organización.</p>
+            </div>
+
+            <div className="certs-grid mt-5">
+              {certifications.map((item) => (
+                <div className="cert-card" key={item.title}>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
                 </div>
               ))}
             </div>
-            
-            <p className="text-center section-p mt-4 text-muted">
-              Nuestro equipo se mantiene en constante actualización frente a las amenazas emergentes y las nuevas capacidades de la inteligencia artificial, garantizando que nuestros clientes siempre cuenten con la orientación más vigente del mercado.
-            </p>
-           </div>
+
+            <div className="team-specialization-title mt-5">
+              <span>Especialización técnica</span>
+            </div>
+
+            <div className="specialization-grid mt-4">
+              {technicalSpecializations.map((item) => (
+                <article className="specialization-card" key={item.title}>
+                  <h4>{item.title}</h4>
+                  <p>{item.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
 
-        {/* SECTION 7, 8, 9 — CLIENTES, NOTICIAS, DESCARGAS */}
+        {/* SECTION 7, 8, 9 �?" CLIENTES, NOTICIAS, DESCARGAS */}
         <section className="grid-3-sections mt-5">
           <div className="container">
             <div className="complex-grid">
-              
+
               {/* Clientes */}
               <div className="panel clientes-panel" id="clientes">
                 <h3>Organizaciones que confían en ByteWise</h3>
-                <p className="mb-3 text-muted">Trabajamos con organizaciones de distintos sectores e industrias en Aguascalientes y México, acompañándolas en su proceso de madurez en ciberseguridad.</p>
-                <div className="placeholder-box">
-                  <p><em>Actualmente estamos construyendo este espacio. Próximamente encontrará aquí los logos y testimonios de nuestros clientes.</em></p>
+                <p className="mb-3 text-muted">
+                  Trabajamos con organizaciones de distintos sectores en Aguascalientes y México, acompañándolas en el fortalecimiento de su seguridad, cumplimiento y madurez tecnológica.
+                </p>
+
+                <div className="client-trust-block">
+                  <p className="client-trust-title">Empresas que ya confían en nosotros:</p>
+                  <div className="client-pill-list">
+                    <span className="client-pill">E-Net-Corp</span>
+                    <span className="client-pill">Grupo Millenium</span>
+                  </div>
+                </div>
+
+                <div className="client-note-box">
+                  <p>
+                    Seguimos colaborando con más organizaciones en distintos proyectos de ciberseguridad, cumplimiento e implementación tecnológica.
+                  </p>
                 </div>
                 <blockquote className="testimonial-mock mt-4">
                   "ByteWise transformó la manera en que gestionamos la seguridad de nuestra información. El acompañamiento durante todo el proceso de certificación ISO 27001 fue invaluable."
-                  <footer>— [Nombre], [Cargo], [Empresa] | [Ciudad]</footer>
+                  <footer>&mdash; Lic. Fernanda Ríos, Directora de Operaciones, Grupo Millenium | Aguascalientes, México</footer>
                 </blockquote>
                 <a href="#contacto" className="mock-link mt-3 d-inline-block">&rarr; Conviértase en nuestro próximo caso de éxito</a>
               </div>
@@ -390,36 +923,32 @@ function App() {
               <div className="panel descargas-panel" id="descargas">
                 <h3>Recursos Descargables</h3>
                 <p className="text-muted mb-4">Acceda a nuestra documentación comercial para conocer en detalle nuestros servicios, metodología y propuesta de valor.</p>
-                
+
                 <div className="download-item">
                   <h4><i className="pi pi-file-pdf text-red-500 mr-2"></i> Presentación Ejecutiva ByteWise</h4>
                   <p className="small-text">Descripción completa de servicios, metodología de trabajo, equipo y casos de referencia.</p>
-                  <span className="doc-meta">Formato: PDF · Actualizado 2025</span>
-                  <a href="#" className="download-link text-blue">&rarr; Descargar presentación</a>
+                  <span className="doc-meta">Formato: PDF · Archivo disponible</span>
+                  <a href="/downloads/BYTEWISE-INFO.pdf" className="download-link text-blue" target="_blank" rel="noreferrer" download>
+                    &rarr; Descargar presentación
+                  </a>
                 </div>
 
                 <div className="download-item mt-4">
-                  <h4><i className="pi pi-file-pdf text-red-500 mr-2"></i> Brochure Comercial de Servicios</h4>
-                  <p className="small-text">Resumen visual de todos los servicios de ByteWise con descripción y niveles de atención.</p>
-                  <span className="doc-meta">Formato: PDF · Próximamente disponible</span>
+                  <h4><i className="pi pi-file-pdf text-red-500 mr-2"></i> ByteWise Institucional</h4>
+                  <p className="small-text">Documento institucional con información general, propuesta de valor y capacidades de ByteWise.</p>
+                  <span className="doc-meta">Formato: PDF · Archivo disponible</span>
+                  <a href="/downloads/bytewise_institucional.pdf" className="download-link text-blue" target="_blank" rel="noreferrer" download>
+                    &rarr; Descargar documento institucional
+                  </a>
                 </div>
 
-                <div className="capture-form mt-4">
-                  <p className="small-text mb-2"><strong>Acceso a materiales:</strong> Le pedimos sus datos de contacto. No enviamos spam.</p>
-                  <form onSubmit={e => e.preventDefault()}>
-                    <input type="text" placeholder="Nombre completo" required />
-                    <input type="text" placeholder="Empresa" required />
-                    <input type="email" placeholder="Correo electrónico" required />
-                    <button className="primary block outline-none border-none mt-2">Acceder</button>
-                  </form>
-                </div>
               </div>
 
             </div>
           </div>
         </section>
 
-        {/* SECTION 8 — NOTICIAS Y RECURSOS (BLOG) */}
+        {/* SECTION 8 �?" NOTICIAS Y RECURSOS (BLOG) */}
         <section className="blog-section mt-5" id="noticias">
           <div className="container">
             <div className="section-heading text-center">
@@ -427,7 +956,7 @@ function App() {
               <h2>Noticias y Recursos</h2>
               <p className="lede">Manténgase informado sobre las últimas amenazas, tendencias en seguridad e inteligencia artificial.</p>
             </div>
-            
+
             <div className="blog-social-header">
               <span>Síguenos en nuestras redes sociales:</span>
               <a href="https://instagram.com/bytewise_mx" target="_blank" rel="noreferrer"><i className="pi pi-instagram"></i> @bytewise_mx</a>
@@ -437,9 +966,28 @@ function App() {
             <div className="blog-grid mt-4">
               {newsArticles.map((article, i) => (
                 <article className={`blog-card ${i === 0 ? 'featured' : ''}`} key={i}>
-                  <div className="blog-image-placeholder">
-                    <i className="pi pi-image mr-2"></i> Insertar Imagen
-                  </div>
+                  {article.image ? (
+                    <button
+                      type="button"
+                      className="blog-image-button"
+                      onClick={() => setSelectedNewsImage({ src: article.image!, title: article.title })}
+                      aria-label={`Ver imagen completa de: ${article.title}`}
+                    >
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="blog-image"
+                        loading="lazy"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    </button>
+                  ) : (
+                    <div className="blog-image-placeholder">
+                      <i className="pi pi-image mr-2"></i> Insertar Imagen
+                    </div>
+                  )}
                   <div className="blog-content">
                     <div className="blog-meta">
                       <span className="blog-tag">{article.category}</span>
@@ -453,14 +1001,31 @@ function App() {
           </div>
         </section>
 
-        {/* SECTION 10 — CONTACTO */}
+        {selectedNewsImage && (
+          <div className="news-lightbox" role="dialog" aria-modal="true" aria-label={selectedNewsImage.title} onClick={() => setSelectedNewsImage(null)}>
+            <div className="news-lightbox-content" onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                className="news-lightbox-close"
+                onClick={() => setSelectedNewsImage(null)}
+                aria-label="Cerrar imagen"
+              >
+                ×
+              </button>
+              <img src={selectedNewsImage.src} alt={selectedNewsImage.title} className="news-lightbox-image" />
+              <p className="news-lightbox-caption">{selectedNewsImage.title}</p>
+            </div>
+          </div>
+        )}
+
+        {/* SECTION 10 �?" CONTACTO */}
         <section className="contact-section mt-5" id="contacto">
           <div className="container">
             <div className="contact-card">
               <div className="contact-info">
                 <h2>Hablemos sobre su organización</h2>
                 <p className="mb-4">Estamos disponibles para resolver sus dudas, presentar una propuesta o agendar un diagnóstico inicial sin costo.</p>
-                
+
                 <ul className="contact-list">
                   <li><i className="pi pi-envelope"></i> <strong>General:</strong> contact@bytewise.mx</li>
                   <li><i className="pi pi-shopping-cart"></i> <strong>Ventas:</strong> ventas@bytewise.mx</li>
@@ -470,7 +1035,7 @@ function App() {
                   <li><i className="pi pi-map-marker"></i> <strong>Ubicación:</strong> Aguascalientes, México</li>
                 </ul>
 
-                <a href="https://wa.me/numerocelular" className="whatsapp-btn mt-4 inline-flex items-center">
+                <a href="https://api.whatsapp.com/message/XNBDNNUK7TYSF1?autoload=1&app_absent=0" className="whatsapp-btn mt-4 inline-flex items-center" target="_blank" rel="noreferrer">
                   <i className="pi pi-whatsapp mr-2 text-xl"></i>
                   ¿Consulta urgente? Escríbanos por WhatsApp
                 </a>
@@ -509,7 +1074,7 @@ function App() {
 
       </main>
 
-      {/* SECTION 11 — FOOTER */}
+      {/* SECTION 11 �?" FOOTER */}
       <footer className="footer-main">
         <div className="container">
           <div className="footer-grid">
@@ -518,7 +1083,7 @@ function App() {
               <h4>ByteWise: Data & Cybersecurity</h4>
               <p>Protegiendo tus datos, asegurando tu futuro.</p>
             </div>
-            
+
             <div className="footer-col">
               <h4>Servicios</h4>
               <ul>
@@ -552,9 +1117,9 @@ function App() {
             <p>© 2025 ByteWise: Data & Cybersecurity. Todos los derechos reservados.</p>
             <div className="legal-links">
               <a href="#">Política de Privacidad</a>
-              <span className="dot">•</span>
+              <span className="dot">&bull;</span>
               <a href="#">Términos de Uso</a>
-              <span className="dot">•</span>
+              <span className="dot">&bull;</span>
               <a href="#">Aviso de Cookies</a>
             </div>
           </div>
@@ -565,3 +1130,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
