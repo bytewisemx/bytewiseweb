@@ -25,6 +25,7 @@ type StaggeredMenuProps = {
   menuButtonColor?: string;
   openMenuButtonColor?: string;
   accentColor?: string;
+  logoHref?: string;
   changeMenuColorOnOpen?: boolean;
   isFixed?: boolean;
   closeOnClickAway?: boolean;
@@ -44,6 +45,7 @@ const StaggeredMenu = ({
   menuButtonColor = '#fff',
   openMenuButtonColor = '#fff',
   accentColor = '#60a5fa',
+  logoHref = '#inicio',
   changeMenuColorOnOpen = true,
   isFixed = false,
   closeOnClickAway = true,
@@ -324,7 +326,7 @@ const StaggeredMenu = ({
       </div>
 
       <header className="staggered-menu-header" aria-label="Main navigation header">
-        <a className="sm-logo sm-logo-link" href="#inicio" aria-label="Volver al inicio">
+        <a className="sm-logo sm-logo-link" href={logoHref} aria-label="Volver al inicio">
           <img src={logoUrl} alt="Logo" className="sm-logo-img" draggable={false} width={154} height={44} />
         </a>
         <button

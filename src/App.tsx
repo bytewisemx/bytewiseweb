@@ -1,17 +1,15 @@
-﻿import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import logo from './assets/logonew.png';
 import fondo from './assets/fond.png';
 import escudoImg from './assets/escudo.png';
 import misionImg from './assets/mision (2).png';
 import visionImg from './assets/vidion.png';
-import {
-  HiMiniCheckBadge,
-  HiMiniClipboardDocumentCheck,
-  HiMiniLockClosed,
-  HiMiniScale,
-  HiMiniShieldCheck,
-  HiMiniSparkles
-} from 'react-icons/hi2';
+import empresasImg from './assets/empresas.png';
+import comoTrabajamosImg from './assets/comotrabajamos.png';
+import escuelaImg from './assets/escuela.png';
+import art1BancosImg from './assets/blog/art1bancos.webp';
+import art2IdentidadImg from './assets/blog/2artidentidad.webp';
+import art3IndustriaImg from './assets/blog/art3industria.webp';
 import {
   FaBrain,
   FaChartLine,
@@ -30,6 +28,7 @@ import ScrollReveal from './components/ScrollReveal';
 import TextType from './components/TextType';
 import ElectricBorder from './components/ElectricBorder';
 import StaggeredMenu from './components/StaggeredMenu';
+import ChatBot from './components/ChatBot';
 import './App.css';
 
 // SECTION 2 - ABOUT
@@ -282,29 +281,29 @@ const aiRiskCards = [
 const workProcessCarouselItems = [
   {
     id: 'diag-profundo',
-    title: '1. DIAGNOSTICO PROFUNDO',
-    description: 'Evaluamos riesgos, brechas, activos y procesos para entender el punto real de partida de su organizacion.',
+    title: '1. DIAGNÓSTICO PROFUNDO',
+    description: '',
     icon: <FaMagnifyingGlassChart className="carousel-icon" style={{ color: '#0f172a' }} />,
     iconBg: 'linear-gradient(145deg, #bae6fd, #7dd3fc)'
   },
   {
     id: 'plan-estrategico',
-    title: '2. PLAN ESTRATEGICO',
-    description: 'Definimos una hoja de ruta clara, priorizada y alineada con objetivos de negocio, cumplimiento y continuidad.',
+    title: '2. PLAN ESTRATÉGICO',
+    description: '',
     icon: <FaChartLine className="carousel-icon" style={{ color: '#0f172a' }} />,
     iconBg: 'linear-gradient(145deg, #bfdbfe, #93c5fd)'
   },
   {
     id: 'implementacion-fases',
-    title: '3. IMPLEMENTACION POR FASES',
-    description: 'Ejecutamos controles y mejoras por etapas para reducir friccion operativa y asegurar resultados sostenibles.',
+    title: '3. IMPLEMENTACIÓN POR FASES',
+    description: '',
     icon: <FaGear className="carousel-icon" style={{ color: '#0f172a' }} />,
     iconBg: 'linear-gradient(145deg, #a5f3fc, #67e8f9)'
   },
   {
     id: 'acompanamiento-continuo',
-    title: '4. ACOMPANAMIENTO CONTINUO',
-    description: 'Damos seguimiento cercano para ajustes, evolucion y fortalecimiento permanente de su postura de seguridad.',
+    title: '4. ACOMPAÑAMIENTO CONTINUO',
+    description: '',
     icon: <FaUsersGear className="carousel-icon" style={{ color: '#0f172a' }} />,
     iconBg: 'linear-gradient(145deg, #cbd5e1, #94a3b8)'
   }
@@ -385,10 +384,111 @@ const newsArticles = [
   }
 ];
 
+const moreBlogArticles = [
+  {
+    title: 'IA detecta miles de vulnerabilidades en bancos globales',
+    category: 'Ciberseguridad / IA',
+    date: 'Abril 2026',
+    image: art1BancosImg,
+    summary:
+      'Un modelo avanzado de IA identificó miles de vulnerabilidades críticas en sistemas financieros globales, generando preocupación entre reguladores.',
+    content:
+      'Una inteligencia artificial desarrollada por Anthropic reveló fallas graves en infraestructuras bancarias a nivel mundial. Estas vulnerabilidades incluyen sistemas operativos, navegadores y software crítico. Reguladores internacionales han reconocido que actualmente no cuentan con herramientas suficientes para gestionar este tipo de riesgos, lo que posiciona a la IA como un arma de doble filo: puede proteger, pero también exponer debilidades a gran escala.',
+    source:
+      'https://www.huffingtonpost.es/tecnologia/los-grandes-bancos-mundo-expuestos-nueva-iaanthropicencuentra-miles-vulnerabilidades-graves-reguladores-europeos-admiten-herramientas-frenarla-f202604.html'
+  },
+  {
+    title: 'Ciberataques evolucionan con IA y robo de identidad',
+    category: 'Ciberseguridad / Tendencias',
+    date: 'Abril 2026',
+    image: art2IdentidadImg,
+    summary:
+      'Expertos advierten que los ataques seran mas sofisticados con IA, incluyendo deepfakes y fraude personalizado.',
+    content:
+      'Las tendencias de ciberseguridad para 2026 apuntan a un aumento en ataques impulsados por inteligencia artificial, como phishing avanzado, deepfakes y robo de identidad masivo. Estas amenazas permiten a los atacantes crear fraudes altamente personalizados, aumentando significativamente su efectividad y dificultad de deteccion.',
+    source:
+      'https://udgtv.com/noticias/ciberseguridad-2026-predicciones-de-gen-y-amenazas-ia/311599'
+  },
+  {
+    title: 'IA integrada en todas las industrias: la nueva infraestructura empresarial',
+    category: 'Transformacion digital',
+    date: 'Abril 2026',
+    image: art3IndustriaImg,
+    summary:
+      'La inteligencia artificial deja de ser opcional y se convierte en la base operativa de las empresas.',
+    content:
+      'La IA se esta integrando en sectores como salud, finanzas, manufactura y retail para automatizar procesos, mejorar la toma de decisiones y reducir costos. Su adopcion, impulsada por inversiones globales, la posiciona como un componente clave para la competitividad empresarial.',
+    source:
+      'https://www.gartner.com/en/articles/top-technology-trends-2026'
+  }
+];
+
 const trustBadgeItems = [
   'Ciberseguridad · Cumplimiento · IA · Desarrollo Tecnológico',
   'ISO 27001 · LFPDPPP · Pentesting · Forense · TI · Desarrollo Web',
   '📍 Aguascalientes, México | Cobertura nacional'
+];
+
+const blogSidebarAds = [
+  {
+    eyebrow: 'Diagnóstico gratuito',
+    title: 'Evalúe riesgos antes de que se conviertan en incidentes',
+    copy: 'Agenda una revisión inicial para detectar brechas de ciberseguridad, cumplimiento e IA.',
+    cta: 'Agendar ahora'
+  },
+  {
+    eyebrow: 'IA empresarial',
+    title: 'Automatice procesos críticos con inteligencia artificial',
+    copy: 'Diseñamos flujos de IA para reducir tareas manuales, errores operativos y tiempos de respuesta.',
+    cta: 'Conocer IA'
+  },
+  {
+    eyebrow: 'Ciberseguridad',
+    title: 'Pentesting, forense digital y protección de datos',
+    copy: 'Fortalezca su operación con pruebas controladas, respuesta a incidentes y cumplimiento LFPDPPP.',
+    cta: 'Ver servicios'
+  }
+];
+
+const heroAnnouncements = [
+  'Diagnostico inicial gratuito para empresas',
+  'Ciberseguridad, cumplimiento e IA en una sola estrategia',
+  'Automatizacion con IA para procesos criticos',
+  'ISO 27001, LFPDPPP, pentesting y forense digital',
+  'Outsourcing de TI y soporte tecnologico continuo',
+  'Cobertura nacional desde Aguascalientes'
+];
+
+const HERO_SLOGANS = ['Protegemos su información.', 'Aseguramos su futuro.'];
+
+const CRITICAL_PRELOAD_IMAGES = [logo, fondo];
+
+const DEFERRED_PRELOAD_IMAGES = [
+  misionImg,
+  visionImg,
+  empresasImg,
+  escuelaImg,
+  comoTrabajamosImg,
+  ...newsArticles.map((article) => article.image).filter((image): image is string => Boolean(image))
+];
+
+const clientTestimonials = [
+  {
+    quote:
+      '“Trabajar con ByteWise nos dio claridad total sobre nuestra seguridad. Detectaron riesgos que no teníamos en el radar y nos guiaron paso a paso para corregirlos. Hoy operamos con mucha más confianza y control.”',
+    author: 'LM Alejandro Pedroza',
+    company: 'Milenium',
+    tag: 'Testimonio empresarial',
+    avatar: 'AP'
+  },
+  {
+    quote:
+      '“El equipo de ByteWise fue muy profesional y claro en todo momento. Nos ayudaron a ordenar nuestros procesos y mejorar la protección de la información sin complicarnos. Se nota que saben lo que hacen.”',
+    author: 'Mtro Israel Llorot',
+    company: 'E-Net-Corp',
+    tag: 'Testimonio práctico',
+    avatar: 'IL'
+  }
 ];
 
 const topMenuItems = [
@@ -405,10 +505,88 @@ const topMenuItems = [
 ];
 
 function App() {
+  const currentYear = new Date().getFullYear();
   const [activeTrustBadge, setActiveTrustBadge] = useState(0);
   const [selectedNewsImage, setSelectedNewsImage] = useState<{ src: string; title: string } | null>(null);
+  const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
+  const [expandedBlogPostId, setExpandedBlogPostId] = useState<string | null>(null);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isTinyMobileViewport, setIsTinyMobileViewport] = useState(false);
+  const [isPageReady, setIsPageReady] = useState(false);
+  const [isContactSending, setIsContactSending] = useState(false);
+  const [showSubmitShield, setShowSubmitShield] = useState(false);
+  const successOverlayTimeoutRef = useRef<number | null>(null);
+  const [contactStatus, setContactStatus] = useState<{ type: 'idle' | 'success' | 'error'; message: string }>({
+    type: 'idle',
+    message: ''
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadImage = (src: string) =>
+      new Promise<void>((resolve) => {
+        const image = new Image();
+        image.decoding = 'async';
+        image.src = src;
+        image.onload = () => resolve();
+        image.onerror = () => resolve();
+      });
+
+    const minLoaderDuration = new Promise<void>((resolve) => {
+      window.setTimeout(resolve, 650);
+    });
+
+    const maxWaitTimeout = new Promise<void>((resolve) => {
+      window.setTimeout(resolve, 4500);
+    });
+
+    Promise.race([
+      Promise.allSettled(CRITICAL_PRELOAD_IMAGES.map((source) => loadImage(source))).then(() => minLoaderDuration),
+      maxWaitTimeout
+    ]).finally(() => {
+      if (isMounted) setIsPageReady(true);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isPageReady) return;
+
+    const warmupTimeout = window.setTimeout(() => {
+      DEFERRED_PRELOAD_IMAGES.forEach((src) => {
+        const image = new Image();
+        image.decoding = 'async';
+        image.src = src;
+      });
+    }, 250);
+
+    return () => window.clearTimeout(warmupTimeout);
+  }, [isPageReady]);
+
+  useEffect(() => {
+    document.body.classList.toggle('app-is-loading', !isPageReady);
+    return () => {
+      document.body.classList.remove('app-is-loading');
+    };
+  }, [isPageReady]);
+
+  useEffect(() => {
+    return () => {
+      if (successOverlayTimeoutRef.current) {
+        window.clearTimeout(successOverlayTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const onPopState = () => setCurrentPath(window.location.pathname);
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -417,6 +595,31 @@ function App() {
 
     return () => window.clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    if (!isPageReady) return;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    const timeout = window.setTimeout(() => {
+      document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+    }, 100);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timeout);
+    };
+  }, [isPageReady]);
 
   useEffect(() => {
     if (!selectedNewsImage) return;
@@ -437,31 +640,83 @@ function App() {
     return () => window.removeEventListener('resize', updateViewport);
   }, []);
 
+  const navigateToBlogPage = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    window.history.pushState(null, '', '/blog');
+    setCurrentPath('/blog');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append('_subject', 'Nuevo contacto desde bytewise.mx');
+    formData.append('_cc', 'contact@bytewise.mx');
+    formData.append('_captcha', 'false');
+    formData.append('_template', 'table');
+
+    setIsContactSending(true);
+    setContactStatus({ type: 'idle', message: '' });
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/b82159a0730c6b856904deab14c19acf', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('No se pudo enviar el formulario');
+      }
+
+      form.reset();
+      setContactStatus({
+        type: 'success',
+        message: 'Mensaje enviado correctamente. Te responderemos en menos de 24 horas hábiles.'
+      });
+      setShowSubmitShield(true);
+      if (successOverlayTimeoutRef.current) {
+        window.clearTimeout(successOverlayTimeoutRef.current);
+      }
+      successOverlayTimeoutRef.current = window.setTimeout(() => {
+        setShowSubmitShield(false);
+      }, 1900);
+    } catch {
+      setContactStatus({
+        type: 'error',
+        message: 'No pudimos enviar el mensaje. Intenta nuevamente o contáctanos por WhatsApp.'
+      });
+    } finally {
+      setIsContactSending(false);
+    }
+  };
+
   const valueCarouselItems = values.map((value, index) => {
     const iconList = [
       {
-        icon: <HiMiniCheckBadge className="carousel-icon" style={{ color: '#cbd5e1' }} />,
-        bg: 'linear-gradient(145deg, #1f2937, #0f172a)'
+        icon: <i className="pi pi-check-circle carousel-icon" style={{ color: '#f8fafc' }} />,
+        bg: 'linear-gradient(145deg, #2563eb, #0f172a)'
       },
       {
-        icon: <HiMiniClipboardDocumentCheck className="carousel-icon" style={{ color: '#d1d5db' }} />,
-        bg: 'linear-gradient(145deg, #243447, #111827)'
+        icon: <i className="pi pi-check-circle carousel-icon" style={{ color: '#f8fafc' }} />,
+        bg: 'linear-gradient(145deg, #0f766e, #0f172a)'
       },
       {
-        icon: <HiMiniLockClosed className="carousel-icon" style={{ color: '#dbeafe' }} />,
-        bg: 'linear-gradient(145deg, #1e3a5f, #0f172a)'
+        icon: <i className="pi pi-lock carousel-icon" style={{ color: '#f8fafc' }} />,
+        bg: 'linear-gradient(145deg, #7c3aed, #0f172a)'
       },
       {
-        icon: <HiMiniScale className="carousel-icon" style={{ color: '#e5e7eb' }} />,
-        bg: 'linear-gradient(145deg, #334155, #111827)'
+        icon: <i className="pi pi-shield carousel-icon" style={{ color: '#f8fafc' }} />,
+        bg: 'linear-gradient(145deg, #1d4ed8, #111827)'
       },
       {
-        icon: <HiMiniShieldCheck className="carousel-icon" style={{ color: '#bfdbfe' }} />,
-        bg: 'linear-gradient(145deg, #1d4ed8, #1e293b)'
+        icon: <i className="pi pi-bolt carousel-icon" style={{ color: '#f8fafc' }} />,
+        bg: 'linear-gradient(145deg, #0ea5e9, #0f172a)'
       },
       {
-        icon: <HiMiniSparkles className="carousel-icon" style={{ color: '#dbeafe' }} />,
-        bg: 'linear-gradient(145deg, #0f4c81, #172554)'
+        icon: <i className="pi pi-star carousel-icon" style={{ color: '#f8fafc' }} />,
+        bg: 'linear-gradient(145deg, #0891b2, #172554)'
       }
     ];
 
@@ -515,8 +770,167 @@ function App() {
     icon: getServiceIcon(service.id, service.icon)
   }));
 
+  const isBlogPage = currentPath === '/blog';
+  const blogMenuItems = [
+    { label: 'INICIO', ariaLabel: 'Volver al inicio', link: '/' },
+    { label: 'BLOG', ariaLabel: 'Ver blog', link: '/blog' },
+    { label: 'CONTACTO', ariaLabel: 'Ir a contacto', link: '/#contacto' }
+  ];
+
+  if (isBlogPage) {
+    return (
+      <div className="page blog-page">
+        <div className={`page-loader ${isPageReady ? 'is-hidden' : ''}`} aria-hidden={isPageReady}>
+          <div className="page-loader-inner">
+            <img src={logo} alt="ByteWise" className="page-loader-logo" decoding="async" fetchPriority="high" />
+            <p>Cargando experiencia segura...</p>
+            <span className="page-loader-bar" />
+          </div>
+        </div>
+
+        <div className="blog-bw-bg" style={{ '--blog-shield-texture': `url(${escudoImg})` } as React.CSSProperties} aria-hidden="true">
+          <span className="blog-code-rain rain-1">01001011<br />root@bytewise<br />SCAN_PORTS<br />0x7F IA<br />ISO27001<br />ACCESS_OK</span>
+          <span className="blog-code-rain rain-2">defense.log<br />CVE_TRACE<br />10110100<br />LFPDPPP<br />AI_MODEL<br />PATCH_NOW</span>
+          <span className="blog-code-rain rain-3">risk_score<br />443/tcp<br />0101_IA<br />FORENSE<br />HASH:9AF<br />SECURE</span>
+          <span className="blog-code-rain rain-4">nmap -sV<br />BANK_SYS<br />00011101<br />AUTH_DENY<br />CYBER_OPS<br />TRACE</span>
+          <span className="blog-code-rain rain-5">encrypt()<br />SOC_ALERT<br />11001010<br />WEB_APP<br />ZERO_TRUST<br />MONITOR</span>
+        </div>
+
+        <div className="bg-geometry" aria-hidden="true">
+          <div className="glow top-left"></div>
+          <div className="glow bottom-right"></div>
+        </div>
+
+        <StaggeredMenu
+          position="right"
+          items={blogMenuItems}
+          socialItems={[]}
+          displaySocials={false}
+          displayItemNumbering={true}
+          menuButtonColor="#ffffff"
+          openMenuButtonColor="#0f172a"
+          changeMenuColorOnOpen={true}
+          colors={['#0f172a', '#1d4ed8']}
+          logoUrl={logo}
+          logoHref="/"
+          accentColor="#2563eb"
+          isFixed={true}
+        />
+
+        <main className="blog-page-main">
+          <section className="blog-page-hero">
+            <div className="container">
+              <div className="blog-page-heading">
+                <h1 className="comic-blog-title">Mas noticias, recursos y publicaciones</h1>
+                <p className="comic-blog-subtitle">
+                  Consulte mas avisos, recursos educativos y analisis de ciberseguridad, IA y tecnologia.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="blog-publish-section">
+            <div className="container">
+              <div className="published-blog-list">
+                <div className="published-blog-head">
+                  <h3>Mas publicaciones</h3>
+                  <span>{moreBlogArticles.length} publicacion{moreBlogArticles.length === 1 ? '' : 'es'}</span>
+                </div>
+
+                <div className="blog-content-layout">
+                  <div className="published-blog-grid">
+                    {moreBlogArticles.map((post) => {
+                      const postId = `${post.title}-${post.date}`;
+                      const isExpanded = expandedBlogPostId === postId;
+
+                      return (
+                        <article className="published-blog-card" key={postId}>
+                          {'image' in post && post.image && (
+                            <img src={post.image} alt={post.title} className="published-blog-image" loading="lazy" decoding="async" />
+                          )}
+                          <div className="blog-meta">
+                            <span className="blog-tag">{post.category}</span>
+                            <span className="blog-date">{post.date}</span>
+                          </div>
+                          <h3>{post.title}</h3>
+                          <p className="published-blog-summary">{post.summary}</p>
+                          {isExpanded && (
+                            <div className="published-blog-expanded">
+                              <p className="published-blog-content">{post.content}</p>
+                              {'source' in post && post.source && (
+                                <a href={post.source} className="published-blog-source" target="_blank" rel="noreferrer">
+                                  Fuente
+                                </a>
+                              )}
+                            </div>
+                          )}
+                          <button
+                            type="button"
+                            className="published-blog-more"
+                            onClick={() => setExpandedBlogPostId(isExpanded ? null : postId)}
+                            aria-expanded={isExpanded}
+                          >
+                            {isExpanded ? 'Ver menos' : 'Ver mas'}
+                          </button>
+                        </article>
+                      );
+                    })}
+                  </div>
+
+                  <aside className="blog-ad-sidebar" aria-label="Anuncios de ByteWise">
+                    <div className="blog-ad-sidebar-inner">
+                      <span className="blog-ad-label">Anuncios ByteWise</span>
+                      {blogSidebarAds.map((ad, index) => (
+                        <a
+                          href={index === 1 ? '/#ia' : index === 2 ? '/#servicios' : '/#contacto'}
+                          className="blog-ad-card"
+                          key={ad.title}
+                        >
+                          <span className="blog-ad-kicker">{ad.eyebrow}</span>
+                          <strong>{ad.title}</strong>
+                          <span>{ad.copy}</span>
+                          <em>{ad.cta}</em>
+                        </a>
+                      ))}
+                    </div>
+                  </aside>
+                </div>
+              </div>
+            </div>
+          </section>        </main>
+
+        <footer className="footer-main footer-main--minimal">
+          <div className="container">
+            <div className="footer-bottom footer-bottom--minimal">
+              <p>Â© {currentYear} ByteWise: Data & Cybersecurity. Todos los derechos reservados.</p>
+              <div className="legal-links legal-links--minimal">
+                <a href="/">PolÃ­tica de Privacidad</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <ChatBot />
+      </div>
+    );
+  }
+
   return (
     <div className="page">
+      <div className={`page-loader ${isPageReady ? 'is-hidden' : ''}`} aria-hidden={isPageReady}>
+        <div className="page-loader-inner">
+          <img src={logo} alt="ByteWise" className="page-loader-logo" decoding="async" fetchPriority="high" />
+          <p>Cargando experiencia segura...</p>
+          <span className="page-loader-bar" />
+        </div>
+      </div>
+
+      <div className={`submit-shield-overlay ${showSubmitShield ? 'is-visible' : ''}`} aria-hidden={!showSubmitShield}>
+        <div className="submit-shield-inner">
+          <img src={escudoImg} alt="Mensaje enviado" className="submit-shield-image" decoding="async" />
+          <p>Mensaje enviado correctamente</p>
+        </div>
+      </div>
+
       {/* FULLSCREEN ANIMATED BACKGROUND */}
       <div className="animated-bg" style={pageStyle}></div>
 
@@ -542,14 +956,14 @@ function App() {
       />
 
       <main>
-        {/* SECTION 1 �?" HERO */}
+        {/* SECTION 1 ??" HERO */}
         <section className="hero-section text-center" id="inicio">
           <div className="hero-content">
             <h1 className="hero-typing">
               <TextType
                 as="span"
                 className="hero-typing-text"
-                text={['Protegemos su información.', 'Aseguramos su futuro.']}
+                text={HERO_SLOGANS}
                 typingSpeed={75}
                 deletingSpeed={50}
                 pauseDuration={1500}
@@ -557,6 +971,7 @@ function App() {
                 cursorCharacter="_"
                 cursorBlinkDuration={0.5}
                 variableSpeed={null}
+                revealEffect="none"
               />
             </h1>
             <p className="lede fade-in">
@@ -584,6 +999,15 @@ function App() {
                 <a href="#servicios" className="ghost">Conocer nuestros servicios</a>
               </ElectricBorder>
             </div>
+            <div className="announcement-slidebar" aria-label="Anuncios de ByteWise">
+              <div className="announcement-track">
+                {[...heroAnnouncements, ...heroAnnouncements].map((announcement, index) => (
+                  <span className="announcement-item" key={`${announcement}-${index}`}>
+                    {announcement}
+                  </span>
+                ))}
+              </div>
+            </div>
             <div className="trust-badges mt-6" aria-live="polite">
               <span key={activeTrustBadge} className="trust-badge-item">
                 {trustBadgeItems[activeTrustBadge]}
@@ -599,10 +1023,22 @@ function App() {
                 ))}
               </div>
             </div>
+            <div className="hero-world" aria-hidden="true">
+              <div className="hero-world-orbit hero-world-orbit--outer"></div>
+              <div className="hero-world-orbit hero-world-orbit--inner"></div>
+              <div className="hero-world-globe">
+                <span className="hero-world-grid hero-world-grid--vertical"></span>
+                <span className="hero-world-grid hero-world-grid--horizontal"></span>
+                <span className="hero-world-shine"></span>
+                <img src={escudoImg} alt="" className="hero-world-shield" loading="lazy" decoding="async" />
+              </div>
+              <span className="hero-world-signal hero-world-signal--one"></span>
+              <span className="hero-world-signal hero-world-signal--two"></span>
+            </div>
           </div>
         </section>
 
-        {/* SECTION 2 �?" SOBRE BYTEWISE */}
+        {/* SECTION 2 ??" SOBRE BYTEWISE */}
         <section className="about-section" id="sobre-bytewise">
           <div className="container">
             <div className="section-heading text-center">
@@ -622,11 +1058,11 @@ function App() {
 
             <div className="mission-vision-grid mt-4">
               <div className="card glass-card">
-                <h3><img src={misionImg} alt="Misión" />NUESTRA MISION</h3>
+                <h3><img src={misionImg} alt="Misión" loading="lazy" decoding="async" />NUESTRA MISIÓN</h3>
                 <p>Ofrecer servicios de ciberseguridad de calidad certificada, basados en el entendimiento profundo de las necesidades de cada cliente, estableciendo relaciones de confianza a largo plazo.</p>
               </div>
               <div className="card glass-card">
-                <h3><img src={visionImg} alt="Visión" />NUESTRA VISION</h3>
+                <h3><img src={visionImg} alt="Visión" loading="lazy" decoding="async" />NUESTRA VISIÓN</h3>
                 <p>Ser reconocidos como la firma líder en soluciones de ciberseguridad e inteligencia artificial en Aguascalientes y México, distinguidos por un servicio personalizado y a la vanguardia del entorno digital.</p>
               </div>
             </div>
@@ -636,19 +1072,19 @@ function App() {
               <div className="values-carousel-wrapper">
                 <Carousel
                   items={valueCarouselItems}
-                  baseWidth={isMobileViewport ? 330 : 680}
+                  baseWidth={isMobileViewport ? 300 : 460}
                   autoplay
                   autoplayDelay={3000}
                   pauseOnHover={false}
-                  loop={false}
+                  loop
                   round={false}
                 />
               </div>
             </div>
 
-            <div className="differentiator">
+            <div className="differentiator animate-on-scroll">
               <div className="diff-icon-box">
-                <img src={escudoImg} alt="Escudo ByteWise" className="diff-logo" />
+                <img src={escudoImg} alt="Escudo ByteWise" className="diff-logo" loading="lazy" decoding="async" />
               </div>
               <div className="diff-content">
                 <p><strong>La combinación de experiencia en ISO 27001:2022 e Inteligencia Artificial</strong> nos permite ofrecer una solución integral única en el mercado: seguridad robusta y procesos optimizados, bajo un mismo equipo consultor.</p>
@@ -660,10 +1096,10 @@ function App() {
         <section className="workflow-section mt-5" id="como-trabajamos">
           <div className="container">
             <div className="section-heading text-center">
-              <span className="eyebrow">Metodologia</span>
-              <h2>Como trabajamos</h2>
+              <span className="eyebrow">Metodología</span>
+              <h2>Cómo trabajamos</h2>
             </div>
-            <div className="workflow-carousel-stage">
+            <div className="workflow-carousel-stage animate-on-scroll">
               <Carousel
                 items={workProcessCarouselItems}
                 baseWidth={isMobileViewport ? 320 : 360}
@@ -677,7 +1113,7 @@ function App() {
           </div>
         </section>
 
-        {/* SECTION 3 �?" SERVICIOS */}
+        {/* SECTION 3 ??" SERVICIOS */}
         <section className="services-section" id="servicios">
           <div className="container">
             <div className="section-heading text-center">
@@ -686,7 +1122,7 @@ function App() {
               <p className="lede">Soluciones integrales de ciberseguridad, tecnología e inteligencia artificial diseñadas a la medida de su organización.</p>
             </div>
 
-            <div className="services-grid mt-5">
+            <div className="services-grid mt-5 animate-on-scroll">
               <MagicBento
                 items={serviceBentoItems}
                 textAutoHide={true}
@@ -705,14 +1141,14 @@ function App() {
           </div>
         </section>
 
-        {/* SECTION 4 �?" CONSULTORÍA IA */}
+        {/* SECTION 4 ??" CONSULTORÍA IA */}
         <section className="ai-section mt-5" id="ia">
           <div className="container p-relative">
             <div className="ai-backdrop"></div>
             <div className="section-heading text-center">
               <span className="eyebrow">Inteligencia Artificial</span>
               <h2>IA aplicada a su negocio</h2>
-              <p className="lede mx-auto">No se trata de tecnología por sí misma, sino de resultados. Nuestros consultores identifican dónde y cómo la IA puede transformar sus procesos, reducir costos y mejorar la experiencia de sus clientes.</p>
+
             </div>
             <p className="section-p text-center mb-5 ai-intro-text">
               Un consultor de IA es el puente entre la tecnología disponible y los objetivos reales de su organización. En ByteWise analizamos sus procesos, diseñamos soluciones a la medida e implementamos herramientas que generan valor desde el primer día.
@@ -744,7 +1180,7 @@ function App() {
             </div>
 
             <div className="ai-cta-block text-center">
-              <a href="#contacto" className="primary large">
+              <a href="#contacto" className="primary large ai-electric-cta">
                 &rarr; Agendar diagnóstico de IA gratuito
               </a>
               <a
@@ -761,7 +1197,7 @@ function App() {
           </div>
         </section>
 
-        {/* SECTION 5 �?" CONTINUIDAD OPERATIVA */}
+        {/* SECTION 5 ??" CONTINUIDAD OPERATIVA */}
         <section className="risk-data-section mt-5" id="continuidad-datos">
           <div className="container">
             <div className="section-heading text-center">
@@ -795,7 +1231,7 @@ function App() {
           </div>
         </section>
 
-        {/* SECTION 6 �?" ALERTA DE INCIDENTE */}
+        {/* SECTION 6 ??" ALERTA DE INCIDENTE */}
         <section className="incident-alert-section mt-5" id="alerta-incidente">
           <div className="container">
             <div className="section-heading text-center">
@@ -854,6 +1290,32 @@ function App() {
           </div>
         </section>
 
+        <section className="education-highlight-section mt-5" id="instituciones-educativas">
+          <div className="container">
+            <div className="education-highlight-card">
+              <div className="education-highlight-media">
+                <img
+                  src={escuelaImg}
+                  alt="Instituciones educativas protegidas por ByteWise"
+                  className="education-highlight-image"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 900px) 96vw, 460px"
+                />
+              </div>
+              <div className="education-highlight-content">
+                <span className="eyebrow">Instituciones educativas</span>
+                <h2>Protección integral para el entorno académico</h2>
+                <p>
+                  Trabajamos también con instituciones educativas donde la seguridad de la información es clave,
+                  gestionando el flujo constante de datos confidenciales y blindando su infraestructura contra las
+                  vulnerabilidades que hoy afectan a universidades públicas a nivel nacional.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 6 - NUESTRO EQUIPO */}
         <section className="team-section mt-5" id="equipo">
           <div className="container">
@@ -887,7 +1349,7 @@ function App() {
           </div>
         </section>
 
-        {/* SECTION 7, 8, 9 �?" CLIENTES, NOTICIAS, DESCARGAS */}
+        {/* SECTION 7, 8, 9 ??" CLIENTES, NOTICIAS, DESCARGAS */}
         <section className="grid-3-sections mt-5">
           <div className="container">
             <div className="complex-grid">
@@ -905,6 +1367,16 @@ function App() {
                     <span className="client-pill">E-Net-Corp</span>
                     <span className="client-pill">Grupo Millenium</span>
                   </div>
+                  <figure className="client-companies-figure">
+                    <img
+                      src={empresasImg}
+                      alt="Empresas que confían en ByteWise"
+                      className="client-companies-image"
+                      loading="lazy"
+                      decoding="async"
+                      sizes="(max-width: 1024px) 96vw, 560px"
+                    />
+                  </figure>
                 </div>
 
                 <div className="client-note-box">
@@ -912,10 +1384,23 @@ function App() {
                     Seguimos colaborando con más organizaciones en distintos proyectos de ciberseguridad, cumplimiento e implementación tecnológica.
                   </p>
                 </div>
-                <blockquote className="testimonial-mock mt-4">
-                  "ByteWise transformó la manera en que gestionamos la seguridad de nuestra información. El acompañamiento durante todo el proceso de certificación ISO 27001 fue invaluable."
-                  <footer>&mdash; Lic. Fernanda Ríos, Directora de Operaciones, Grupo Millenium | Aguascalientes, México</footer>
-                </blockquote>
+
+                <div className="client-testimonials mt-4">
+                  {clientTestimonials.map((item) => (
+                    <article className="client-message-card" key={item.author}>
+                      <header className="client-message-head">
+                        <div className="client-avatar" aria-hidden="true">{item.avatar}</div>
+                        <div className="client-meta">
+                          <strong>{item.author}</strong>
+                          <span>{item.tag} · {item.company}</span>
+                        </div>
+                        <i className="pi pi-comment client-message-icon" aria-hidden="true"></i>
+                      </header>
+                      <p>{item.quote}</p>
+                    </article>
+                  ))}
+                </div>
+
                 <a href="#contacto" className="mock-link mt-3 d-inline-block">&rarr; Conviértase en nuestro próximo caso de éxito</a>
               </div>
 
@@ -943,12 +1428,11 @@ function App() {
                 </div>
 
               </div>
-
             </div>
           </div>
         </section>
 
-        {/* SECTION 8 �?" NOTICIAS Y RECURSOS (BLOG) */}
+        {/* SECTION 8 ??" NOTICIAS Y RECURSOS (BLOG) */}
         <section className="blog-section mt-5" id="noticias">
           <div className="container">
             <div className="section-heading text-center">
@@ -978,6 +1462,8 @@ function App() {
                         alt={article.title}
                         className="blog-image"
                         loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 768px) 92vw, 460px"
                         onError={(e) => {
                           (e.currentTarget as HTMLImageElement).style.display = 'none';
                         }}
@@ -993,10 +1479,29 @@ function App() {
                       <span className="blog-tag">{article.category}</span>
                       <span className="blog-date">{article.date}</span>
                     </div>
-                    <h3><a href="#">{article.title}</a></h3>
+                    <h3>
+                      {article.image ? (
+                        <button
+                          type="button"
+                          className="blog-title-button"
+                          onClick={() => setSelectedNewsImage({ src: article.image!, title: article.title })}
+                        >
+                          {article.title}
+                        </button>
+                      ) : (
+                        <span>{article.title}</span>
+                      )}
+                    </h3>
                   </div>
                 </article>
               ))}
+              <a href="/blog" className="blog-card blog-more-card" onClick={navigateToBlogPage} aria-label="Ver mas publicaciones del blog">
+                <span className="blog-more-card-orbit" aria-hidden="true"></span>
+                <span className="blog-more-card-kicker">Explorar recursos</span>
+                <strong>Ver mas</strong>
+                <span>Acceda a mas publicaciones, guias y analisis preparados por ByteWise.</span>
+                <i className="pi pi-arrow-right" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
         </section>
@@ -1012,16 +1517,16 @@ function App() {
               >
                 ×
               </button>
-              <img src={selectedNewsImage.src} alt={selectedNewsImage.title} className="news-lightbox-image" />
+              <img src={selectedNewsImage.src} alt={selectedNewsImage.title} className="news-lightbox-image" decoding="async" />
               <p className="news-lightbox-caption">{selectedNewsImage.title}</p>
             </div>
           </div>
         )}
 
-        {/* SECTION 10 �?" CONTACTO */}
+        {/* SECTION 10 ??" CONTACTO */}
         <section className="contact-section mt-5" id="contacto">
           <div className="container">
-            <div className="contact-card">
+            <div className="contact-card animate-on-scroll">
               <div className="contact-info">
                 <h2>Hablemos sobre su organización</h2>
                 <p className="mb-4">Estamos disponibles para resolver sus dudas, presentar una propuesta o agendar un diagnóstico inicial sin costo.</p>
@@ -1030,7 +1535,7 @@ function App() {
                   <li><i className="pi pi-envelope"></i> <strong>General:</strong> contact@bytewise.mx</li>
                   <li><i className="pi pi-shopping-cart"></i> <strong>Ventas:</strong> ventas@bytewise.mx</li>
                   <li><i className="pi pi-briefcase"></i> <strong>Estrategia:</strong> f.covarrubias@bytewise.mx</li>
-                  <li><i className="pi pi-phone"></i> <strong>Tel/WhatsApp:</strong> [AGREGAR NÚMERO CELULAR]</li>
+                  <li><i className="pi pi-phone"></i> <strong>Tel/WhatsApp:</strong> 4493639220</li>
                   <li><i className="pi pi-globe"></i> <strong>Web:</strong> www.bytewise.mx</li>
                   <li><i className="pi pi-map-marker"></i> <strong>Ubicación:</strong> Aguascalientes, México</li>
                 </ul>
@@ -1044,28 +1549,70 @@ function App() {
               <div className="contact-form">
                 <h3>Envíenos un mensaje</h3>
                 <p className="small-text mb-3">Le contactaremos en menos de 24 horas hábiles.</p>
-                <form onSubmit={(e) => { e.preventDefault(); alert("Gracias por contactarnos. Hemos recibido su mensaje y un miembro de nuestro equipo se comunicará con usted en las próximas 24 horas hábiles."); }}>
+                <form onSubmit={handleContactSubmit}>
+                  <input type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
                   <div className="input-group">
-                    <input type="text" placeholder="Nombre completo *" required />
-                    <input type="text" placeholder="Empresa / Organización *" required />
+                    <div className="field-control">
+                      <label htmlFor="contact-nombre">Nombre completo *</label>
+                      <input id="contact-nombre" type="text" name="nombre" placeholder="Nombre completo" required />
+                    </div>
+                    <div className="field-control">
+                      <label htmlFor="contact-empresa">Empresa / Organización *</label>
+                      <input id="contact-empresa" type="text" name="empresa" placeholder="Empresa / Organización" required />
+                    </div>
                   </div>
                   <div className="input-group">
-                    <input type="email" placeholder="Correo electrónico *" required />
-                    <input type="tel" placeholder="Teléfono (opcional)" />
+                    <div className="field-control">
+                      <label htmlFor="contact-correo">Correo electrónico *</label>
+                      <input id="contact-correo" type="email" name="correo" placeholder="correo@empresa.com" required />
+                    </div>
+                    <div className="field-control">
+                      <label htmlFor="contact-telefono">Teléfono (opcional)</label>
+                      <input id="contact-telefono" type="tel" name="telefono" placeholder="4493639220" />
+                    </div>
                   </div>
-                  <select required>
-                    <option value="" disabled selected>Servicio de interés *</option>
-                    <option value="ciberseguridad">Ciberseguridad</option>
-                    <option value="iso">ISO 27001</option>
-                    <option value="admin-ti">Administración TI</option>
-                    <option value="ia">Consultoría IA</option>
-                    <option value="software">Desarrollo de Software</option>
-                    <option value="pentesting">Pentesting</option>
-                    <option value="forense">Forense</option>
-                    <option value="otro">Otro</option>
-                  </select>
-                  <textarea placeholder="Mensaje *" rows={4} required></textarea>
-                  <button type="submit" className="primary btn-submit">Enviar mensaje</button>
+                  <div className="field-control field-control--full">
+                    <label htmlFor="contact-servicio">Servicio de interés *</label>
+                    <select id="contact-servicio" name="servicio" defaultValue="" required>
+                      <option value="" disabled>Seleccione una opción</option>
+                      <option value="ciberseguridad">Ciberseguridad</option>
+                      <option value="iso">ISO 27001</option>
+                      <option value="admin-ti">Administración TI</option>
+                      <option value="ia">Consultoría IA</option>
+                      <option value="software">Desarrollo de Software</option>
+                      <option value="pentesting">Pentesting</option>
+                      <option value="forense">Forense</option>
+                      <option value="otro">Otro</option>
+                    </select>
+                  </div>
+                  <div className="field-control field-control--full">
+                    <label htmlFor="contact-mensaje">Mensaje *</label>
+                    <textarea id="contact-mensaje" name="mensaje" placeholder="Cuéntenos brevemente cómo podemos ayudarle" rows={4} required></textarea>
+                  </div>
+                  <div className="w-full mt-3 electric-submit-wrapper">
+                    <ElectricBorder
+                      color="#38bdf8"
+                      speed={1.5}
+                      chaos={0.2}
+                      thickness={2}
+                      borderRadius={8}
+                      className="w-full block"
+                    >
+                      <button 
+                        type="submit" 
+                        className="primary btn-submit" 
+                        disabled={isContactSending}
+                        style={{ margin: 0 }}
+                      >
+                        {isContactSending ? 'Enviando...' : 'Enviar mensaje'}
+                      </button>
+                    </ElectricBorder>
+                  </div>
+                  {contactStatus.type !== 'idle' && (
+                    <p className={`contact-form-status ${contactStatus.type === 'success' ? 'ok' : 'error'}`}>
+                      {contactStatus.message}
+                    </p>
+                  )}
                 </form>
               </div>
             </div>
@@ -1074,64 +1621,21 @@ function App() {
 
       </main>
 
-      {/* SECTION 11 �?" FOOTER */}
-      <footer className="footer-main">
+      {/* SECTION 11 ??" FOOTER */}
+      <footer className="footer-main footer-main--minimal">
         <div className="container">
-          <div className="footer-grid">
-            <div className="footer-col brand-col">
-              <img src={logo} alt="ByteWise Logo" className="footer-logo mb-3" />
-              <h4>ByteWise: Data & Cybersecurity</h4>
-              <p>Protegiendo tus datos, asegurando tu futuro.</p>
-            </div>
-
-            <div className="footer-col">
-              <h4>Servicios</h4>
-              <ul>
-                <li><a href="#ciberseguridad">Consultoría en Ciberseguridad</a></li>
-                <li><a href="#iso-27001">ISO 27001:2022</a></li>
-                <li><a href="#admin-ti">Administración de TI</a></li>
-                <li><a href="#consultoria-ia">Consultoría en IA</a></li>
-                <li><a href="#pentesting">Pentesting</a></li>
-                <li><a href="#software">Desarrollo de Software</a></li>
-              </ul>
-            </div>
-
-            <div className="footer-col">
-              <h4>Contacto</h4>
-              <ul>
-                <li>contact@bytewise.mx</li>
-                <li>[TELÉFONO / WHATSAPP]</li>
-                <li>Aguascalientes, México</li>
-              </ul>
-            </div>
-
-            <div className="footer-col">
-              <h4>Redes Sociales</h4>
-              <ul>
-                <li><a href="https://instagram.com/bytewise_mx" target="_blank" rel="noreferrer">Instagram: @bytewise_mx</a></li>
-                <li><a href="https://facebook.com/Bytewise.mx" target="_blank" rel="noreferrer">Facebook: Bytewise.mx</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>© 2025 ByteWise: Data & Cybersecurity. Todos los derechos reservados.</p>
-            <div className="legal-links">
+          <div className="footer-bottom footer-bottom--minimal">
+            <p>© {currentYear} ByteWise: Data & Cybersecurity. Todos los derechos reservados.</p>
+            <div className="legal-links legal-links--minimal">
               <a href="#">Política de Privacidad</a>
-              <span className="dot">&bull;</span>
-              <a href="#">Términos de Uso</a>
-              <span className="dot">&bull;</span>
-              <a href="#">Aviso de Cookies</a>
             </div>
           </div>
         </div>
       </footer>
+      <ChatBot />
     </div>
   );
 }
 
 export default App;
-
-
-
-
 

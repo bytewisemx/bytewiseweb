@@ -436,6 +436,83 @@ const useMobileDetection = () => {
   return isMobile;
 };
 
+const MagicBentoCardContent = ({ item }: { item: MagicBentoItem }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const hasExtraContent = !!(
+    (item.sections && item.sections.length > 0) || 
+    (item.bullets && item.bullets.length > 0) || 
+    item.note || 
+    (item.ctaText && item.ctaHref)
+  );
+
+  return (
+    <>
+      <div className="magic-bento-card__header">
+        <div className="magic-bento-card__label">{item.label}</div>
+        <div className="magic-bento-card__icon">{item.icon}</div>
+      </div>
+      <div className="magic-bento-card__content">
+        <h3 className="magic-bento-card__title">{item.title}</h3>
+        <p className="magic-bento-card__description">{item.description}</p>
+        
+        {hasExtraContent && !isExpanded && (
+           <button 
+             className="magic-bento-card__expand-btn"
+             onClick={(e) => { e.preventDefault(); setIsExpanded(true); }}
+             style={{ background: 'transparent', color: '#38bdf8', border: 'none', padding: '0.25rem 0', fontWeight: 600, cursor: 'pointer', textAlign: 'left', marginTop: '0.2rem', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}
+           >
+             Ver más... <i className="pi pi-chevron-down" style={{fontSize: '0.75rem'}}></i>
+           </button>
+        )}
+
+        {isExpanded && (
+          <div className="magic-bento-card__expanded-content" style={{ marginTop: '0.8rem', animation: 'fadeIn 0.3s ease' }}>
+            {item.sections && item.sections.length > 0 && (
+              <div className="magic-bento-card__sections">
+                {item.sections.map((section) => (
+                  <div key={`${item.id}-${section.heading}`} className="magic-bento-card__section">
+                    {section.heading && <p className="magic-bento-card__section-heading">{section.heading}</p>}
+                    {section.text && <p className="magic-bento-card__section-text">{section.text}</p>}
+                    {section.bullets && section.bullets.length > 0 && (
+                      <ul className="magic-bento-card__list">
+                        {section.bullets.map((bullet) => (
+                          <li key={`${item.id}-${section.heading}-${bullet}`}>{bullet}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+            {item.bullets && item.bullets.length > 0 && (
+              <ul className="magic-bento-card__list">
+                {item.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            )}
+            {item.note && <p className="magic-bento-card__note">{item.note}</p>}
+            {item.ctaText && item.ctaHref && (
+              <a href={item.ctaHref} className="magic-bento-card__cta">
+                &rarr; {item.ctaText}
+              </a>
+            )}
+            
+            <button 
+              className="magic-bento-card__expand-btn"
+              onClick={(e) => { e.preventDefault(); setIsExpanded(false); }}
+              style={{ background: 'transparent', color: '#94a3b8', border: 'none', padding: '0.5rem 0', fontWeight: 600, cursor: 'pointer', textAlign: 'left', marginTop: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}
+            >
+              Ver menos <i className="pi pi-chevron-up" style={{fontSize: '0.75rem'}}></i>
+            </button>
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
 export default function MagicBento({
   items,
   textAutoHide = true,
@@ -485,49 +562,6 @@ export default function MagicBento({
             textAutoHide ? 'magic-bento-card--text-autohide' : ''
           } ${enableBorderGlow ? 'magic-bento-card--border-glow' : ''}`;
 
-          const cardContent = (
-            <>
-              <div className="magic-bento-card__header">
-                <div className="magic-bento-card__label">{item.label}</div>
-                <div className="magic-bento-card__icon">{item.icon}</div>
-              </div>
-              <div className="magic-bento-card__content">
-                <h3 className="magic-bento-card__title">{item.title}</h3>
-                <p className="magic-bento-card__description">{item.description}</p>
-                {item.sections && item.sections.length > 0 && (
-                  <div className="magic-bento-card__sections">
-                    {item.sections.map((section) => (
-                      <div key={`${item.id}-${section.heading}`} className="magic-bento-card__section">
-                        {section.heading && <p className="magic-bento-card__section-heading">{section.heading}</p>}
-                        {section.text && <p className="magic-bento-card__section-text">{section.text}</p>}
-                        {section.bullets && section.bullets.length > 0 && (
-                          <ul className="magic-bento-card__list">
-                            {section.bullets.map((bullet) => (
-                              <li key={`${item.id}-${section.heading}-${bullet}`}>{bullet}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {item.bullets && item.bullets.length > 0 && (
-                  <ul className="magic-bento-card__list">
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                )}
-                {item.note && <p className="magic-bento-card__note">{item.note}</p>}
-                {item.ctaText && item.ctaHref && (
-                  <a href={item.ctaHref} className="magic-bento-card__cta">
-                    &rarr; {item.ctaText}
-                  </a>
-                )}
-              </div>
-            </>
-          );
-
           const cardStyle: React.CSSProperties = {
             backgroundColor: item.color ?? '#120F17',
             ['--glow-color' as string]: glowColor
@@ -546,14 +580,14 @@ export default function MagicBento({
                 clickEffect={clickEffect}
                 enableMagnetism={enableMagnetism}
               >
-                <article id={item.anchorId}>{cardContent}</article>
+                <article id={item.anchorId}><MagicBentoCardContent item={item} /></article>
               </ParticleCard>
             );
           }
 
           return (
             <div key={item.id} className={baseClassName} style={cardStyle}>
-              <article id={item.anchorId}>{cardContent}</article>
+              <article id={item.anchorId}><MagicBentoCardContent item={item} /></article>
             </div>
           );
         })}

@@ -159,17 +159,8 @@ export default function Carousel({
     return () => clearInterval(timer);
   }, [autoplay, autoplayDelay, isHovered, pauseOnHover, itemsForRender.length]);
 
-  useEffect(() => {
-    const startingPosition = loop ? 1 : 0;
-    setPosition(startingPosition);
-    x.set(-startingPosition * trackItemOffset);
-  }, [items.length, loop, trackItemOffset, x]);
-
-  useEffect(() => {
-    if (!loop && position > itemsForRender.length - 1) {
-      setPosition(Math.max(0, itemsForRender.length - 1));
-    }
-  }, [itemsForRender.length, loop, position]);
+  const maxPosition = Math.max(itemsForRender.length - 1, 0);
+  const boundedPosition = Math.max(0, Math.min(position, maxPosition));
 
   const effectiveTransition = isJumping ? { duration: 0 } : SPRING_OPTIONS;
 
@@ -184,7 +175,7 @@ export default function Carousel({
     }
     const lastCloneIndex = itemsForRender.length - 1;
 
-    if (position === lastCloneIndex) {
+    if (boundedPosition === lastCloneIndex) {
       setIsJumping(true);
       const target = 1;
       setPosition(target);
@@ -196,7 +187,7 @@ export default function Carousel({
       return;
     }
 
-    if (position === 0) {
+    if (boundedPosition === 0) {
       setIsJumping(true);
       const target = items.length;
       setPosition(target);
@@ -239,7 +230,11 @@ export default function Carousel({
       };
 
   const activeIndex =
-    items.length === 0 ? 0 : loop ? (position - 1 + items.length) % items.length : Math.min(position, items.length - 1);
+    items.length === 0
+      ? 0
+      : loop
+        ? (boundedPosition - 1 + items.length) % items.length
+        : Math.min(boundedPosition, items.length - 1);
 
   return (
     <div
@@ -258,11 +253,11 @@ export default function Carousel({
           width: itemWidth,
           gap: `${GAP}px`,
           perspective: 1000,
-          perspectiveOrigin: `${position * trackItemOffset + itemWidth / 2}px 50%`,
+          perspectiveOrigin: `${boundedPosition * trackItemOffset + itemWidth / 2}px 50%`,
           x
         }}
         onDragEnd={handleDragEnd}
-        animate={{ x: -(position * trackItemOffset) }}
+        animate={{ x: -(boundedPosition * trackItemOffset) }}
         transition={effectiveTransition}
         onAnimationStart={handleAnimationStart}
         onAnimationComplete={handleAnimationComplete}
