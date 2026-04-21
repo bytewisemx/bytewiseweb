@@ -1052,6 +1052,55 @@ section {
 }
 
 @media (max-width: 768px) {
+  html,
+  body,
+  #root,
+  .page {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container,
+  section,
+  main,
+  .hero-content,
+  .section-heading,
+  .panel,
+  .contact-card,
+  .blog-card,
+  .published-blog-card,
+  .blog-ad-card,
+  .magic-bento-card,
+  .ai-swap-card,
+  .cert-card,
+  .specialization-card,
+  .education-highlight-card,
+  .client-message-card {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .hero-typing-text,
+  .hero-typing-text .text-type__content,
+  .section-heading h2,
+  .blog-title-button,
+  .blog-more-card strong,
+  .published-blog-card h3,
+  .blog-ad-card strong,
+  .ai-swap-card h4,
+  .ai-risk-intro,
+  .values-title {
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
+    max-width: 100%;
+  }
+
   .hero-content {
     gap: 1rem;
   }
@@ -1202,6 +1251,11 @@ section {
     line-height: 1.35;
   }
 
+  .blog-title-button {
+    white-space: normal;
+    text-align: left;
+  }
+
   .cert-card h3,
   .specialization-card h4 {
     font-size: 1rem;
@@ -1252,6 +1306,13 @@ section {
   .hero-electric-button .ghost {
     width: 100%;
     max-width: 340px;
+  }
+
+  .published-blog-card,
+  .blog-ad-card,
+  .contact-card,
+  .education-highlight-card {
+    box-shadow: 7px 7px 0 rgba(17, 24, 39, 0.14);
   }
 }
 
@@ -1342,7 +1403,8 @@ section {
   }
 
   .ai-swap-card h4 {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
+    line-height: 1.22;
   }
 
   .ai-swap-card p {
@@ -1369,6 +1431,42 @@ section {
 
   .blog-card h3 {
     font-size: 1.02rem;
+  }
+
+  .published-blog-card {
+    border-radius: 15px;
+    padding: 1rem;
+  }
+
+  .published-blog-image {
+    width: calc(100% + 2rem);
+    margin: -1rem -1rem 0.9rem;
+  }
+
+  .published-blog-card h3 {
+    font-size: 1.5rem;
+    line-height: 1.04;
+  }
+
+  .published-blog-summary,
+  .published-blog-content {
+    font-size: 1rem;
+  }
+
+  .blog-ad-card {
+    min-height: 0;
+    padding: 0.9rem;
+    box-shadow: 6px 6px 0 rgba(17, 24, 39, 0.14);
+  }
+
+  .blog-ad-card strong {
+    font-size: 1.45rem;
+    line-height: 1.02;
+  }
+
+  .blog-ad-card span:not(.blog-ad-kicker),
+  .blog-ad-card em {
+    font-size: 1.05rem;
   }
 
   .contact-list li {
@@ -1415,6 +1513,20 @@ section {
     height: 275px;
   }
 
+  .ai-swap-card {
+    padding: 0.86rem;
+  }
+
+  .ai-swap-card h4 {
+    font-size: 0.9rem;
+    line-height: 1.18;
+  }
+
+  .ai-swap-card p {
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
   .news-lightbox {
     padding: 0.7rem;
   }
@@ -1454,6 +1566,10 @@ section {
 
   .ai-risk-swap-frame {
     height: 245px;
+  }
+
+  .published-blog-card h3 {
+    font-size: 1.34rem;
   }
 }
 
@@ -2630,6 +2746,72 @@ section {
   .blog-more-card::before,
   .blog-more-card-orbit {
     animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .animated-bg {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .announcement-track {
+    animation-duration: 58s;
+  }
+
+  .hero-world-globe,
+  .hero-world-globe::before,
+  .hero-world-shield,
+  .hero-world-orbit,
+  .hero-world-signal,
+  .about-diff-panel::before,
+  .ai-electric-cta,
+  .ai-electric-cta::before,
+  .ai-electric-cta::after,
+  .blog-more-card,
+  .blog-more-card::before,
+  .blog-more-card-orbit,
+  .blog-code-rain,
+  .blog-ad-card,
+  .blog-ad-card::before {
+    animation: none;
+  }
+
+  .hero-world {
+    filter: none;
+  }
+
+  .hero-world-orbit,
+  .hero-world-signal {
+    display: none;
+  }
+
+  .hero-world-globe::before {
+    opacity: 0.42;
+  }
+
+  .hero-world-shield,
+  .diff-logo,
+  .footer-logo,
+  .carousel-icon {
+    filter: none;
+  }
+
+  .hero-section .lede,
+  .about-section .section-p,
+  .ai-section .section-p,
+  .blog-section .section-p,
+  .trust-badges,
+  .section-heading,
+  .carousel-container,
+  .about-diff-panel,
+  .differentiator,
+  .contact-info,
+  .contact-form,
+  .chatbot-window {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 }
 

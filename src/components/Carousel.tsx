@@ -55,6 +55,7 @@ type CarouselItemProps = {
   index: number;
   itemWidth: number;
   round: boolean;
+  performanceMode: boolean;
   trackItemOffset: number;
   x: ReturnType<typeof useMotionValue<number>>;
   transition: { duration: number } | { type: 'spring'; stiffness: number; damping: number };
@@ -65,12 +66,13 @@ function CarouselItem({
   index,
   itemWidth,
   round,
+  performanceMode,
   trackItemOffset,
   x,
   transition
 }: CarouselItemProps) {
   const range = [-(index + 1) * trackItemOffset, -index * trackItemOffset, -(index - 1) * trackItemOffset];
-  const outputRange = [90, 0, -90];
+  const outputRange = performanceMode ? [0, 0, 0] : [90, 0, -90];
   const rotateY = useTransform(x, range, outputRange, { clamp: false });
 
   return (
@@ -106,6 +108,7 @@ type CarouselProps = {
   pauseOnHover?: boolean;
   loop?: boolean;
   round?: boolean;
+  performanceMode?: boolean;
 };
 
 export default function Carousel({
@@ -115,7 +118,8 @@ export default function Carousel({
   autoplayDelay = 3000,
   pauseOnHover = false,
   loop = false,
-  round = false
+  round = false,
+  performanceMode = false
 }: CarouselProps) {
   const containerPadding = 16;
   const itemWidth = baseWidth - containerPadding * 2;
@@ -162,7 +166,7 @@ export default function Carousel({
   const maxPosition = Math.max(itemsForRender.length - 1, 0);
   const boundedPosition = Math.max(0, Math.min(position, maxPosition));
 
-  const effectiveTransition = isJumping ? { duration: 0 } : SPRING_OPTIONS;
+  const effectiveTransition = isJumping ? { duration: 0 } : performanceMode ? { duration: 0.24 } : SPRING_OPTIONS;
 
   const handleAnimationStart = () => {
     setIsAnimating(true);
@@ -248,11 +252,12 @@ export default function Carousel({
       <motion.div
         className="carousel-track"
         drag={isAnimating ? false : 'x'}
+        dragMomentum={!performanceMode}
         {...dragProps}
         style={{
           width: itemWidth,
           gap: `${GAP}px`,
-          perspective: 1000,
+          perspective: performanceMode ? 'none' : 1000,
           perspectiveOrigin: `${boundedPosition * trackItemOffset + itemWidth / 2}px 50%`,
           x
         }}
@@ -269,6 +274,7 @@ export default function Carousel({
             index={index}
             itemWidth={itemWidth}
             round={round}
+            performanceMode={performanceMode}
             trackItemOffset={trackItemOffset}
             x={x}
             transition={effectiveTransition}

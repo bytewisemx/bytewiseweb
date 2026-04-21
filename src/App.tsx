@@ -902,9 +902,9 @@ function App() {
         <footer className="footer-main footer-main--minimal">
           <div className="container">
             <div className="footer-bottom footer-bottom--minimal">
-              <p>Â© {currentYear} ByteWise: Data & Cybersecurity. Todos los derechos reservados.</p>
+              <p>© {currentYear} ByteWise: Data & Cybersecurity. Todos los derechos reservados.</p>
               <div className="legal-links legal-links--minimal">
-                <a href="/">PolÃ­tica de Privacidad</a>
+                <a href="/">Política de Privacidad</a>
               </div>
             </div>
           </div>
@@ -984,6 +984,7 @@ function App() {
                 chaos={0.14}
                 thickness={2.4}
                 borderRadius={10}
+                disabled={isMobileViewport}
                 className="hero-electric-button"
               >
                 <a href="#contacto" className="primary shadow-pulse">Solicitar diagnóstico gratuito</a>
@@ -994,6 +995,7 @@ function App() {
                 chaos={0.13}
                 thickness={2.2}
                 borderRadius={10}
+                disabled={isMobileViewport}
                 className="hero-electric-button"
               >
                 <a href="#servicios" className="ghost">Conocer nuestros servicios</a>
@@ -1074,6 +1076,7 @@ function App() {
                   items={valueCarouselItems}
                   baseWidth={isMobileViewport ? 300 : 460}
                   autoplay
+                  performanceMode={isMobileViewport}
                   autoplayDelay={3000}
                   pauseOnHover={false}
                   loop
@@ -1104,6 +1107,7 @@ function App() {
                 items={workProcessCarouselItems}
                 baseWidth={isMobileViewport ? 320 : 360}
                 autoplay
+                performanceMode={isMobileViewport}
                 autoplayDelay={2000}
                 pauseOnHover={false}
                 loop
@@ -1126,16 +1130,16 @@ function App() {
               <MagicBento
                 items={serviceBentoItems}
                 textAutoHide={true}
-                enableStars
-                enableSpotlight
-                enableBorderGlow={true}
+                enableStars={!isMobileViewport}
+                enableSpotlight={!isMobileViewport}
+                enableBorderGlow={!isMobileViewport}
                 enableTilt={false}
                 enableMagnetism={false}
-                clickEffect
+                clickEffect={!isMobileViewport}
                 spotlightRadius={400}
-                particleCount={12}
+                particleCount={isMobileViewport ? 0 : 12}
                 glowColor="132, 0, 255"
-                disableAnimations={false}
+                disableAnimations={isMobileViewport}
               />
             </div>
           </div>
@@ -1164,6 +1168,7 @@ function App() {
                     verticalDistance={92}
                     delay={5200}
                     pauseOnHover={false}
+                    easing={isMobileViewport ? 'smooth' : 'elastic'}
                   >
                     {aiUseCases.map((ai) => (
                       <Card key={ai.title} customClass="ai-swap-card">
@@ -1215,6 +1220,7 @@ function App() {
                   verticalDistance={65}
                   delay={5600}
                   pauseOnHover={false}
+                  easing={isMobileViewport ? 'smooth' : 'elastic'}
                 >
                   {aiRiskCards.map((item) => (
                     <Card key={item.title} customClass="ai-swap-card ai-risk-card">
@@ -1596,6 +1602,7 @@ function App() {
                       chaos={0.2}
                       thickness={2}
                       borderRadius={8}
+                      disabled={isMobileViewport}
                       className="w-full block"
                     >
                       <button 

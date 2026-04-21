@@ -4,6 +4,10 @@
   isolation: isolate;
 }
 
+.electric-border--static {
+  box-shadow: 0 0 0 1px rgba(226, 232, 240, 0.28), 0 0 18px rgba(56, 189, 248, 0.14);
+}
+
 .eb-canvas-container {
   position: absolute;
   inset: -12px;

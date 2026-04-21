@@ -49,6 +49,7 @@ type CardSwapProps = {
   cardDistance?: number;
   verticalDistance?: number;
   delay?: number;
+  autoPlay?: boolean;
   pauseOnHover?: boolean;
   onCardClick?: (index: number) => void;
   skewAmount?: number;
@@ -67,6 +68,7 @@ export default function CardSwap({
   cardDistance = 60,
   verticalDistance = 70,
   delay = 5000,
+  autoPlay = true,
   pauseOnHover = false,
   onCardClick,
   skewAmount = 6,
@@ -119,6 +121,12 @@ export default function CardSwap({
       if (!r.current) return;
       placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount);
     });
+
+    if (!autoPlay) {
+      return () => {
+        tlRef.current?.kill();
+      };
+    }
 
     const swap = () => {
       if (order.current.length < 2) return;
@@ -204,9 +212,10 @@ export default function CardSwap({
 
     return () => {
       if (intervalRef.current) window.clearInterval(intervalRef.current);
+      tlRef.current?.kill();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
+  }, [autoPlay, cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
 
   const rendered = validChildren.map((typedChild, i) => {
     const childStyle = typedChild.props.style ?? {};

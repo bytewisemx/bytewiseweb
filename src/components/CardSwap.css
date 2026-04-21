@@ -12,6 +12,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  max-width: calc(100vw - 2rem);
+  box-sizing: border-box;
   border-radius: 16px;
   border: 1px solid rgba(148, 163, 184, 0.35);
   background: linear-gradient(160deg, rgba(15, 23, 42, 0.97), rgba(30, 41, 59, 0.95));
@@ -21,6 +23,18 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   overflow: hidden;
+}
+
+.card-swap-card h1,
+.card-swap-card h2,
+.card-swap-card h3,
+.card-swap-card h4,
+.card-swap-card p,
+.card-swap-card span {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
 }
 
 @media (max-width: 768px) {

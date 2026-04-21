@@ -8,6 +8,7 @@ type ElectricBorderProps = {
   chaos?: number;
   thickness?: number;
   borderRadius?: number;
+  disabled?: boolean;
   className?: string;
   style?: React.CSSProperties;
 };
@@ -19,6 +20,7 @@ const ElectricBorder = ({
   chaos = 0.12,
   thickness = 2,
   borderRadius = 24,
+  disabled = false,
   className,
   style
 }: ElectricBorderProps) => {
@@ -161,6 +163,8 @@ const ElectricBorder = ({
   }, []);
 
   useEffect(() => {
+    if (disabled) return;
+
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -256,13 +260,15 @@ const ElectricBorder = ({
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       resizeObserver.disconnect();
     };
-  }, [borderRadius, chaos, color, getGlowColor, getRoundedRectPoint, octavedNoise, speed, thickness]);
+  }, [borderRadius, chaos, color, disabled, getGlowColor, getRoundedRectPoint, octavedNoise, speed, thickness]);
 
   return (
-    <div ref={containerRef} className={`electric-border ${className ?? ''}`} style={{ borderRadius, ...style }}>
-      <div className="eb-canvas-container" style={{ '--eb-glow-color': getGlowColor(color).soft } as React.CSSProperties} aria-hidden="true">
-        <canvas ref={canvasRef} className="eb-canvas" />
-      </div>
+    <div ref={containerRef} className={`electric-border ${disabled ? 'electric-border--static' : ''} ${className ?? ''}`} style={{ borderRadius, ...style }}>
+      {!disabled && (
+        <div className="eb-canvas-container" style={{ '--eb-glow-color': getGlowColor(color).soft } as React.CSSProperties} aria-hidden="true">
+          <canvas ref={canvasRef} className="eb-canvas" />
+        </div>
+      )}
       <div className="eb-content">{children}</div>
     </div>
   );

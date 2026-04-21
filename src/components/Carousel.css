@@ -1,6 +1,8 @@
 .carousel-container {
   position: relative;
   overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 24px;
   padding: 16px;
@@ -12,12 +14,16 @@
 
 .carousel-track {
   display: flex;
+  max-width: 100%;
 }
 
 .carousel-item {
   position: relative;
   display: flex;
   flex-shrink: 0;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
@@ -86,6 +92,8 @@
 
 .carousel-item-content {
   padding: 0 20px 20px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .carousel-item-title {
@@ -93,6 +101,9 @@
   font-weight: 800;
   font-size: 1.2rem;
   color: #f8fafc;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
 }
 
 .carousel-item.round .carousel-item-content {
@@ -110,6 +121,8 @@
   font-size: 0.95rem;
   color: rgba(241, 245, 249, 0.9);
   line-height: 1.6;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .carousel-indicators-container {
@@ -140,4 +153,28 @@
 
 .carousel-indicator.inactive {
   background-color: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 420px) {
+  .carousel-container {
+    padding: 12px;
+  }
+
+  .carousel-item-content {
+    padding: 0 12px 14px;
+  }
+
+  .carousel-item-title {
+    font-size: 1rem;
+    line-height: 1.22;
+  }
+
+  .carousel-item.round .carousel-item-title {
+    font-size: 1.05rem;
+  }
+
+  .carousel-item-description {
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
 }
