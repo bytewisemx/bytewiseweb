@@ -239,10 +239,13 @@
   border-top: 1px solid rgba(148, 163, 184, 0.2);
   display: flex;
   gap: 10px;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .chatbot-input-area input {
   flex: 1;
+  min-width: 0;
   background: rgba(15, 23, 42, 0.8);
   border: 1px solid rgba(148, 163, 184, 0.35);
   color: #f8fafc;
@@ -276,6 +279,7 @@
   cursor: pointer;
   transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s;
   flex-shrink: 0;
+  min-width: 46px;
   font-size: 1.1rem;
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
 }
@@ -304,6 +308,33 @@
     width: calc(100vw - 2rem);
     height: 70vh;
     min-height: 400px;
+  }
+
+  .chatbot-header {
+    padding: 0.85rem 0.95rem;
+  }
+
+  .chatbot-messages {
+    padding: 0.9rem;
+  }
+
+  .chatbot-input-area {
+    gap: 0.45rem;
+    padding: 0.75rem;
+  }
+
+  .chatbot-input-area input {
+    min-width: 0;
+    padding: 0.72rem 0.82rem;
+    font-size: 0.9rem;
+    border-radius: 16px;
+  }
+
+  .chatbot-input-area button {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    font-size: 1rem;
   }
   
   .chatbot-toggle-btn {

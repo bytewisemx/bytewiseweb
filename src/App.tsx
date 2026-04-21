@@ -510,6 +510,7 @@ function App() {
   const [selectedNewsImage, setSelectedNewsImage] = useState<{ src: string; title: string } | null>(null);
   const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
   const [expandedBlogPostId, setExpandedBlogPostId] = useState<string | null>(null);
+  const [isBlogLoaderVisible, setIsBlogLoaderVisible] = useState(() => window.location.pathname === '/blog');
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isTinyMobileViewport, setIsTinyMobileViewport] = useState(false);
   const [isPageReady, setIsPageReady] = useState(false);
@@ -587,6 +588,48 @@ function App() {
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
+
+  useEffect(() => {
+    if (currentPath !== '/blog') {
+      setIsBlogLoaderVisible(false);
+      return;
+    }
+
+    let isCancelled = false;
+    const timeoutIds: number[] = [];
+    setIsBlogLoaderVisible(true);
+
+    const wait = (ms: number) =>
+      new Promise<void>((resolve) => {
+        timeoutIds.push(window.setTimeout(resolve, ms));
+      });
+
+    const loadImage = (src: string) =>
+      new Promise<void>((resolve) => {
+        const image = new Image();
+        image.decoding = 'async';
+        image.src = src;
+        image.onload = () => resolve();
+        image.onerror = () => resolve();
+      });
+
+    const blogImages = moreBlogArticles
+      .map((post) => ('image' in post ? post.image : undefined))
+      .filter((image): image is string => Boolean(image))
+      .slice(0, 3);
+
+    Promise.all([
+      wait(1100),
+      Promise.race([Promise.allSettled(blogImages.map((image) => loadImage(image))), wait(2400)])
+    ]).finally(() => {
+      if (!isCancelled) setIsBlogLoaderVisible(false);
+    });
+
+    return () => {
+      isCancelled = true;
+      timeoutIds.forEach((id) => window.clearTimeout(id));
+    };
+  }, [currentPath]);
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -785,6 +828,22 @@ function App() {
             <img src={logo} alt="ByteWise" className="page-loader-logo" decoding="async" fetchPriority="high" />
             <p>Cargando experiencia segura...</p>
             <span className="page-loader-bar" />
+          </div>
+        </div>
+
+        <div className={`blog-entry-loader ${isBlogLoaderVisible ? '' : 'is-hidden'}`} aria-hidden={!isBlogLoaderVisible}>
+          <div className="blog-entry-loader-panel">
+            <span className="blog-entry-loader-kicker">ByteWise Blog</span>
+            <div className="blog-entry-loader-emblem" aria-hidden="true">
+              <img src={escudoImg} alt="" decoding="async" />
+            </div>
+            <p className="blog-entry-loader-title">Compilando señales</p>
+            <div className="blog-entry-loader-code" aria-hidden="true">
+              <span>SCAN_NEWS: OK</span>
+              <span>CYBER_FEED: READY</span>
+              <span>AI_ANALYSIS: LOADING</span>
+            </div>
+            <span className="blog-entry-loader-bar" aria-hidden="true"></span>
           </div>
         </div>
 
@@ -1105,7 +1164,7 @@ function App() {
             <div className="workflow-carousel-stage animate-on-scroll">
               <Carousel
                 items={workProcessCarouselItems}
-                baseWidth={isMobileViewport ? 320 : 360}
+                baseWidth={isTinyMobileViewport ? 288 : isMobileViewport ? 320 : 360}
                 autoplay
                 performanceMode={isMobileViewport}
                 autoplayDelay={2000}
