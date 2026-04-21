@@ -459,6 +459,15 @@ const heroAnnouncements = [
   'Cobertura nacional desde Aguascalientes'
 ];
 
+const contactInfoItems = [
+  { icon: 'pi-envelope', label: 'General', value: 'contact@bytewise.mx' },
+  { icon: 'pi-shopping-cart', label: 'Ventas', value: 'ventas@bytewise.mx' },
+  { icon: 'pi-briefcase', label: 'Estrategia', value: 'f.covarrubias@bytewise.mx' },
+  { icon: 'pi-phone', label: 'Tel/WhatsApp', value: '4493639220' },
+  { icon: 'pi-globe', label: 'Web', value: 'www.bytewise.mx' },
+  { icon: 'pi-map-marker', label: 'Ubicacion', value: 'Aguascalientes, Mexico' }
+];
+
 const HERO_SLOGANS = ['Protegemos su información.', 'Aseguramos su futuro.'];
 
 const CRITICAL_PRELOAD_IMAGES = [logo, fondo];
@@ -511,12 +520,14 @@ function App() {
   const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
   const [expandedBlogPostId, setExpandedBlogPostId] = useState<string | null>(null);
   const [isBlogLoaderVisible, setIsBlogLoaderVisible] = useState(() => window.location.pathname === '/blog');
+  const [copiedContact, setCopiedContact] = useState<string | null>(null);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isTinyMobileViewport, setIsTinyMobileViewport] = useState(false);
   const [isPageReady, setIsPageReady] = useState(false);
   const [isContactSending, setIsContactSending] = useState(false);
   const [showSubmitShield, setShowSubmitShield] = useState(false);
   const successOverlayTimeoutRef = useRef<number | null>(null);
+  const copyContactTimeoutRef = useRef<number | null>(null);
   const [contactStatus, setContactStatus] = useState<{ type: 'idle' | 'success' | 'error'; message: string }>({
     type: 'idle',
     message: ''
@@ -580,6 +591,9 @@ function App() {
       if (successOverlayTimeoutRef.current) {
         window.clearTimeout(successOverlayTimeoutRef.current);
       }
+      if (copyContactTimeoutRef.current) {
+        window.clearTimeout(copyContactTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -588,6 +602,27 @@ function App() {
     window.addEventListener('popstate', onPopState);
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
+
+  useEffect(() => {
+    if (!('scrollRestoration' in window.history)) return undefined;
+
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+
+    return () => {
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (currentPath !== '/blog') return undefined;
+
+    const frameId = window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [currentPath]);
 
   useEffect(() => {
     if (currentPath !== '/blog') {
@@ -687,7 +722,32 @@ function App() {
     event.preventDefault();
     window.history.pushState(null, '', '/blog');
     setCurrentPath('/blog');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
+
+  const copyContactInfo = async (value: string) => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(value);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = value;
+        textArea.setAttribute('readonly', '');
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+      setCopiedContact(value);
+      if (copyContactTimeoutRef.current) {
+        window.clearTimeout(copyContactTimeoutRef.current);
+      }
+      copyContactTimeoutRef.current = window.setTimeout(() => setCopiedContact(null), 1500);
+    } catch {
+      setCopiedContact(null);
+    }
   };
 
   const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -1597,12 +1657,23 @@ function App() {
                 <p className="mb-4">Estamos disponibles para resolver sus dudas, presentar una propuesta o agendar un diagnóstico inicial sin costo.</p>
 
                 <ul className="contact-list">
-                  <li><i className="pi pi-envelope"></i> <strong>General:</strong> contact@bytewise.mx</li>
-                  <li><i className="pi pi-shopping-cart"></i> <strong>Ventas:</strong> ventas@bytewise.mx</li>
-                  <li><i className="pi pi-briefcase"></i> <strong>Estrategia:</strong> f.covarrubias@bytewise.mx</li>
-                  <li><i className="pi pi-phone"></i> <strong>Tel/WhatsApp:</strong> 4493639220</li>
-                  <li><i className="pi pi-globe"></i> <strong>Web:</strong> www.bytewise.mx</li>
-                  <li><i className="pi pi-map-marker"></i> <strong>Ubicación:</strong> Aguascalientes, México</li>
+                  {contactInfoItems.map((item) => (
+                    <li key={item.label}>
+                      <i className={`pi ${item.icon}`} aria-hidden="true"></i>
+                      <span className="contact-list-text">
+                        <strong>{item.label}</strong>
+                        <span>{item.value}</span>
+                      </span>
+                      <button
+                        type="button"
+                        className={`contact-copy-btn ${copiedContact === item.value ? 'is-copied' : ''}`}
+                        onClick={() => copyContactInfo(item.value)}
+                        aria-label={`Copiar ${item.label}`}
+                      >
+                        <i className={`pi ${copiedContact === item.value ? 'pi-check' : 'pi-copy'}`} aria-hidden="true"></i>
+                      </button>
+                    </li>
+                  ))}
                 </ul>
 
                 <a href="https://api.whatsapp.com/message/XNBDNNUK7TYSF1?autoload=1&app_absent=0" className="whatsapp-btn mt-4 inline-flex items-center" target="_blank" rel="noreferrer">
