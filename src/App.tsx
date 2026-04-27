@@ -1013,7 +1013,7 @@ const contactInfoItems = [
 
 const HERO_SLOGANS = ['Protegemos su información.', 'Aseguramos su futuro.'];
 
-
+const BUILD_STAMP = '2026-04-27-02';
 
 const CRITICAL_PRELOAD_IMAGES = [logo];
 
@@ -2199,7 +2199,7 @@ function App() {
   }
 
   return (
-    <div className="page">
+    <div className="page" data-build-version={BUILD_STAMP}>
       <div className={`page-loader ${isPageReady ? 'is-hidden' : ''}`} aria-hidden={isPageReady}>
 
         <div className="page-loader-inner">
