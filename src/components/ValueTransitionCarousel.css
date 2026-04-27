@@ -1,0 +1,201 @@
+.value-transition-carousel {
+  width: min(100%, 420px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.value-transition-carousel__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(2, 6, 23, 0.88), rgba(15, 23, 42, 0.92));
+  box-shadow:
+    0 20px 54px rgba(2, 6, 23, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.value-transition-carousel__panel,
+.value-transition-carousel__glow,
+.value-transition-carousel__orbit,
+.value-transition-carousel__pulse {
+  position: absolute;
+  inset: 0;
+}
+
+.value-transition-carousel__panel {
+  opacity: 0.95;
+  transition: background 520ms ease, box-shadow 520ms ease, opacity 520ms ease;
+  transform: scale(1.03);
+}
+
+.value-transition-carousel__glow {
+  filter: blur(22px);
+  opacity: 0.88;
+  transition: background 520ms ease;
+}
+
+.value-transition-carousel__orbit {
+  inset: 10%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 20px rgba(56, 189, 248, 0.16);
+  animation: valueOrbit 14s linear infinite;
+}
+
+.value-transition-carousel__pulse {
+  inset: 18%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  animation: valuePulse 5.8s ease-in-out infinite;
+}
+
+.value-transition-carousel__content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.45rem;
+  text-align: center;
+  animation: valueFade 520ms ease both;
+}
+
+.value-transition-carousel__eyebrow {
+  display: inline-flex;
+  margin-bottom: 0.6rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(226, 232, 240, 0.9);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.value-transition-carousel__title {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 5.2vw, 3rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  text-shadow:
+    0 2px 14px rgba(2, 6, 23, 0.55),
+    0 0 22px rgba(255, 255, 255, 0.12);
+}
+
+.value-transition-carousel__dots {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.value-transition-carousel__dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(148, 163, 184, 0.42);
+  cursor: pointer;
+  transition: transform 180ms ease, background-color 180ms ease, opacity 180ms ease;
+}
+
+.value-transition-carousel__dot.is-active {
+  background: #38bdf8;
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+@keyframes valueOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes valuePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.48;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 0.72;
+  }
+}
+
+@keyframes valueFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 680px) {
+  .value-transition-carousel {
+    width: min(100%, 86vw);
+  }
+
+  .value-transition-carousel__frame {
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .value-transition-carousel__frame {
+    aspect-ratio: 1 / 1;
+  }
+
+  .value-transition-carousel__content {
+    padding: 1rem;
+  }
+
+  .value-transition-carousel__eyebrow {
+    font-size: 0.58rem;
+  }
+
+  .value-transition-carousel__title {
+    font-size: clamp(1.4rem, 8.4vw, 2rem);
+  }
+
+  .value-transition-carousel__dots {
+    gap: 0.35rem;
+  }
+
+  .value-transition-carousel__dot {
+    width: 0.56rem;
+    height: 0.56rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .value-transition-carousel {
+    width: min(100%, 90vw);
+    gap: 0.5rem;
+  }
+
+  .value-transition-carousel__content {
+    padding: 0.85rem;
+  }
+
+  .value-transition-carousel__title {
+    font-size: clamp(1.2rem, 7.8vw, 1.7rem);
+  }
+}

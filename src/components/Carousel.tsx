@@ -9,6 +9,8 @@ export type CarouselItemData = {
   description: string;
   id: number | string;
   icon?: ReactNode;
+  mediaSrc?: string;
+  mediaAlt?: string;
   iconBg?: string;
 };
 
@@ -74,11 +76,12 @@ function CarouselItem({
   const range = [-(index + 1) * trackItemOffset, -index * trackItemOffset, -(index - 1) * trackItemOffset];
   const outputRange = performanceMode ? [0, 0, 0] : [90, 0, -90];
   const rotateY = useTransform(x, range, outputRange, { clamp: false });
+  const isMediaCard = Boolean(item.mediaSrc);
 
   return (
     <motion.div
       key={`${item.id}-${index}`}
-      className={`carousel-item ${round ? 'round' : ''}`}
+      className={`carousel-item ${round ? 'round' : ''} ${isMediaCard ? 'carousel-item--media' : ''}`}
       style={{
         width: itemWidth,
         height: round ? itemWidth : '100%',
@@ -87,15 +90,30 @@ function CarouselItem({
       }}
       transition={transition}
     >
-      <div className={`carousel-item-header ${round ? 'round' : ''}`}>
-        <span className="carousel-icon-container" style={{ background: item.iconBg ?? '#e2e8f0' }}>
-          {item.icon ?? <FiCircle className="carousel-icon" />}
-        </span>
-      </div>
-      <div className="carousel-item-content">
-        <div className="carousel-item-title">{item.title}</div>
-        <p className="carousel-item-description">{item.description}</p>
-      </div>
+      {isMediaCard ? (
+        <>
+          <img
+            src={item.mediaSrc}
+            alt={item.mediaAlt ?? item.title}
+            className="carousel-item-media"
+            loading="lazy"
+            decoding="async"
+          />
+        </>
+      ) : (
+        <div className={`carousel-item-header ${round ? 'round' : ''}`}>
+          <span className="carousel-icon-container" style={{ background: item.iconBg ?? '#e2e8f0' }}>
+            {item.icon ?? <FiCircle className="carousel-icon" />}
+          </span>
+        </div>
+      )}
+
+      {!isMediaCard ? (
+        <div className="carousel-item-content">
+          <div className="carousel-item-title">{item.title}</div>
+          {item.description ? <p className="carousel-item-description">{item.description}</p> : null}
+        </div>
+      ) : null}
     </motion.div>
   );
 }

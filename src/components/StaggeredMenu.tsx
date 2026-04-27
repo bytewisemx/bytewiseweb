@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { gsap } from 'gsap';
 import './StaggeredMenu.css';
 
@@ -29,6 +29,7 @@ type StaggeredMenuProps = {
   changeMenuColorOnOpen?: boolean;
   isFixed?: boolean;
   closeOnClickAway?: boolean;
+  onNavigate?: (href: string, event: ReactMouseEvent<HTMLAnchorElement>) => void;
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
 };
@@ -49,6 +50,7 @@ const StaggeredMenu = ({
   changeMenuColorOnOpen = true,
   isFixed = false,
   closeOnClickAway = true,
+  onNavigate,
   onMenuOpen,
   onMenuClose
 }: StaggeredMenuProps) => {
@@ -59,6 +61,7 @@ const StaggeredMenu = ({
   const preLayerElsRef = useRef<HTMLDivElement[]>([]);
   const plusHRef = useRef<HTMLSpanElement | null>(null);
   const plusVRef = useRef<HTMLSpanElement | null>(null);
+  const plusBottomRef = useRef<HTMLSpanElement | null>(null);
   const iconRef = useRef<HTMLSpanElement | null>(null);
   const textInnerRef = useRef<HTMLSpanElement | null>(null);
   const [textLines, setTextLines] = useState(['Menu', 'Close']);
@@ -77,17 +80,19 @@ const StaggeredMenu = ({
       const preContainer = preLayersRef.current;
       const plusH = plusHRef.current;
       const plusV = plusVRef.current;
+      const plusBottom = plusBottomRef.current;
       const icon = iconRef.current;
       const textInner = textInnerRef.current;
-      if (!panel || !plusH || !plusV || !icon || !textInner) return;
+      if (!panel || !plusH || !plusV || !plusBottom || !icon || !textInner) return;
 
       const preLayers = preContainer ? Array.from(preContainer.querySelectorAll<HTMLDivElement>('.sm-prelayer')) : [];
       preLayerElsRef.current = preLayers;
 
       const offscreen = position === 'left' ? -100 : 100;
       gsap.set([panel, ...preLayers], { xPercent: offscreen });
-      gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0 });
-      gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 90 });
+      gsap.set(plusH, { transformOrigin: '50% 50%', rotate: 0, y: -4.5 });
+      gsap.set(plusV, { transformOrigin: '50% 50%', rotate: 0, y: 0 });
+      gsap.set(plusBottom, { transformOrigin: '50% 50%', rotate: 0, y: 4.5 });
       gsap.set(icon, { rotate: 0, transformOrigin: '50% 50%' });
       gsap.set(textInner, { yPercent: 0 });
       if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
@@ -272,6 +277,14 @@ const StaggeredMenu = ({
     animateText(false);
   }, [animateColor, animateIcon, animateText, onMenuClose, playClose]);
 
+  const handleItemClick = useCallback(
+    (href: string) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
+      onNavigate?.(href, event);
+      closeMenu();
+    },
+    [closeMenu, onNavigate]
+  );
+
   const toggleMenu = useCallback(() => {
     const target = !openRef.current;
     openRef.current = target;
@@ -346,8 +359,9 @@ const StaggeredMenu = ({
             </span>
           </span>
           <span ref={iconRef} className="sm-icon" aria-hidden="true">
-            <span ref={plusHRef} className="sm-icon-line" />
-            <span ref={plusVRef} className="sm-icon-line sm-icon-line-v" />
+            <span ref={plusHRef} className="sm-icon-line sm-icon-line-top" />
+            <span ref={plusVRef} className="sm-icon-line sm-icon-line-mid" />
+            <span ref={plusBottomRef} className="sm-icon-line sm-icon-line-bottom" />
           </span>
         </button>
       </header>
@@ -357,7 +371,13 @@ const StaggeredMenu = ({
           <ul className="sm-panel-list" role="list" data-numbering={displayItemNumbering || undefined}>
             {items.map((it, idx) => (
               <li className="sm-panel-itemWrap" key={`${it.label}-${idx}`}>
-                <a className="sm-panel-item" href={it.link} aria-label={it.ariaLabel} data-index={idx + 1} onClick={closeMenu}>
+                <a
+                  className="sm-panel-item"
+                  href={it.link}
+                  aria-label={it.ariaLabel}
+                  data-index={idx + 1}
+                  onClick={handleItemClick(it.link)}
+                >
                   <span className="sm-panel-itemLabel">{it.label}</span>
                 </a>
               </li>

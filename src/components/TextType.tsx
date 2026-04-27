@@ -1,9 +1,10 @@
-import {
+﻿import {
   createElement,
   useCallback,
   useEffect,
   useId,
   useMemo,
+  useLayoutEffect,
   useRef,
   useState,
   type ElementType,
@@ -60,6 +61,7 @@ export default function TextType({
 }: TextTypeProps) {
   const cursorRef = useRef<HTMLSpanElement | null>(null);
   const contentRef = useRef<HTMLSpanElement | null>(null);
+  const sizerRef = useRef<HTMLSpanElement | null>(null);
   const generatedId = useId().replace(/:/g, '');
   const propId = typeof props.id === 'string' ? props.id : undefined;
   const observerTargetId = propId ?? `text-type-${generatedId}`;
@@ -85,6 +87,36 @@ export default function TextType({
     const { min, max } = variableSpeed;
     return Math.random() * (max - min) + min;
   }, [typingSpeed, variableSpeed]);
+
+  const longestText = useMemo(() => {
+    return textArray.reduce((longest, candidate) => {
+      const processedCandidate = getProcessedText(candidate ?? '');
+      const processedLongest = getProcessedText(longest);
+      return processedCandidate.length > processedLongest.length ? candidate : longest;
+    }, textArray[0] ?? '');
+  }, [getProcessedText, textArray]);
+
+  useLayoutEffect(() => {
+    const wrapper = document.getElementById(observerTargetId);
+    const sizer = sizerRef.current;
+    if (!wrapper || !sizer) return;
+
+    const syncHeight = () => {
+      const height = Math.ceil(sizer.getBoundingClientRect().height);
+      wrapper.style.minHeight = `${height}px`;
+    };
+
+    syncHeight();
+
+    if (typeof ResizeObserver === 'undefined') {
+      return;
+    }
+
+    const observer = new ResizeObserver(syncHeight);
+    observer.observe(sizer);
+
+    return () => observer.disconnect();
+  }, [longestText, textArray.length, observerTargetId]);
 
   useEffect(() => {
     if (!startOnVisible) return;
@@ -213,24 +245,37 @@ export default function TextType({
   const activeProcessedText = getProcessedText(textArray[currentTextIndex] ?? '');
   const shouldHideCursor = hideCursorWhileTyping && (displayedText.length < activeProcessedText.length || isDeleting);
   const currentTextColor = textColors.length ? textColors[currentTextIndex % textColors.length] : 'inherit';
+  const reservedText = getProcessedText(longestText);
 
   return createElement(
-    Component,
+    'span',
     {
       ...props,
       id: observerTargetId,
       className: `text-type ${className}`.trim()
     },
-    <span ref={contentRef} className="text-type__content" style={{ color: currentTextColor }}>
-      {displayedText}
-    </span>,
-    showCursor && (
-      <span
-        ref={cursorRef}
-        className={`text-type__cursor ${cursorClassName} ${shouldHideCursor ? 'text-type__cursor--hidden' : ''}`.trim()}
-      >
-        {cursorCharacter}
+    createElement(
+      Component,
+      {
+        className: 'text-type__body'
+      },
+      <span ref={sizerRef} className="text-type__sizer" aria-hidden="true">
+        {reservedText}
+      </span>,
+      <span className="text-type__layer">
+        <span ref={contentRef} className="text-type__content" style={{ color: currentTextColor }}>
+          {displayedText}
+        </span>
+        {showCursor && (
+          <span
+            ref={cursorRef}
+            className={`text-type__cursor ${cursorClassName} ${shouldHideCursor ? 'text-type__cursor--hidden' : ''}`.trim()}
+          >
+            {cursorCharacter}
+          </span>
+        )}
       </span>
     )
   );
 }
+

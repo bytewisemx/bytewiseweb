@@ -1,14 +1,55 @@
 .text-type {
-  display: inline-block;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
   white-space: pre-wrap;
+  vertical-align: middle;
+}
+
+.text-type__body {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.text-type__sizer {
+  position: absolute;
+  inset: 0 auto auto 0;
+  visibility: hidden;
+  pointer-events: none;
+  white-space: inherit;
+  user-select: none;
+  display: block;
+  width: max-content;
+  height: auto;
+  overflow: hidden;
+}
+
+.text-type__layer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: inherit;
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+}
+
+.text-type__content {
+  display: inline-block;
+  line-height: 1;
 }
 
 .text-type__cursor {
   margin-left: 0.25rem;
   display: inline-block;
   opacity: 1;
+  line-height: 1;
 }
 
 .text-type__cursor--hidden {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }

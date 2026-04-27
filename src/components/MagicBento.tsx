@@ -460,7 +460,7 @@ const MagicBentoCardContent = ({ item }: { item: MagicBentoItem }) => {
            <button 
              className="magic-bento-card__expand-btn"
              onClick={(e) => { e.preventDefault(); setIsExpanded(true); }}
-             style={{ background: 'transparent', color: '#38bdf8', border: 'none', padding: '0.25rem 0', fontWeight: 600, cursor: 'pointer', textAlign: 'left', marginTop: '0.2rem', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}
+             style={{ background: 'transparent', color: '#ffffff', border: 'none', padding: '0.25rem 0', fontWeight: 600, cursor: 'pointer', textAlign: 'left', marginTop: '0.2rem', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}
            >
              Ver más... <i className="pi pi-chevron-down" style={{fontSize: '0.75rem'}}></i>
            </button>
@@ -502,7 +502,7 @@ const MagicBentoCardContent = ({ item }: { item: MagicBentoItem }) => {
             <button 
               className="magic-bento-card__expand-btn"
               onClick={(e) => { e.preventDefault(); setIsExpanded(false); }}
-              style={{ background: 'transparent', color: '#94a3b8', border: 'none', padding: '0.5rem 0', fontWeight: 600, cursor: 'pointer', textAlign: 'left', marginTop: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}
+              style={{ background: 'transparent', color: '#ffffff', border: 'none', padding: '0.5rem 0', fontWeight: 600, cursor: 'pointer', textAlign: 'left', marginTop: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}
             >
               Ver menos <i className="pi pi-chevron-up" style={{fontSize: '0.75rem'}}></i>
             </button>

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { FaXmark, FaPaperPlane } from 'react-icons/fa6';
-import logobot from '../assets/logobot.png';
+import botIcon from '../assets/boticon.png';
 import './ChatBot.css';
 
 const N8N_WEBHOOK_URL = 'https://n8n-n8n.bg5sbc.easypanel.host/webhook/0da8393d-57aa-4682-b391-35f212495148';
@@ -259,10 +259,10 @@ export default function ChatBot() {
   return (
     <div className={`chatbot-container ${isOpen ? 'open' : ''}`}>
       <div className={`chatbot-window ${isOpen ? 'visible' : 'hidden'}`}>
-        <div className="chatbot-header">
+          <div className="chatbot-header">
             <div className="chatbot-header-info">
               <div className="chatbot-avatar">
-                <img src={logobot} alt="Asistente ByteWise" className="chatbot-logo" />
+                <img src={botIcon} alt="Asistente ByteWise" className="chatbot-logo" />
               </div>
             <div>
               <h3>Asistente ByteWise</h3>
@@ -307,7 +307,7 @@ export default function ChatBot() {
       </div>
 
       <button className="chatbot-toggle-btn" onClick={toggleChat} aria-label="Abrir asistente">
-        {isOpen ? <FaXmark /> : <img src={logobot} alt="" className="chatbot-toggle-logo" />}
+        {isOpen ? <FaXmark /> : <img src={botIcon} alt="" className="chatbot-toggle-logo" />}
       </button>
     </div>
   );
