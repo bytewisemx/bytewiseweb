@@ -1390,6 +1390,10 @@ function App() {
 
   }, [currentPath]);
 
+  useEffect(() => {
+    setIsBlogPopupOpen(false);
+  }, [currentPath]);
+
 
 
   useEffect(() => {
@@ -1479,6 +1483,7 @@ function App() {
   useEffect(() => {
 
     if (!isPageReady) return;
+    if (currentPath === '/blog') return;
 
     
 
@@ -1522,7 +1527,7 @@ function App() {
 
     };
 
-  }, [isPageReady]);
+  }, [isPageReady, currentPath]);
 
 
 
