@@ -2170,6 +2170,8 @@ function App() {
 
                           key={ad.title}
 
+                          onClick={(event) => handleMenuNavigate(index === 1 ? '/#ia' : index === 2 ? '/#servicios' : '/#contacto', event)}
+
                         >
 
                           <span className="blog-ad-kicker">{ad.eyebrow}</span>
@@ -2218,7 +2220,7 @@ function App() {
 
         </footer>
 
-        <Suspense fallback={null}><ChatBot /></Suspense>
+        {!isBlogPage && <Suspense fallback={null}><ChatBot /></Suspense>}
 
       </div>
     );
@@ -3631,7 +3633,7 @@ function App() {
 
       </footer>
 
-      <Suspense fallback={null}><ChatBot /></Suspense>
+      {!isBlogPage && <Suspense fallback={null}><ChatBot /></Suspense>}
 
     </div>
 

@@ -28,3 +28,18 @@
   position: relative;
   z-index: 1;
 }
+
+@media (max-width: 768px) {
+  .electric-border {
+    display: block;
+    width: 100%;
+  }
+
+  .electric-border--static {
+    box-shadow: none;
+  }
+
+  .eb-content {
+    width: 100%;
+  }
+}

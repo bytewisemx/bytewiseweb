@@ -385,6 +385,52 @@
   }
 }
 
+.blog-page .sm-toggle {
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .blog-page .staggered-menu-header {
+    padding-top: 0.42rem;
+  }
+
+  .blog-page .sm-toggle {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    min-height: 64px;
+    padding: 0;
+    aspect-ratio: 1;
+    border-radius: 18px;
+    transform: none;
+    box-sizing: border-box;
+  }
+
+  .blog-page .sm-icon {
+    width: 30px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .blog-page .staggered-menu-header {
+    padding: 0.48rem 0.5rem;
+  }
+
+  .blog-page .sm-toggle {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    min-height: 58px;
+    border-radius: 16px;
+  }
+
+  .blog-page .sm-icon {
+    width: 27px;
+    height: 22px;
+  }
+}
+
 @media (max-width: 390px) {
   .sm-logo-img {
     height: 48px;

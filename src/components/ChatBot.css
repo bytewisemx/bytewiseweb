@@ -314,7 +314,7 @@
 
 @media (max-width: 640px) {
   .chatbot-container {
-    bottom: 1.5rem;
+    bottom: 1.15rem;
     right: 1rem;
     z-index: 10000;
   }
@@ -353,13 +353,44 @@
   }
 
   .chatbot-toggle-btn {
-    width: 64px;
-    height: 64px;
-    font-size: 1.5rem;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    font-size: 1.3rem;
   }
 
   .chatbot-toggle-logo {
     width: 100%;
     height: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .chatbot-container {
+    bottom: 0.85rem;
+    right: 0.75rem;
+  }
+
+  .chatbot-toggle-btn {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    min-height: 54px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .chatbot-container {
+    bottom: 0.85rem;
+    right: 0.75rem;
+  }
+
+  .chatbot-toggle-btn {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    min-height: 54px;
   }
 }
