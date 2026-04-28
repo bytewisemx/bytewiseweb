@@ -6,14 +6,21 @@
     <title>ByteWise</title>
     <script>
       (function () {
-        var path = window.location.pathname;
+        var path = window.location.pathname || '/';
+        var parts = path.split('/').filter(Boolean);
+        var isBlogRoute = /\/blog\/?$/.test(path);
+        var base = '/';
 
-        if (path === '/blog') {
-          window.location.replace('/#/blog');
+        if (parts.length > 1) {
+          base = '/' + parts[0] + '/';
+        }
+
+        if (isBlogRoute) {
+          window.location.replace(base + '#/blog');
           return;
         }
 
-        window.location.replace('/');
+        window.location.replace(base);
       })();
     </script>
   </head>

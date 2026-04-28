@@ -83,17 +83,37 @@ const StaggeredMenu = lazy(() => import('./components/StaggeredMenu'));
 const ChatBot = lazy(() => import('./components/ChatBot'));
 const HeroWorldGlobe = lazy(() => import('./components/HeroWorldGlobe'));
 const BLOG_ROUTE_HASH = '#/blog';
+const SITE_BASE_URL = import.meta.env.BASE_URL || '/';
 
-const getRouteFromLocation = () => {
-  if (window.location.pathname === '/blog') {
+const buildAppPath = (path: string) => {
+  if (SITE_BASE_URL === '/') return path;
+
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return `${SITE_BASE_URL.replace(/\/$/, '')}${normalizedPath}`;
+};
+
+const buildBlogPath = () => `${SITE_BASE_URL === '/' ? '' : SITE_BASE_URL.replace(/\/$/, '')}/#/blog`;
+
+const getAppRouteFromUrl = (pathname: string, hash: string) => {
+  if (hash === BLOG_ROUTE_HASH) {
     return '/blog';
   }
 
-  if (window.location.hash === BLOG_ROUTE_HASH) {
+  if (SITE_BASE_URL !== '/' && pathname.startsWith(SITE_BASE_URL)) {
+    const relativePath = pathname.slice(SITE_BASE_URL.length);
+    if (!relativePath) return '/';
+    return `/${relativePath.replace(/^\/+/, '')}`;
+  }
+
+  if (pathname === '/blog') {
     return '/blog';
   }
 
   return '/';
+};
+
+const getRouteFromLocation = () => {
+  return getAppRouteFromUrl(window.location.pathname, window.location.hash);
 };
 
 
@@ -1085,25 +1105,25 @@ const clientTestimonials = [
 
 const topMenuItems = [
 
-  { label: 'INICIO', ariaLabel: 'Ir al inicio', link: '#inicio' },
+  { label: 'INICIO', ariaLabel: 'Ir al inicio', link: buildAppPath('#inicio') },
 
-  { label: 'NOSOTROS', ariaLabel: 'Ir a nosotros', link: '#sobre-bytewise' },
+  { label: 'NOSOTROS', ariaLabel: 'Ir a nosotros', link: buildAppPath('#sobre-bytewise') },
 
-  { label: 'METODOLOGIA', ariaLabel: 'Ir a como trabajamos', link: '#como-trabajamos' },
+  { label: 'METODOLOGIA', ariaLabel: 'Ir a como trabajamos', link: buildAppPath('#como-trabajamos') },
 
-  { label: 'SERVICIOS', ariaLabel: 'Ir a servicios', link: '#servicios' },
+  { label: 'SERVICIOS', ariaLabel: 'Ir a servicios', link: buildAppPath('#servicios') },
 
-  { label: 'IA', ariaLabel: 'Ir a inteligencia artificial', link: '#ia' },
+  { label: 'IA', ariaLabel: 'Ir a inteligencia artificial', link: buildAppPath('#ia') },
 
-  { label: 'CONTINUIDAD', ariaLabel: 'Ir a continuidad operativa', link: '#continuidad-datos' },
+  { label: 'CONTINUIDAD', ariaLabel: 'Ir a continuidad operativa', link: buildAppPath('#continuidad-datos') },
 
-  { label: 'INCIDENTES', ariaLabel: 'Ir a respuesta ante incidentes', link: '#alerta-incidente' },
+  { label: 'INCIDENTES', ariaLabel: 'Ir a respuesta ante incidentes', link: buildAppPath('#alerta-incidente') },
 
-  { label: 'EQUIPO', ariaLabel: 'Ir al equipo', link: '#equipo' },
+  { label: 'EQUIPO', ariaLabel: 'Ir al equipo', link: buildAppPath('#equipo') },
 
-  { label: 'BLOG', ariaLabel: 'Ver blog', link: '/blog' },
+  { label: 'BLOG', ariaLabel: 'Ver blog', link: buildBlogPath() },
 
-  { label: 'CONTACTO', ariaLabel: 'Ir a contacto', link: '#contacto' }
+  { label: 'CONTACTO', ariaLabel: 'Ir a contacto', link: buildAppPath('#contacto') }
 
 ];
 
@@ -1573,7 +1593,7 @@ function App() {
 
     event.preventDefault();
 
-    window.location.hash = BLOG_ROUTE_HASH;
+    window.history.pushState(null, '', buildBlogPath());
 
     setCurrentPath('/blog');
 
@@ -1589,9 +1609,9 @@ function App() {
 
     if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
 
-    if (href === '/blog') {
+    if (href === '/blog' || href.endsWith('/#/blog') || href.endsWith('/blog')) {
       event.preventDefault();
-      window.location.hash = BLOG_ROUTE_HASH;
+      window.history.pushState(null, '', buildBlogPath());
       setCurrentPath('/blog');
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       return;
@@ -1622,12 +1642,13 @@ function App() {
       event.preventDefault();
 
       const targetId = href.slice(1);
+      const resolvedHref = buildAppPath(href);
 
 
 
       if (currentPath !== '/') {
 
-        window.history.pushState(null, '', `/${href}`);
+        window.history.pushState(null, '', resolvedHref);
 
         setCurrentPath('/');
 
@@ -1647,7 +1668,7 @@ function App() {
 
       // Same page anchor.
 
-      window.history.pushState(null, '', href);
+      window.history.pushState(null, '', resolvedHref);
 
       window.setTimeout(() => tryScrollToId(targetId), 0);
 
@@ -1661,31 +1682,23 @@ function App() {
 
       event.preventDefault();
 
-      const url = new URL(href, window.location.origin);
-
-      const nextPath = url.pathname || '/';
-
-      const nextHash = url.hash || '';
-
-
+      const resolvedHref = buildAppPath(href);
+      const url = new URL(resolvedHref, window.location.origin);
+      const nextPath = getAppRouteFromUrl(url.pathname || '/', url.hash || '');
 
       if (nextPath === '/blog') {
-        window.location.hash = BLOG_ROUTE_HASH;
+        window.history.pushState(null, '', buildBlogPath());
         setCurrentPath('/blog');
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         return;
       }
 
-      window.history.pushState(null, '', `${nextPath}${nextHash}`);
+      window.history.pushState(null, '', resolvedHref);
 
       setCurrentPath(nextPath);
 
-
-
-      if (nextHash) {
-
-        const targetId = nextHash.slice(1);
-
+      if (url.hash) {
+        const targetId = url.hash.slice(1);
         window.setTimeout(() => {
 
           if (tryScrollToId(targetId)) return;
@@ -1952,9 +1965,9 @@ function App() {
   const isBlogPage = currentPath === '/blog';
 
   const blogMenuItems = [
-    { label: 'INICIO', ariaLabel: 'Volver al inicio', link: '/' },
-    { label: 'BLOG', ariaLabel: 'Ver blog', link: '/blog' },
-    { label: 'CONTACTO', ariaLabel: 'Ir a contacto', link: '/#contacto' }
+    { label: 'INICIO', ariaLabel: 'Volver al inicio', link: buildAppPath('/') },
+    { label: 'BLOG', ariaLabel: 'Ver blog', link: buildBlogPath() },
+    { label: 'CONTACTO', ariaLabel: 'Ir a contacto', link: buildAppPath('/#contacto') }
   ];
 
 
@@ -2035,7 +2048,7 @@ function App() {
 
 
 
-        <Suspense fallback={<div className="menu-placeholder" aria-hidden="true" />}><StaggeredMenu position="right" items={blogMenuItems} socialItems={[]} displaySocials={false} displayItemNumbering={true} menuButtonColor="#ffffff" openMenuButtonColor="#0f172a" changeMenuColorOnOpen={true} colors={['#0f172a', '#1d4ed8']} logoUrl={logo} logoHref="/" onNavigate={handleMenuNavigate} accentColor="#2563eb" isFixed={true} /></Suspense>
+        <Suspense fallback={<div className="menu-placeholder" aria-hidden="true" />}><StaggeredMenu position="right" items={blogMenuItems} socialItems={[]} displaySocials={false} displayItemNumbering={true} menuButtonColor="#ffffff" openMenuButtonColor="#0f172a" changeMenuColorOnOpen={true} colors={['#0f172a', '#1d4ed8']} logoUrl={logo} logoHref={buildAppPath('/')} onNavigate={handleMenuNavigate} accentColor="#2563eb" isFixed={true} /></Suspense>
 
 
 
@@ -2169,13 +2182,13 @@ function App() {
 
                         <a
 
-                          href={index === 1 ? '/#ia' : index === 2 ? '/#servicios' : '/#contacto'}
+                          href={index === 1 ? buildAppPath('/#ia') : index === 2 ? buildAppPath('/#servicios') : buildAppPath('/#contacto')}
 
                           className="blog-ad-card"
 
                           key={ad.title}
 
-                          onClick={(event) => handleMenuNavigate(index === 1 ? '/#ia' : index === 2 ? '/#servicios' : '/#contacto', event)}
+                          onClick={(event) => handleMenuNavigate(index === 1 ? buildAppPath('/#ia') : index === 2 ? buildAppPath('/#servicios') : buildAppPath('/#contacto'), event)}
 
                         >
 
@@ -2281,7 +2294,7 @@ function App() {
 
 
 
-      <Suspense fallback={<div className="menu-placeholder" aria-hidden="true" />}><StaggeredMenu position="right" items={topMenuItems} socialItems={[]} displaySocials={false} displayItemNumbering={true} menuButtonColor="#ffffff" openMenuButtonColor="#0f172a" changeMenuColorOnOpen={true} colors={['#0f172a', '#1d4ed8']} logoUrl={logo} logoHref="/" onNavigate={handleMenuNavigate} accentColor="#2563eb" isFixed={true} /></Suspense>
+      <Suspense fallback={<div className="menu-placeholder" aria-hidden="true" />}><StaggeredMenu position="right" items={topMenuItems} socialItems={[]} displaySocials={false} displayItemNumbering={true} menuButtonColor="#ffffff" openMenuButtonColor="#0f172a" changeMenuColorOnOpen={true} colors={['#0f172a', '#1d4ed8']} logoUrl={logo} logoHref={buildAppPath('/')} onNavigate={handleMenuNavigate} accentColor="#2563eb" isFixed={true} /></Suspense>
 
 
 
@@ -3248,7 +3261,7 @@ function App() {
 
               ))}
 
-              <a href="/blog" className="blog-card blog-more-card" onClick={navigateToBlogPage} aria-label="Ver mas publicaciones del blog">
+              <a href={buildBlogPath()} className="blog-card blog-more-card" onClick={navigateToBlogPage} aria-label="Ver mas publicaciones del blog">
 
                 <span className="blog-more-card-orbit" aria-hidden="true"></span>
 
@@ -3599,7 +3612,7 @@ function App() {
       </div>
       <p className="floating-blog-pop__title">Explora el blog de ByteWise</p>
       <div className="floating-blog-pop__actions">
-        <a href="/blog" className="floating-blog-pop__cta" onClick={navigateToBlogPage} aria-label="Ir al blog">
+        <a href={buildBlogPath()} className="floating-blog-pop__cta" onClick={navigateToBlogPage} aria-label="Ir al blog">
           Ir al blog
           <i className="pi pi-arrow-right" aria-hidden="true"></i>
         </a>
