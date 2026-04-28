@@ -1,4 +1,4 @@
-﻿import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState, type ReactNode } from 'react';
 
 import logo from './assets/bytewise.mx.png';
 
@@ -119,32 +119,32 @@ const differentiatorCards = [
   {
     icon: <FaMagnifyingGlassChart className="about-diff-card__icon" aria-hidden="true" />,
     title: 'Diagnóstico claro',
-    description: 'Detectamos riesgos y prioridades desde el primer contacto, con una ruta de acción concreta.'
+    description: 'Identificamos riesgos y prioridades desde el inicio, con un plan accionable.'
   },
   {
     icon: <FaShieldHalved className="about-diff-card__icon" aria-hidden="true" />,
     title: 'Seguridad integral',
-    description: 'Unificamos ciberseguridad, cumplimiento, IA y desarrollo bajo una sola visión técnica.'
+    description: 'Unificamos ciberseguridad, cumplimiento e IA en una sola estrategia.'
   },
   {
     icon: <FaBrain className="about-diff-card__icon" aria-hidden="true" />,
     title: 'IA aplicada',
-    description: 'Convertimos inteligencia artificial en eficiencia operativa y mejores decisiones.'
+    description: 'Transformamos procesos en eficiencia operativa y mejores decisiones.'
   },
   {
     icon: <FaGear className="about-diff-card__icon" aria-hidden="true" />,
     title: 'Implementación real',
-    description: 'No solo asesoramos: aterrizamos soluciones que pueden operar en su día a día.'
+    description: 'Ejecutamos soluciones que funcionan en tu operación diaria.'
   },
   {
     icon: <FaHandshake className="about-diff-card__icon" aria-hidden="true" />,
     title: 'Acompañamiento continuo',
-    description: 'Seguimos con su equipo para sostener avances, ajustar prioridades y escalar resultados.'
+    description: 'Te acompañamos para mejorar, ajustar y escalar resultados.'
   },
   {
     icon: <FaShieldHalved className="about-diff-card__icon" aria-hidden="true" />,
     title: 'Enfoque empresarial',
-    description: 'Diseñado para organizaciones que necesitan claridad, confianza y acción medible.'
+    description: 'Soluciones diseñadas para impacto real en tu negocio.'
   }
 ];
 
@@ -1015,7 +1015,7 @@ const HERO_SLOGANS = ['Protegemos su información.', 'Aseguramos su futuro.'];
 
 const BUILD_STAMP = '2026-04-27-02';
 
-const CRITICAL_PRELOAD_IMAGES = [logo];
+const CRITICAL_PRELOAD_IMAGES = [logo, fondo];
 
 
 
@@ -1109,15 +1109,11 @@ const topMenuItems = [
 
 const LoaderDots = () => {
   return (
-    <svg className="page-loader-animation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" aria-hidden="true">
-      <g id="whole" fill="#FEFEFE" stroke="#FEFEFE" strokeWidth="2">
-        <circle className="loader-dot loader-dot--leader" cx="328" cy="300" r="16" />
-        <circle className="loader-dot loader-dot--follower loader-dot--one" cx="372" cy="300" r="16" />
-        <circle className="loader-dot loader-dot--follower loader-dot--two" cx="416" cy="300" r="16" />
-        <circle className="loader-dot loader-dot--follower loader-dot--three" cx="460" cy="300" r="16" />
-        <circle className="loader-dot loader-dot--follower loader-dot--four" cx="504" cy="300" r="16" />
-      </g>
-    </svg>
+    <div className="page-loader-animation" aria-hidden="true">
+      <span className="page-loader-dot page-loader-dot--one" />
+      <span className="page-loader-dot page-loader-dot--two" />
+      <span className="page-loader-dot page-loader-dot--three" />
+    </div>
   );
 };
 
@@ -1143,6 +1139,8 @@ function App() {
   const [isContactSending, setIsContactSending] = useState(false);
   const [showSubmitShield, setShowSubmitShield] = useState(false);
   const [isHeroBackgroundReady, setIsHeroBackgroundReady] = useState(false);
+  const [securityIssueCount, setSecurityIssueCount] = useState(3000);
+  const [readyOrgsCount, setReadyOrgsCount] = useState(400);
   const successOverlayTimeoutRef = useRef<number | null>(null);
 
   const copyContactTimeoutRef = useRef<number | null>(null);
@@ -1198,15 +1196,13 @@ function App() {
 
 
     Promise.race([
-
       Promise.allSettled(CRITICAL_PRELOAD_IMAGES.map((source) => loadImage(source))).then(() => minLoaderDuration),
-
       maxWaitTimeout
-
     ]).finally(() => {
-
-      if (isMounted) setIsPageReady(true);
-
+      if (isMounted) {
+        setIsHeroBackgroundReady(true);
+        setIsPageReady(true);
+      }
     });
 
 
@@ -1217,6 +1213,66 @@ function App() {
 
     };
 
+  }, []);
+
+
+
+  useEffect(() => {
+    let rafId = 0;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setSecurityIssueCount(7800);
+      return undefined;
+    }
+
+    const startValue = 3000;
+    const endValue = 7800;
+    const duration = 3400;
+    const startedAt = performance.now();
+
+    const animate = (now: number) => {
+      const elapsed = now - startedAt;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setSecurityIssueCount(Math.round(startValue + (endValue - startValue) * eased));
+
+      if (progress < 1) {
+        rafId = window.requestAnimationFrame(animate);
+      }
+    };
+
+    rafId = window.requestAnimationFrame(animate);
+
+    return () => window.cancelAnimationFrame(rafId);
+  }, []);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      return undefined;
+    }
+
+    return undefined;
+  }, []);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return undefined;
+
+    const securityTicker = window.setInterval(() => {
+      setSecurityIssueCount((current) => current + 5);
+    }, 2800);
+
+    const readyTicker = window.setInterval(() => {
+      setReadyOrgsCount((current) => Math.max(0, current - 1));
+    }, 12000);
+
+    return () => {
+      window.clearInterval(securityTicker);
+      window.clearInterval(readyTicker);
+    };
   }, []);
 
 
@@ -1255,36 +1311,6 @@ function App() {
       document.body.classList.remove('app-is-loading');
     };
   }, [isPageReady]);
-
-  useEffect(() => {
-    if (!isPageReady) {
-      setIsHeroBackgroundReady(false);
-      return undefined;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setIsHeroBackgroundReady(true);
-    }, 180);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [isPageReady]);
-
-  useEffect(() => {
-    if (!isPageReady) return;
-    if (currentPath !== '/') return;
-
-    const storageKey = 'bw_blog_popup_seen';
-    const seen = window.sessionStorage.getItem(storageKey) === '1';
-    if (seen) return;
-
-    const timer = window.setTimeout(() => {
-      setIsBlogPopupOpen(true);
-      window.sessionStorage.setItem(storageKey, '1');
-    }, 2200);
-
-    return () => window.clearTimeout(timer);
-  }, [currentPath, isPageReady]);
-
 
   useEffect(() => {
 
@@ -2291,9 +2317,43 @@ function App() {
 
             <p className="lede fade-in">
 
-              ByteWise es una firma especializada en ciberseguridad, cumplimiento normativo, inteligencia artificial y desarrollo tecnológico, que acompaña a su organización desde el diagnóstico inicial hasta la implementación de soluciones estratégicas que impulsan su crecimiento y protegen sus activos.
+              Protegemos la información de tu empresa con ciberseguridad, IA y cumplimiento.
+              <br />
+              <strong>Diagnóstico claro. Implementación real. Resultados medibles.</strong>
 
             </p>
+
+            <div className="hero-security-counter-row">
+              <div className="hero-security-counter" aria-live="polite" aria-label="Organizaciones con alertas de ciberseguridad">                <span className="hero-security-counter__label hero-security-counter__label--danger">Organizaciones con alertas de ciberseguridad</span>
+                <strong className="hero-security-counter__value">{securityIssueCount.toLocaleString('es-MX')}</strong>
+              </div>
+
+              <div className="hero-security-counter hero-security-counter--secondary" aria-live="polite" aria-label="Organizaciones preparadas y actualizadas">                <span className="hero-security-counter__label hero-security-counter__label--success">Organizaciones preparadas y actualizadas</span>
+                <strong className="hero-security-counter__value">{readyOrgsCount.toLocaleString('es-MX')}</strong>
+              </div>
+            </div>
+
+            <p className="hero-counter-phrase" aria-label="¿Dónde está la tuya?">
+              <span>¿Dónde está la tuya?</span>
+            </p>
+
+            <div className="announcement-slidebar" aria-label="Anuncios de ByteWise">
+
+              <div className="announcement-track">
+
+                {[...heroAnnouncements, ...heroAnnouncements].map((announcement, index) => (
+
+                  <span className="announcement-item" key={`${announcement}-${index}`}>
+
+                    {announcement}
+
+                  </span>
+
+                ))}
+
+              </div>
+
+            </div>
 
             <div className="cta-group animated-fade">
 
@@ -2337,27 +2397,9 @@ function App() {
 
               >
 
-                <a href="#servicios" className="ghost">Conocer nuestros servicios</a>
+                <a href="#servicios" className="ghost">Ver soluciones para tu empresa</a>
 
               </ElectricBorder>
-
-            </div>
-
-            <div className="announcement-slidebar" aria-label="Anuncios de ByteWise">
-
-              <div className="announcement-track">
-
-                {[...heroAnnouncements, ...heroAnnouncements].map((announcement, index) => (
-
-                  <span className="announcement-item" key={`${announcement}-${index}`}>
-
-                    {announcement}
-
-                  </span>
-
-                ))}
-
-              </div>
 
             </div>
 
@@ -2399,10 +2441,6 @@ function App() {
                     <p className="about-diff-card__description">{card.description}</p>
                   </article>
                 ))}
-
-                <div className="about-diff-cta" role="note">
-                  <p className="about-diff-cta__text">Automatiza lo operativo, enfócate en lo estratégico</p>
-                </div>
               </div>
 
             </div>
@@ -3604,6 +3642,7 @@ function App() {
 
 
 export default App;
+
 
 
 
