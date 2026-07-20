@@ -1,0 +1,23 @@
+<header class="navbar-header" [class.scrolled]="isScrolled">
+    <div class="navbar-container">
+        <a href="#" class="nav-logo">
+            <img src="img/logooficial.png" alt="ByteWise Logo" class="logo-img">
+        </a>
+        
+        <nav class="nav-menu" [class.open]="isMenuOpen">
+            <a href="#hero" class="nav-link" [class.active]="activeLink === 'hero'" (click)="setLink('hero')">Inicio</a>
+            <a href="#features" class="nav-link" [class.active]="activeLink === 'features'" (click)="setLink('features')">Servicios</a>
+            <a href="#stats" class="nav-link" [class.active]="activeLink === 'stats'" (click)="setLink('stats')">Impacto</a>
+            <a href="#contact" class="nav-link" [class.active]="activeLink === 'contact'" (click)="setLink('contact')">Contacto</a>
+        </nav>
+
+        <div class="nav-actions">
+            <!-- Botón de Menú Móvil -->
+            <button class="mobile-menu-btn" [class.open]="isMenuOpen" (click)="toggleMenu()" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</header>

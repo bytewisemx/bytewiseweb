@@ -1,0 +1,285 @@
+<!-- STATS & IMPACTO SECTION -->
+<section id="stats" class="stats-section">
+    <!-- Banner de Estadísticas Numéricas -->
+    <div class="stats-container" #statsContainer>
+        <div class="stat-item reveal fade-up">
+            <div class="stat-number-container">
+                <span class="stat-number">{{ currentCounts[0] }}</span><span class="stat-suffix">%</span>
+            </div>
+            <p class="stat-label">Disponibilidad de Datos Protegidos</p>
+        </div>
+        <div class="stat-item reveal fade-up delay-1">
+            <div class="stat-number-container">
+                <span class="stat-number">{{ currentCounts[1] }}</span><span class="stat-suffix">M+</span>
+            </div>
+            <p class="stat-label">Líneas de Código Aseguradas</p>
+        </div>
+        <div class="stat-item reveal fade-up delay-2">
+            <div class="stat-number-container">
+                <span class="stat-number">{{ currentCounts[2] }}</span><span class="stat-suffix">k+</span>
+            </div>
+            <p class="stat-label">Horas de Monitoreo Activo</p>
+        </div>
+    </div>
+
+    <!-- Slider de Filosofía e Impacto Corporativo -->
+    <main class="impacto-slider-main reveal fade-up delay-1">
+        <h2 class="impacto-section-title">Filosofía e <span class="gradient-text">Impacto Corporativo</span></h2>
+
+        <div class="slider">
+            <div class="slide-row" [style.transform]="'translateX(-' + (activeSlide * 25) + '%)'">
+                
+                <!-- Slide 1: Misión -->
+                <div class="slide-col">
+                    <div class="content glass-card">
+                        <span class="card-tag">PROPÓSITO CORPORATIVO</span>
+                        <h2>{{ slides[0].title }}</h2>
+                        <p class="subtitle-text">{{ slides[0].subtitle }}</p>
+                        <p class="body-text">{{ slides[0].content }}</p>
+                    </div>
+                    <div class="hero">
+                        <img [src]="slides[0].image" alt="Misión ByteWise">
+                    </div>
+                </div>
+
+                <!-- Slide 2: Visión -->
+                <div class="slide-col">
+                    <div class="content glass-card">
+                        <span class="card-tag">FUTURO & LIDERAZGO</span>
+                        <h2>{{ slides[1].title }}</h2>
+                        <p class="subtitle-text">{{ slides[1].subtitle }}</p>
+                        <p class="body-text">{{ slides[1].content }}</p>
+                    </div>
+                    <div class="hero">
+                        <img [src]="slides[1].image" alt="Visión ByteWise">
+                    </div>
+                </div>
+
+                <!-- Slide 3: Valores -->
+                <div class="slide-col">
+                    <div class="content glass-card valores-card">
+                        <span class="card-tag">CULTURA & ÉTICA</span>
+                        <h2>{{ slides[2].title }}</h2>
+                        <p class="subtitle-text">{{ slides[2].subtitle }}</p>
+                        <div class="valores-grid">
+                            @for (val of slides[2].valuesList; track val.name) {
+                                <div class="valor-item">
+                                    <strong class="val-name">{{ val.name }}:</strong>
+                                    <span class="val-desc">{{ val.desc }}</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="hero">
+                        <img [src]="slides[2].image" alt="Valores ByteWise">
+                    </div>
+                </div>
+
+                <!-- Slide 4: ¿Por qué elegirnos? -->
+                <div class="slide-col">
+                    <div class="content glass-card">
+                        <span class="card-tag">VALOR DIFERENCIADOR</span>
+                        <h2>{{ slides[3].title }}</h2>
+                        <p class="subtitle-text">{{ slides[3].subtitle }}</p>
+                        <p class="body-text">{{ slides[3].content }}</p>
+                    </div>
+                    <div class="hero">
+                        <img [src]="slides[3].image" alt="Por qué elegir a ByteWise">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="indicator">
+            @for (slide of slides; track slide.title; let i = $index) {
+                <span class="btn" [class.active]="activeSlide === i" (click)="setSlide(i)"></span>
+            }
+        </div>
+    </main>
+
+    <!-- ORGANIZACIONES Y TESTIMONIOS -->
+    <div class="clients-impacto-wrapper reveal fade-up delay-2">
+        <div class="clients-header-block">
+            <h2 class="impacto-section-title">Organizaciones que <span class="gradient-text">confían en ByteWise</span></h2>
+            <p class="clients-intro-text">
+                Trabajamos con organizaciones de distintos sectores en Aguascalientes y México, acompañándolas en el fortalecimiento de su seguridad, cumplimiento y madurez tecnológica.
+            </p>
+            <p class="collaborators-subnote">
+                Seguimos colaborando con más organizaciones en distintos proyectos de ciberseguridad, cumplimiento e implementación tecnológica.
+            </p>
+        </div>
+
+        <!-- Slider de Testimonios Empresariales -->
+        <main class="impacto-slider-main testimonials-slider-main">
+            <div class="slider">
+                <div class="slide-row" [style.width]="'200%'" [style.transform]="'translateX(-' + (activeTestimonialSlide * 50) + '%)'">
+                    
+                    @for (t of testimonials; track t.name; let i = $index) {
+                        <div class="slide-col slide-col-testimonial">
+                            <div class="content glass-card testimonial-glass-card">
+                                <div class="testimonial-user-badge">
+                                    <div class="user-avatar-initials">{{ t.initials }}</div>
+                                    <div class="user-meta">
+                                        <span class="user-fullname">{{ t.name }}</span>
+                                        <span class="user-subtitle-tag">{{ t.subtitle }}</span>
+                                    </div>
+                                </div>
+                                <blockquote class="testimonial-quote-text">
+                                    {{ t.quote }}
+                                </blockquote>
+                                <span class="company-tag-footer">{{ t.company }}</span>
+                            </div>
+                            <div class="hero">
+                                <img [src]="t.image" [alt]="t.name">
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="indicator">
+                @for (t of testimonials; track t.name; let i = $index) {
+                    <span class="btn" [class.active]="activeTestimonialSlide === i" (click)="setTestimonialSlide(i)"></span>
+                }
+            </div>
+        </main>
+    </div>
+
+    <!-- SUBSECCIÓN INTERACTIVA: EL EQUIPO DETRÁS DE BYTEWISE (CERTIFICACIONES Y ESPECIALIZACIÓN TÉCNICA) -->
+    <div class="team-impacto-wrapper reveal fade-up delay-2">
+        <div class="team-header-block">
+            <h2 class="impacto-section-title">El equipo detrás de <span class="gradient-text">ByteWise</span></h2>
+            <p class="team-subheading">Certificaciones y formación</p>
+            <p class="team-intro-text">
+                Capacidades estratégicas y técnicas para proteger, optimizar y escalar su organización. Haz clic en cada tarjeta para explorar los detalles de nuestra especialización.
+            </p>
+        </div>
+
+        <!-- GRID INTERACTIVO DE TARJETAS CON EFECTO COVER EXPANDIBLE -->
+        <div class="interactive-cards-container">
+            <!-- Columna 0 -->
+            <div class="card-column column-0">
+                <!-- Tarjeta 0: Maestría en Seguridad -->
+                <div class="card interactive-card team-card-index-0 card-color-0" 
+                     [class.clicked]="selectedTeamCardIndex === 0" 
+                     [class.out]="selectedTeamCardIndex !== null && selectedTeamCardIndex !== 0"
+                     (click)="onTeamCardClick(0, $event)">
+                    <div class="border"></div>
+                    <img [src]="teamCards[0].image" [alt]="teamCards[0].title" />
+                    <div class="card-title-box">
+                        <span class="card-category-label">{{ teamCards[0].category }}</span>
+                        <h1>{{ teamCards[0].title }}</h1>
+                        <p class="card-sub-info">{{ teamCards[0].subtitle }}</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Lead Implementer ISO 27001 -->
+                <div class="card interactive-card team-card-index-2 card-color-2" 
+                     [class.clicked]="selectedTeamCardIndex === 2" 
+                     [class.out]="selectedTeamCardIndex !== null && selectedTeamCardIndex !== 2"
+                     (click)="onTeamCardClick(2, $event)">
+                    <div class="border"></div>
+                    <img [src]="teamCards[2].image" [alt]="teamCards[2].title" />
+                    <div class="card-title-box">
+                        <span class="card-category-label">{{ teamCards[2].category }}</span>
+                        <h1>{{ teamCards[2].title }}</h1>
+                        <p class="card-sub-info">{{ teamCards[2].subtitle }}</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Informática Forense -->
+                <div class="card interactive-card team-card-index-4 card-color-0" 
+                     [class.clicked]="selectedTeamCardIndex === 4" 
+                     [class.out]="selectedTeamCardIndex !== null && selectedTeamCardIndex !== 4"
+                     (click)="onTeamCardClick(4, $event)">
+                    <div class="border"></div>
+                    <img [src]="teamCards[4].image" [alt]="teamCards[4].title" />
+                    <div class="card-title-box">
+                        <span class="card-category-label">{{ teamCards[4].category }}</span>
+                        <h1>{{ teamCards[4].title }}</h1>
+                        <p class="card-sub-info">{{ teamCards[4].subtitle }}</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 6: Desarrollo de Software -->
+                <div class="card interactive-card team-card-index-6 card-color-2" 
+                     [class.clicked]="selectedTeamCardIndex === 6" 
+                     [class.out]="selectedTeamCardIndex !== null && selectedTeamCardIndex !== 6"
+                     (click)="onTeamCardClick(6, $event)">
+                    <div class="border"></div>
+                    <img [src]="teamCards[6].image" [alt]="teamCards[6].title" />
+                    <div class="card-title-box">
+                        <span class="card-category-label">{{ teamCards[6].category }}</span>
+                        <h1>{{ teamCards[6].title }}</h1>
+                        <p class="card-sub-info">{{ teamCards[6].subtitle }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna 1 (Desfasada) -->
+            <div class="card-column column-1">
+                <!-- Tarjeta 1: Auditor Interno ISO 27001 -->
+                <div class="card interactive-card team-card-index-1 card-color-1" 
+                     [class.clicked]="selectedTeamCardIndex === 1" 
+                     [class.out]="selectedTeamCardIndex !== null && selectedTeamCardIndex !== 1"
+                     (click)="onTeamCardClick(1, $event)">
+                    <div class="border"></div>
+                    <img [src]="teamCards[1].image" [alt]="teamCards[1].title" />
+                    <div class="card-title-box">
+                        <span class="card-category-label">{{ teamCards[1].category }}</span>
+                        <h1>{{ teamCards[1].title }}</h1>
+                        <p class="card-sub-info">{{ teamCards[1].subtitle }}</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Pentesting y análisis de vulnerabilidades -->
+                <div class="card interactive-card team-card-index-3 card-color-3" 
+                     [class.clicked]="selectedTeamCardIndex === 3" 
+                     [class.out]="selectedTeamCardIndex !== null && selectedTeamCardIndex !== 3"
+                     (click)="onTeamCardClick(3, $event)">
+                    <div class="border"></div>
+                    <img [src]="teamCards[3].image" [alt]="teamCards[3].title" />
+                    <div class="card-title-box">
+                        <span class="card-category-label">{{ teamCards[3].category }}</span>
+                        <h1>{{ teamCards[3].title }}</h1>
+                        <p class="card-sub-info">{{ teamCards[3].subtitle }}</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 5: Inteligencia Artificial Aplicada -->
+                <div class="card interactive-card team-card-index-5 card-color-1" 
+                     [class.clicked]="selectedTeamCardIndex === 5" 
+                     [class.out]="selectedTeamCardIndex !== null && selectedTeamCardIndex !== 5"
+                     (click)="onTeamCardClick(5, $event)">
+                    <div class="border"></div>
+                    <img [src]="teamCards[5].image" [alt]="teamCards[5].title" />
+                    <div class="card-title-box">
+                        <span class="card-category-label">{{ teamCards[5].category }}</span>
+                        <h1>{{ teamCards[5].title }}</h1>
+                        <p class="card-sub-info">{{ teamCards[5].subtitle }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COVER DINÁMICO EXPANDIBLE -->
+<div id="cover" class="cover" [ngStyle]="coverStyle"></div>
+
+<!-- CONTENIDO DESPLEGADO AL ABRIR TARJETA DE EQUIPO -->
+<div id="open-content" class="open-content" [class.open]="pageIsOpen" (click)="onCloseContent($event)">
+    <button type="button" id="close-content" class="close-content" (click)="onCloseContent($event)" aria-label="Cerrar ventana">
+        <span class="x-1"></span>
+        <span class="x-2"></span>
+    </button>
+    <img id="open-content-image" [src]="openContentImage" [alt]="openContentTitle" (click)="$event.stopPropagation()" />
+    <div class="text glass-open-text" id="open-content-text" (click)="$event.stopPropagation()">
+        <span class="card-tag">{{ openContentCategory }}</span>
+        <h2>{{ openContentTitle }}</h2>
+        <p class="modal-company-sub">{{ openContentSubtitle }}</p>
+        <p class="modal-body-text">{{ openContentDescription }}</p>
+    </div>
+</div>

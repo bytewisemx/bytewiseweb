@@ -1,0 +1,167 @@
+@if (isOpen) {
+    <div class="privacy-modal-overlay" (click)="closeModal()">
+        <div class="privacy-modal-card" (click)="$event.stopPropagation()">
+            <!-- Encabezado de la Modal -->
+            <div class="privacy-modal-header">
+                <div class="brand-badge-modal">
+                    <span class="shield-icon"><img src="img/escudo.png" alt="Escudo" class="privacy-shield-img" /></span>
+                    <span class="brand-text">BYTEWISE Data & Cybersecurity</span>
+                </div>
+                <button type="button" class="privacy-close-btn" (click)="closeModal()" aria-label="Cerrar política de privacidad">&times;</button>
+            </div>
+
+            <!-- Cuerpo del Documento Legal -->
+            <div class="privacy-modal-body">
+                <h1 class="privacy-title">Política de Privacidad y Aviso de Privacidad Integral</h1>
+                <p class="privacy-last-update">Última actualización: Mayo 2026</p>
+
+                <hr class="privacy-divider" />
+
+                <section class="privacy-section">
+                    <h2>1. Identidad y domicilio del responsable</h2>
+                    <p>En cumplimiento con lo dispuesto por la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), su Reglamento y demás normativa aplicable en los Estados Unidos Mexicanos, BYTEWISE Data & Cybersecurity (en adelante, “BYTEWISE”), con domicilio en Aguascalientes, México, es responsable del tratamiento, uso, almacenamiento y protección de los datos personales que recabe de sus usuarios, clientes, prospectos, proveedores y visitantes de su sitio web.</p>
+                    <p>BYTEWISE reconoce la importancia de proteger la privacidad y la seguridad de la información personal de sus titulares, por lo que implementa medidas administrativas, técnicas y físicas razonables para salvaguardar los datos personales contra daño, pérdida, alteración, destrucción, uso, acceso o tratamiento no autorizado.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>2. Definiciones</h2>
+                    <ul class="privacy-list">
+                        <li><strong>Datos Personales:</strong> Cualquier información concerniente a una persona física identificada o identificable.</li>
+                        <li><strong>Titular:</strong> Persona física a quien corresponden los datos personales.</li>
+                        <li><strong>Tratamiento:</strong> La obtención, uso, divulgación o almacenamiento de datos personales.</li>
+                        <li><strong>Responsable:</strong> BYTEWISE Data & Cybersecurity.</li>
+                        <li><strong>Encargado:</strong> Persona física o moral que sola o conjuntamente con otras trate datos personales por cuenta del responsable.</li>
+                        <li><strong>Derechos ARCO:</strong> Derechos de Acceso, Rectificación, Cancelación y Oposición.</li>
+                    </ul>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>3. Datos personales recabados</h2>
+                    <h3>3.1 Datos de identificación</h3>
+                    <p>Nombre completo, Razón social, Nombre comercial, RFC, CURP, Identificación oficial, Firma autógrafa o electrónica.</p>
+
+                    <h3>3.2 Datos de contacto</h3>
+                    <p>Correo electrónico, Número telefónico, Domicilio, Ciudad y país.</p>
+
+                    <h3>3.3 Datos laborales y empresariales</h3>
+                    <p>Empresa u organización, Cargo o puesto, Área de trabajo, Información corporativa, Infraestructura tecnológica relacionada con servicios contratados.</p>
+
+                    <h3>3.4 Datos técnicos y de navegación</h3>
+                    <p>Cuando visite nuestro sitio web, podremos recopilar automáticamente: Dirección IP, Tipo de navegador, Sistema operativo, Datos de geolocalización aproximada, Cookies y tecnologías similares, Información de comportamiento de navegación, Registros de acceso y actividad.</p>
+
+                    <h3>3.5 Datos financieros y fiscales</h3>
+                    <p>En caso de contratación de servicios: Datos de facturación, Información bancaria para pagos y transferencias, Historial comercial.</p>
+
+                    <p class="privacy-highlight">BYTEWISE no recaba deliberadamente datos personales sensibles salvo que resulte estrictamente necesario para la prestación de un servicio profesional específico y exista consentimiento expreso del titular.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>4. Finalidades del tratamiento de datos</h2>
+                    <h3>4.1 Finalidades primarias</h3>
+                    <ul class="privacy-list">
+                        <li>Proveer servicios de ciberseguridad, seguridad de la información y consultoría tecnológica.</li>
+                        <li>Proporcionar servicios de auditoría, implementación y asesoría relacionados con normas ISO.</li>
+                        <li>Brindar servicios de externalización y soporte del área de TI.</li>
+                        <li>Atender solicitudes de contacto, cotizaciones y soporte.</li>
+                        <li>Gestionar relaciones comerciales y contractuales.</li>
+                        <li>Emitir facturación y cumplir obligaciones fiscales.</li>
+                        <li>Evaluar riesgos de seguridad y prestar servicios especializados.</li>
+                        <li>Gestionar accesos a plataformas, sistemas y portales.</li>
+                        <li>Dar cumplimiento a obligaciones legales y regulatorias.</li>
+                    </ul>
+
+                    <h3>4.2 Finalidades secundarias</h3>
+                    <ul class="privacy-list">
+                        <li>Envío de boletines informativos.</li>
+                        <li>Campañas de marketing y publicidad.</li>
+                        <li>Invitaciones a eventos, webinars y capacitaciones.</li>
+                        <li>Encuestas de satisfacción.</li>
+                        <li>Generación de estadísticas y análisis internos.</li>
+                        <li>Compartir información sobre nuevos servicios.</li>
+                    </ul>
+                    <p>El titular podrá oponerse al uso de sus datos para finalidades secundarias enviando una solicitud al correo de contacto indicado en la presente política.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>5. Uso de cookies y tecnologías similares</h2>
+                    <p>Nuestro sitio web puede utilizar cookies, web beacons y tecnologías similares para mejorar la experiencia del usuario, analizar tendencias y métricas de navegación, recordar preferencias, proporcionar contenido personalizado y fortalecer controles de seguridad.</p>
+                    <p>El usuario puede deshabilitar las cookies desde la configuración de su navegador; sin embargo, algunas funcionalidades del sitio podrían verse afectadas.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>6. Transferencia de datos personales</h2>
+                    <p>BYTEWISE podrá transferir datos personales a terceros nacionales o extranjeros únicamente cuando sea necesario para la prestación de servicios, exista obligación legal o requerimiento de autoridad competente, sea requerido para procesos de auditoría, certificación o cumplimiento, existan proveedores tecnológicos o encargados autorizados, o sea necesario para la protección de derechos e intereses legítimos.</p>
+                    <p class="privacy-highlight">En todos los casos, BYTEWISE implementará medidas razonables para asegurar que los terceros receptores mantengan estándares adecuados de protección de datos. BYTEWISE no comercializa ni vende datos personales.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>7. Derechos ARCO</h2>
+                    <p>El titular tiene derecho a Acceder a sus datos personales, Rectificar datos inexactos o incompletos, Cancelar sus datos cuando considere que no son necesarios, u Oponerse al tratamiento de sus datos.</p>
+                    <p>Para ejercer sus Derechos ARCO, el titular deberá enviar una solicitud al correo electrónico: <a href="mailto:contacto&#64;bytewise.mx" class="privacy-link">contacto&#64;bytewise.mx</a></p>
+                    <p>La solicitud deberá contener: Nombre completo del titular, Medio para comunicar la respuesta, Documentos que acrediten identidad, Descripción clara de los datos y derecho que desea ejercer, y cualquier elemento que facilite la localización de la información.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>8. Revocación del consentimiento</h2>
+                    <p>El titular podrá revocar el consentimiento otorgado para el tratamiento de sus datos personales en cualquier momento, siguiendo el mismo procedimiento establecido para el ejercicio de Derechos ARCO. La revocación no tendrá efectos retroactivos ni aplicará cuando exista obligación legal que justifique el tratamiento.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>9. Limitación del uso o divulgación de datos</h2>
+                    <p>El titular podrá limitar el uso o divulgación de sus datos personales mediante solicitud escrita enviada al correo de contacto señalado en esta política.</p>
+                    <p>Asimismo, podrá inscribirse en el Registro Público para Evitar Publicidad (REPEP) administrado por la Procuraduría Federal del Consumidor (PROFECO).</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>10. Medidas de seguridad</h2>
+                    <p>BYTEWISE implementa controles de seguridad administrativos, físicos y técnicos orientados a proteger los datos personales y la información de sus clientes, incluyendo: controles de acceso, autenticación multifactor, segmentación de privilegios, respaldo y recuperación de información, monitoreo y registros de actividad, cifrado de información cuando aplique, gestión de vulnerabilidades, capacitación y concientización, acuerdos de confidencialidad y políticas de seguridad de la información.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>11. Conservación de datos</h2>
+                    <p>Los datos personales serán conservados únicamente durante el tiempo necesario para cumplir con las finalidades descritas en esta política, obligaciones legales, contractuales, fiscales o regulatorias aplicables. Posteriormente, serán eliminados o anonimizados conforme a procedimientos internos de gestión segura de información.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>12. Datos de menores de edad</h2>
+                    <p>BYTEWISE no recopila deliberadamente datos personales de menores de edad sin el consentimiento de padres, tutores o representantes legales. En caso de detectar información de menores obtenida sin autorización correspondiente, ésta será eliminada conforme a procedimientos internos.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>13. Enlaces a sitios de terceros</h2>
+                    <p>Nuestro sitio web puede contener enlaces a sitios externos operados por terceros. BYTEWISE no es responsable de las prácticas de privacidad, contenido o políticas de dichos sitios. Se recomienda revisar las políticas de privacidad correspondientes antes de proporcionar información personal.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>14. Cambios a la política de privacidad</h2>
+                    <p>BYTEWISE se reserva el derecho de modificar o actualizar la presente Política de Privacidad en cualquier momento para reflejar cambios legales, regulatorios, operativos o tecnológicos. Las modificaciones serán publicadas en el sitio web oficial: <a href="https://www.bytewise.mx" target="_blank" class="privacy-link">www.bytewise.mx</a>.</p>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>15. Contacto</h2>
+                    <p>Para cualquier duda relacionada con esta Política de Privacidad, protección de datos personales o ejercicio de derechos, puede contactarnos a través de:</p>
+                    <div class="privacy-contact-card">
+                        <strong>BYTEWISE Data & Cybersecurity</strong><br />
+                        Correo electrónico: <a href="mailto:contacto&#64;bytewise.mx" class="privacy-link">contacto&#64;bytewise.mx</a><br />
+                        Sitio web: <a href="https://www.bytewise.mx" target="_blank" class="privacy-link">www.bytewise.mx</a><br />
+                        Ubicación: Aguascalientes, México
+                    </div>
+                </section>
+
+                <section class="privacy-section">
+                    <h2>16. Consentimiento</h2>
+                    <p>Al utilizar nuestro sitio web, enviar formularios, contratar servicios o proporcionar información personal por cualquier medio, el titular reconoce haber leído y aceptado la presente Política de Privacidad y el tratamiento de sus datos personales conforme a lo aquí establecido.</p>
+                </section>
+
+                <div class="privacy-notice-box">
+                    <strong>Aviso importante:</strong> El presente documento constituye un modelo base de Política de Privacidad y Aviso de Privacidad Integral conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), su Reglamento y lineamientos del INAI.
+                </div>
+            </div>
+
+            <!-- Pie de la Modal -->
+            <div class="privacy-modal-footer">
+                <button type="button" class="btn btn-primary" (click)="closeModal()">Entendido y Aceptar</button>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,711 @@
+.stats-section {
+    position: relative;
+    background: rgba(13, 20, 38, 0.4);
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 80px 24px;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.stats-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number-container {
+    font-family: var(--font-titles);
+    font-size: 3.8rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.stat-suffix {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: hsl(var(--text-secondary));
+}
+
+/* ==========================================================================
+   SLIDER DE IMPACTO & FILOSOFÍA CORPORATIVA
+   ========================================================================== */
+.impacto-slider-main {
+    width: 800px;
+    max-width: 100%;
+    margin: 70px auto 0;
+    position: relative;
+}
+
+.impacto-section-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    color: #fff;
+    margin-bottom: 24px;
+    font-family: var(--font-titles);
+}
+
+.slider {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.slide-row {
+    display: flex;
+    width: 400%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-col {
+    position: relative;
+    width: 800px;
+    height: 440px;
+    flex: 0 0 800px;
+}
+
+.hero {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 340px;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.hero img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+    border-radius: 0;
+    filter: brightness(0.9);
+    transition: transform 0.6s ease;
+}
+
+.slide-col:hover .hero img {
+    transform: scale(1.05);
+}
+
+.content.glass-card {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 520px;
+    min-height: 320px;
+    max-height: 420px;
+    color: #ffffff;
+    background: rgba(8, 17, 35, 0.88);
+    box-shadow: 
+        0 16px 45px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(6, 182, 212, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 0;
+    padding: 36px;
+    z-index: 2;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(6, 182, 212, 0.3) transparent;
+}
+
+.card-tag {
+    font-family: var(--font-titles);
+    font-size: 0.72rem;
+    color: #00c8ff;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.content h2 {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #ffffff;
+    font-family: var(--font-titles);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+}
+
+.subtitle-text {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.body-text {
+    font-size: 1.02rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #cbd5e1;
+}
+
+.valores-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 4px;
+    max-height: 230px;
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(6, 182, 212, 0.3) transparent;
+}
+
+.valor-item {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px 12px;
+    border-radius: 0;
+    border-left: 2px solid #00c8ff;
+}
+
+.val-name {
+    color: #00c8ff;
+    font-family: var(--font-titles);
+    margin-right: 4px;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+}
+
+.val-desc {
+    color: #cbd5e1;
+}
+
+.indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.indicator .btn {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    margin: 4px 6px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+
+.indicator .btn.active {
+    width: 36px;
+    background: var(--gradient-primary);
+    box-shadow: 0 0 14px rgba(6, 182, 212, 0.6);
+}
+
+/* ==========================================================================
+   ORGANIZACIONES Y TESTIMONIOS EMPRESARIALES
+   ========================================================================== */
+.clients-impacto-wrapper {
+    margin-top: 90px;
+    padding-top: 40px;
+    border-top: 1px dashed rgba(6, 182, 212, 0.2);
+}
+
+.clients-header-block {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 40px;
+}
+
+.clients-intro-text {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    line-height: 1.65;
+    margin-bottom: 20px;
+}
+
+.collaborators-subnote {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    font-style: italic;
+    margin-top: 16px;
+}
+
+.testimonials-slider-main {
+    margin-top: 40px;
+}
+
+.slide-col-testimonial {
+    height: 380px;
+}
+
+.testimonial-glass-card {
+    min-height: 280px;
+    max-height: 360px;
+}
+
+.testimonial-user-badge {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.user-avatar-initials {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00c8ff, #8b5cf6);
+    color: #ffffff;
+    font-family: var(--font-titles);
+    font-weight: 800;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 16px rgba(6, 182, 212, 0.4);
+    flex-shrink: 0;
+}
+
+.user-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-fullname {
+    font-family: var(--font-titles);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.user-subtitle-tag {
+    font-size: 0.82rem;
+    color: #00c8ff;
+    font-weight: 500;
+}
+
+.testimonial-quote-text {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: #e2e8f0;
+    font-style: italic;
+    margin: 0 0 16px;
+}
+
+.company-tag-footer {
+    font-family: var(--font-titles);
+    font-size: 0.76rem;
+    color: #94a3b8;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   SUBSECCIÓN INTERACTIVA: EL EQUIPO DETRÁS DE BYTEWISE
+   ========================================================================== */
+.team-impacto-wrapper {
+    margin-top: 100px;
+    padding-top: 50px;
+    border-top: 1px dashed rgba(6, 182, 212, 0.25);
+}
+
+.team-header-block {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto 50px;
+}
+
+.team-subheading {
+    font-family: var(--font-titles);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #00c8ff;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.team-intro-text {
+    font-size: 1.05rem;
+    color: #cbd5e1;
+    line-height: 1.65;
+}
+
+/* Contenedor de Tarjetas Interactivas */
+.interactive-cards-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-column {
+    width: 48%;
+    box-sizing: border-box;
+}
+
+.column-1 {
+    padding-top: 100px;
+}
+
+.card.interactive-card {
+    width: 100%;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    color: #ffffff;
+    cursor: pointer;
+    margin-bottom: 60px;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    transition: opacity 200ms linear 320ms, transform 200ms ease-out 320ms;
+}
+
+.border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    opacity: 0.5;
+    left: -6px;
+    top: -6px;
+    border-radius: 0;
+    pointer-events: none;
+    transition: opacity 200ms linear, transform 200ms ease-out;
+}
+
+.card-title-box {
+    position: relative;
+    padding: 180px 18px 24px 18px;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 3;
+
+    transform: translate3d(0px, 0px, 0px);  
+    transition: opacity 200ms linear 120ms, transform 200ms ease-in 120ms;
+}
+
+.card-category-label {
+    font-family: var(--font-titles);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: #00c8ff;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.card.interactive-card h1 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 6px;
+    font-family: var(--font-titles);
+    color: #ffffff;
+}
+
+.card-sub-info {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.card.interactive-card > img {
+    width: 92%;
+    height: 170px;
+    object-fit: cover;
+    position: absolute;
+    top: -8%;
+    left: -4%;
+    border-radius: 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    transition: opacity 200ms linear 0ms, transform 200ms ease-in 0ms;
+}
+
+/* Paleta de Colores de Tarjetas */
+.card-color-0 {
+    background: linear-gradient(145deg, #0f2b4a, #0b1a2e);
+    border: 1px solid rgba(0, 200, 255, 0.3);
+}
+
+.card-color-1 {
+    background: linear-gradient(145deg, #1e3a5f, #13243c);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.card-color-2 {
+    background: linear-gradient(145deg, #0d3349, #08202e);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.card-color-3 {
+    background: linear-gradient(145deg, #2d1a47, #1b0e2d);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+/* Clicked & Out State Transitions */
+.card.clicked img {
+    transform: translate3d(0px, -40px, 0px);
+    opacity: 0;
+}
+
+.card.clicked .border {
+    opacity: 0;
+    transform: scale(1.3);
+}
+
+.card.out, .card.out img {
+    transform: translate3d(0px, -40px, 0px);
+    opacity: 0;
+}
+
+.card.out h1, .card.clicked h1, .card.clicked .card-title-box {
+    transform: translate3d(20%, -40px, 0px);
+    opacity: 0;
+}
+
+/* Cover Dinámico Expandible */
+.cover {
+    position: fixed;
+    z-index: 990;
+    transform-origin: 50% 50%;
+    transition: transform 300ms ease-in-out;
+    border-radius: 0;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+}
+
+/* Open Page Content */
+.open-content {
+    width: 100%;
+    min-height: 100vh;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    overflow-y: auto;
+    padding: 60px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 200ms linear 0ms;
+}
+
+.open-content.open {
+    opacity: 1;
+    pointer-events: all;
+    transition-delay: 400ms;
+}
+
+.open-content img {
+    position: relative;
+    width: min(720px, 90%);
+    height: 320px;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    z-index: 5;
+}
+
+.open-content .glass-open-text {
+    background: rgba(8, 17, 35, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 0;
+    margin-top: -80px;
+    padding: 100px 40px 40px 40px;
+    width: min(720px, 90%);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    z-index: 4;
+    box-sizing: border-box;
+}
+
+.open-content .glass-open-text h2 {
+    font-family: var(--font-titles);
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.modal-company-sub {
+    font-size: 0.95rem;
+    color: #00c8ff;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.modal-body-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+}
+
+/* Botón Cerrar (X) */
+.close-content {
+    display: block;
+    position: fixed;
+    right: 28px;
+    top: 28px;
+    width: 44px;
+    height: 44px;
+    background: rgba(8, 17, 35, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    z-index: 1010;
+    transition: transform 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+}
+
+.close-content:hover {
+    transform: scale(1.1);
+    background: rgba(239, 68, 68, 0.85);
+    border-color: #ef4444;
+}
+
+.close-content span {
+    background: #ffffff;
+    width: 22px;
+    height: 3px;
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    border-radius: 2px;
+}
+
+.x-1 {
+    transform: rotate(45deg);
+}
+
+.x-2 {
+    transform: rotate(-45deg);
+}
+
+/* Adaptabilidad Responsiva */
+@media (max-width: 850px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+    
+    .stat-number-container {
+        font-size: 3.2rem;
+    }
+
+    .impacto-slider-main {
+        width: 500px;
+    }
+
+    .slide-row {
+        width: 400%;
+    }
+
+    .slide-col {
+        width: 500px;
+        flex: 0 0 500px;
+        height: 380px;
+    }
+
+    .hero {
+        width: 220px;
+    }
+
+    .content.glass-card {
+        width: 340px;
+        min-height: 280px;
+        padding: 24px;
+    }
+
+    .body-text {
+        font-size: 0.92rem;
+    }
+
+    .content h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .interactive-cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-column {
+        width: 100%;
+    }
+
+    .column-1 {
+        padding-top: 0px;
+    }
+
+    .open-content img {
+        margin-top: 40px;
+        height: 220px;
+    }
+
+    .open-content .glass-open-text {
+        margin-top: -50px;
+        padding: 70px 24px 30px 24px;
+    }
+
+    .impacto-slider-main {
+        width: 300px;
+    }
+
+    .slide-col {
+        width: 300px;
+        flex: 0 0 300px;
+        height: 520px;
+    }
+
+    .hero {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        margin-top: 12px;
+    }
+
+    .content.glass-card {
+        position: relative;
+        top: 0;
+        transform: none;
+        width: 100%;
+        max-height: 300px;
+        padding: 20px;
+    }
+}

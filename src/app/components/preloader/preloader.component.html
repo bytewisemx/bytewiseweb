@@ -1,0 +1,21 @@
+<div class="preloader" [class.hidden]="isHidden">
+    <div class="preloader-content">
+        <!-- Escudo con efecto de relleno de color -->
+        <div class="shield-loader-wrap">
+            <!-- Capa base en escala de grises -->
+            <img src="img/escudo.png" alt="ByteWise Shield" class="shield-img shield-grayscale" />
+            <!-- Capa coloreada con máscara de revelado progresivo -->
+            <img src="img/escudo.png" alt="" class="shield-img shield-color" aria-hidden="true" />
+            <!-- Anillo de progreso circundante -->
+            <svg class="shield-ring" viewBox="0 0 160 160">
+                <circle class="ring-track" cx="80" cy="80" r="74" />
+                <circle class="ring-progress" cx="80" cy="80" r="74" />
+            </svg>
+            <!-- Destello de brillo al completarse -->
+            <div class="shield-glow"></div>
+        </div>
+        <!-- Texto de marca -->
+        <p class="preload-brand-text">BYTEWISE</p>
+        <p class="preload-sub-text">Data & Cybersecurity</p>
+    </div>
+</div>

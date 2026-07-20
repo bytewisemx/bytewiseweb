@@ -1,0 +1,621 @@
+.hacker-alert-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #000000;
+    color: #ff3333;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+    user-select: none;
+    transition: background 0.8s ease;
+}
+
+.hacker-alert-overlay.relieved {
+    background: radial-gradient(circle at center, #070f22 0%, #030710 100%);
+    color: #ffffff;
+    font-family: var(--font-titles), sans-serif;
+}
+
+/* ==========================================================================
+   EFECTOS DE PANTALLA: SCANLINES Y GLITCH
+   ========================================================================== */
+.scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    ), linear-gradient(
+        90deg, 
+        rgba(255, 0, 0, 0.06), 
+        rgba(0, 255, 0, 0.02), 
+        rgba(0, 0, 255, 0.06)
+    );
+    background-size: 100% 4px, 6px 100%;
+    z-index: 20;
+}
+
+.noise-glitch {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: rgba(255, 0, 0, 0.02);
+    animation: glitch-color 0.15s infinite alternate;
+    z-index: 19;
+    opacity: 0.85;
+}
+
+@keyframes glitch-color {
+    0% { background: rgba(255, 0, 0, 0.02); }
+    100% { background: rgba(255, 0, 0, 0.04); filter: hue-rotate(5deg); }
+}
+
+/* ==========================================================================
+   ESTADO 1: ALERTA ROJA DE HACKING
+   ========================================================================== */
+.hacking-layer-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.hacker-header {
+    text-align: center;
+    margin-bottom: 24px;
+    border-bottom: 2px double #ff3333;
+    padding-bottom: 16px;
+    animation: flash-header 1s infinite alternate;
+}
+
+@keyframes flash-header {
+    0% { border-color: #ff3333; box-shadow: 0 0 10px rgba(255, 51, 51, 0.1); }
+    100% { border-color: #aa1111; box-shadow: 0 0 20px rgba(255, 51, 51, 0.4); }
+}
+
+.hacker-warning-icon {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    animation: pulse-icon 0.8s infinite alternate;
+}
+
+@keyframes pulse-icon {
+    0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255,51,51,0.5)); }
+    100% { transform: scale(1.15); filter: drop-shadow(0 0 25px #ff3333); }
+}
+
+.hacker-title-red {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: #ff3333;
+    text-shadow: 0 0 12px rgba(255, 51, 51, 0.6);
+}
+
+.hacker-subtitle-red {
+    margin: 6px 0 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    color: #ff9999;
+}
+
+/* Grid de contenidos */
+.hacker-grid-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+    margin-bottom: 20px;
+    min-height: 0;
+}
+
+/* Terminal de logs */
+.hacker-terminal {
+    background: rgba(10, 0, 0, 0.92);
+    border: 1px solid #ff3333;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(255, 51, 51, 0.15);
+}
+
+.terminal-title-bar {
+    background: rgba(255, 51, 51, 0.08);
+    border-bottom: 1px solid #ff3333;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terminal-title-bar span[class^="dot-"] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.dot-red { background: #ff3333; }
+.dot-yellow { background: #ffcc00; }
+.dot-green { background: #33cc33; }
+
+.terminal-title {
+    margin-left: 6px;
+    font-size: 0.82rem;
+    color: #ff9999;
+    letter-spacing: 0.05em;
+}
+
+.terminal-body-content {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #ff6666;
+}
+
+.terminal-log-line {
+    margin-bottom: 8px;
+    word-break: break-all;
+}
+
+.terminal-cursor-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terminal-cursor-line .prompt {
+    color: #ff3333;
+}
+
+.blink-cursor {
+    animation: blink 0.8s infinite steps(2);
+    background: #ff3333;
+    color: #ff3333;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Ransom / Secuestro */
+.ransom-box {
+    background: rgba(25, 0, 0, 0.95);
+    border: 1px dashed #ff3333;
+    border-radius: 0;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 0 35px rgba(255, 51, 51, 0.1);
+}
+
+.ransom-title {
+    margin: 0 0 16px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ff9999;
+    border-bottom: 1px solid rgba(255,51,51,0.3);
+    padding-bottom: 8px;
+    width: 100%;
+}
+
+.ransom-notice {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ff6666;
+    margin-bottom: 24px;
+}
+
+.countdown-container {
+    background: rgba(255, 51, 51, 0.04);
+    border: 1px solid #ff3333;
+    padding: 20px 40px;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 0 15px rgba(255, 51, 51, 0.2);
+}
+
+.countdown-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: #ff9999;
+}
+.countdown-label-sec {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: #ff6666;
+}
+
+.countdown-number-red {
+    font-size: 5.5rem;
+    font-weight: 900;
+    line-height: 1;
+    margin: 8px 0;
+    color: #ff3333;
+    text-shadow: 0 0 30px #ff3333;
+    animation: scale-number 1s infinite alternate cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+@keyframes scale-number {
+    0% { transform: scale(0.96); filter: brightness(0.9); }
+    100% { transform: scale(1.05); filter: brightness(1.2); }
+}
+
+.hacker-footer-strip {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    border-top: 1px solid rgba(255, 51, 51, 0.3);
+    padding-top: 14px;
+    color: #883333;
+}
+
+.flash-red {
+    animation: flash-text 0.5s infinite steps(2);
+    color: #ff3333;
+}
+
+@keyframes flash-text {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* ==========================================================================
+   ESTADO 2: CARTA DE ALIVIO
+   ========================================================================== */
+.relief-layer-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.relief-card {
+    background: rgba(13, 22, 45, 0.8);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 0;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+    max-width: 580px;
+    text-align: center;
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(6, 182, 212, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.animate-relief {
+    animation: relief-entrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes relief-entrance {
+    from { opacity: 0; transform: translateY(30px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.relief-shield-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.4));
+    animation: float-shield 3s ease-in-out infinite alternate;
+}
+
+@keyframes float-shield {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+.relief-question {
+    font-size: clamp(1.8rem, 3.5vw, 2.3rem);
+    font-weight: 800;
+    margin: 0 0 16px;
+    background: linear-gradient(135deg, #ffffff 30%, rgba(255, 255, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.relief-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.5) 50%, transparent 100%);
+    margin: 20px 0 24px;
+}
+
+.relief-paragraph {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #cbd5e1;
+    margin-bottom: 32px;
+}
+
+.relief-paragraph strong {
+    color: #00c8ff;
+    font-weight: 600;
+}
+
+.relief-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.relief-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 0;
+    padding: 14px 40px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(6, 182, 212, 0.35);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+}
+
+.relief-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 14px 30px rgba(6, 182, 212, 0.45),
+        0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+/* ==========================================================================
+   TOAST POPUPS DE CONCIENCIACIÓN — NUEVO DISEÑO PREMIUM
+   ========================================================================== */
+.toast-popup {
+    position: fixed;
+    width: min(380px, 88vw);
+    z-index: 9999;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    background: rgba(10, 18, 36, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Posiciones */
+.toast-bottom-left {
+    bottom: 28px;
+    left: 28px;
+}
+
+.toast-top-right {
+    top: 90px;
+    right: 28px;
+}
+
+.toast-bottom-right {
+    bottom: 28px;
+    right: 28px;
+}
+
+/* Animaciones de entrada diferenciadas */
+.toast-slide-left {
+    animation: slideFromLeft 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-slide-right {
+    animation: slideFromRight 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideFromLeft {
+    from { transform: translateX(-60px) scale(0.92); opacity: 0; }
+    to { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+@keyframes slideFromRight {
+    from { transform: translateX(60px) scale(0.92); opacity: 0; }
+    to { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+/* Franja de acento lateral */
+.toast-accent-stripe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 0;
+}
+
+.accent-amber {
+    background: linear-gradient(180deg, #f59e0b, #d97706);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+}
+
+.accent-cyan {
+    background: linear-gradient(180deg, #00c8ff, #06b6d4);
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+}
+
+.accent-violet {
+    background: linear-gradient(180deg, #8b5cf6, #a855f7);
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+}
+
+/* Cuerpo del toast */
+.toast-body {
+    display: flex;
+    gap: 14px;
+    padding: 18px 20px 16px 22px;
+    align-items: flex-start;
+}
+
+.toast-icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.icon-amber {
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.icon-cyan {
+    background: rgba(6, 182, 212, 0.12);
+    border: 1px solid rgba(6, 182, 212, 0.35);
+}
+
+.icon-violet {
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+}
+
+.toast-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.toast-heading {
+    margin: 0 0 6px;
+    font-family: var(--font-titles);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.toast-text {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: #94a3b8;
+}
+
+.toast-text strong {
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+/* Botón cerrar */
+.toast-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.04);
+    color: #64748b;
+    font-size: 1.15rem;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    outline: none;
+}
+
+.toast-close:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* Barra de progreso (timer) */
+.toast-timer {
+    height: 3px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.timer-fill {
+    height: 100%;
+    width: 100%;
+    transform-origin: left center;
+}
+
+.timer-6s {
+    background: linear-gradient(90deg, #f59e0b, #d97706);
+    animation: shrink-bar 6s linear forwards;
+}
+
+.timer-7s {
+    background: linear-gradient(90deg, #00c8ff, #06b6d4);
+    animation: shrink-bar 7s linear forwards;
+}
+
+.timer-8s {
+    background: linear-gradient(90deg, #8b5cf6, #a855f7);
+    animation: shrink-bar 8s linear forwards;
+}
+
+@keyframes shrink-bar {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+}
+
+.toast-shield-img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.relief-shield-img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.4));
+    animation: float-shield 3s ease-in-out infinite alternate;
+}
+
+@keyframes float-shield {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+/* ==========================================================================
+   RESPONSIVIDAD
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hacker-grid-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .ransom-box { padding: 16px; }
+    .hacker-title-red { font-size: 1.45rem; }
+    .countdown-number-red { font-size: 3.5rem; }
+    .hacking-layer-wrapper { padding: 15px; }
+}
+
+@media (max-width: 580px) {
+    .toast-popup {
+        left: 5% !important;
+        right: 5% !important;
+        width: 90% !important;
+    }
+
+    .toast-bottom-left { bottom: 16px; }
+    .toast-top-right { top: 80px; }
+    .toast-bottom-right { bottom: 16px; }
+}

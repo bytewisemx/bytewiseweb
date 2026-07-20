@@ -1,0 +1,146 @@
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact-section">
+    <div class="contact-grid">
+        <div class="contact-text reveal slide-left">
+            <h2 class="contact-title">¿Listo para dar el <span class="gradient-text">siguiente paso</span>?</h2>
+            <p class="contact-subtitle">
+                Agenda una sesión personalizada con uno de nuestros arquitectos de software para analizar cómo ByteWise puede transformar la ciberseguridad y eficiencia de tu organización.
+            </p>
+            
+            <div class="contact-info-list">
+                <!-- Atencion General -->
+                <div class="info-item">
+                    <span class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+                    <div class="info-details">
+                        <span class="info-label">General</span>
+                        <a href="mailto:contact&#64;bytewise.mx" class="contact-link">contact&#64;bytewise.mx</a>
+                    </div>
+                </div>
+
+                <!-- Ventas -->
+                <div class="info-item">
+                    <span class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>
+                    <div class="info-details">
+                        <span class="info-label">Ventas</span>
+                        <a href="mailto:ventas&#64;bytewise.mx" class="contact-link">ventas&#64;bytewise.mx</a>
+                    </div>
+                </div>
+
+                <!-- Estrategia -->
+                <div class="info-item">
+                    <span class="info-icon"><img src="img/escudo.png" alt="Escudo" class="icon-shield-img" /></span>
+                    <div class="info-details">
+                        <span class="info-label">Estrategia</span>
+                        <a href="mailto:f.covarrubias&#64;bytewise.mx" class="contact-link">f.covarrubias&#64;bytewise.mx</a>
+                    </div>
+                </div>
+
+                <!-- Tel / WhatsApp -->
+                <div class="info-item">
+                    <span class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></span>
+                    <div class="info-details">
+                        <span class="info-label">Tel / WhatsApp</span>
+                        <a href="https://wa.me/524493639220" target="_blank" class="contact-link">449 363 9220</a>
+                    </div>
+                </div>
+
+                <!-- Web -->
+                <div class="info-item">
+                    <span class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+                    <div class="info-details">
+                        <span class="info-label">Sitio Web</span>
+                        <a href="https://www.bytewise.mx" target="_blank" class="contact-link">www.bytewise.mx</a>
+                    </div>
+                </div>
+
+                <!-- Ubicacion -->
+                <div class="info-item">
+                    <span class="info-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                    <div class="info-details">
+                        <span class="info-label">Ubicación</span>
+                        <span class="info-text-val">Aguascalientes, México</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-container reveal slide-right">
+            <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+                <h3 class="form-title">Solicitar Demo</h3>
+                <p class="form-subtitle">Tu primera auditoría de evaluación de madurez gratuita</p>
+                
+                <div class="form-group">
+                    <label for="name" class="form-label">Nombre completo</label>
+                    <input type="text" id="name" formControlName="name" class="form-input" placeholder="Tu nombre..." required>
+                    @if (contactForm.get('name')?.touched && contactForm.get('name')?.invalid) {
+                        <span class="form-error">El nombre es requerido.</span>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Correo electrónico corporativo</label>
+                    <input type="email" id="email" formControlName="email" class="form-input" placeholder="tu&#64;empresa.com" required>
+                    @if (contactForm.get('email')?.touched && contactForm.get('email')?.invalid) {
+                        @if (contactForm.get('email')?.errors?.['required']) {
+                            <span class="form-error">El correo es requerido.</span>
+                        }
+                        @if (contactForm.get('email')?.errors?.['email']) {
+                            <span class="form-error">Ingresa un formato de correo válido.</span>
+                        }
+                        @if (contactForm.get('email')?.errors?.['corporateEmail']) {
+                            <span class="form-error">Por favor ingresa un correo corporativo (no gmail, yahoo o hotmail).</span>
+                        }
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">Teléfono / WhatsApp</label>
+                    <input type="tel" id="phone" formControlName="phone" class="form-input" placeholder="Ej: 449 363 9220" required>
+                    @if (contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid) {
+                        @if (contactForm.get('phone')?.errors?.['required']) {
+                            <span class="form-error">El número de teléfono es requerido.</span>
+                        }
+                        @if (contactForm.get('phone')?.errors?.['pattern']) {
+                            <span class="form-error">Ingresa un número de teléfono válido.</span>
+                        }
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="company-size" class="form-label">Tamaño de la empresa</label>
+                    <select id="company-size" formControlName="companySize" class="form-input form-select" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="1-10">1 - 10 empleados</option>
+                        <option value="11-50">11 - 50 empleados</option>
+                        <option value="51-200">51 - 200 empleados</option>
+                        <option value="200+">Más de 200 empleados</option>
+                    </select>
+                    @if (contactForm.get('companySize')?.touched && contactForm.get('companySize')?.invalid) {
+                        <span class="form-error">Por favor selecciona una opción.</span>
+                    }
+                </div>
+
+                @if (!isSubmitted) {
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" [disabled]="contactForm.invalid || isSending">
+                        @if (isSending) {
+                            <span class="spinner-small"></span> Procesando...
+                        } @else {
+                            Enviar Solicitud
+                        }
+                    </button>
+                }
+
+                <p class="form-privacy-note">
+                    Al enviar este formulario reconoces haber leído nuestra 
+                    <button type="button" class="btn-privacy-link" (click)="openPrivacy($event)">Política de Privacidad</button>.
+                </p>
+
+                @if (isSubmitted) {
+                    <div class="form-success-message" style="display: flex;">
+                        <span>✓</span> ¡Solicitud recibida! Te contactaremos pronto.
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</section>
