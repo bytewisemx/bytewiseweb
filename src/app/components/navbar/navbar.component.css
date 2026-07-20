@@ -144,3 +144,15 @@
         display: flex;
     }
 }
+
+@media (max-width: 580px) {
+    .logo-img {
+        height: 52px;
+    }
+    .navbar-header.scrolled .logo-img {
+        height: 44px;
+    }
+    .navbar-container {
+        padding: 0 16px;
+    }
+}

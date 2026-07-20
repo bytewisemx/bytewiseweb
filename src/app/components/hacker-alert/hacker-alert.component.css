@@ -609,13 +609,24 @@
 }
 
 @media (max-width: 580px) {
+    .relief-card {
+        padding: 28px 18px;
+        max-width: 95vw;
+    }
+    .relief-question {
+        font-size: 1.6rem;
+    }
+    .relief-paragraph {
+        font-size: 0.92rem;
+        margin-bottom: 24px;
+    }
     .toast-popup {
-        left: 5% !important;
-        right: 5% !important;
-        width: 90% !important;
+        left: 4% !important;
+        right: 4% !important;
+        width: 92% !important;
     }
 
-    .toast-bottom-left { bottom: 16px; }
-    .toast-top-right { top: 80px; }
-    .toast-bottom-right { bottom: 16px; }
+    .toast-bottom-left { bottom: 12px; }
+    .toast-top-right { top: 75px; }
+    .toast-bottom-right { bottom: 12px; }
 }

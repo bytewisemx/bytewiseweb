@@ -786,6 +786,27 @@
   }
 }
 
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.95rem;
+  }
+  .service-deconstructed-card {
+    width: 84vw;
+    height: 350px;
+  }
+  .service-deconstructed-card__title {
+    font-size: 1.4rem;
+  }
+  .service-deconstructed-card__fragment--meta {
+    margin-bottom: 0.8rem;
+  }
+  .service-deconstructed-card__fragment--body {
+    font-size: 0.84rem;
+    -webkit-line-clamp: 2;
+    min-height: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .services-deconstructed-carousel__track,
   .service-deconstructed-card,

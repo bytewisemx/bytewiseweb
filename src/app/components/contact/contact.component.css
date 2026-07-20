@@ -257,7 +257,23 @@
 }
 
 @media (max-width: 580px) {
+    .contact-section {
+        padding: 60px 16px;
+    }
+    .contact-title {
+        font-size: 2.05rem;
+    }
+    .contact-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+    }
     .contact-form-container {
-        padding: 30px 24px;
+        padding: 24px 18px;
+    }
+    .contact-grid {
+        gap: 36px;
+    }
+    .info-item {
+        padding: 12px 14px;
     }
 }

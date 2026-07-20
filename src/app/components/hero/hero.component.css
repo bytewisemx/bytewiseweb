@@ -621,18 +621,23 @@
 @media (max-width: 580px) {
     .hero-section {
         padding-top: 100px;
+        padding-bottom: 40px;
     }
     
     .hero-title {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
     
     .laptop-container {
-        max-width: 300px;
+        max-width: 270px;
+    }
+    
+    .floating-symbols-container {
+        display: none;
     }
     
     .slider-left-pane, .slider-right-pane {
-        min-height: 160px;
+        min-height: 140px;
     }
 }
 
