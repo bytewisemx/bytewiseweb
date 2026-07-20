@@ -547,8 +547,16 @@
     box-shadow: 0 0 10px var(--s-color);
 }
 
-.slide-text-left:not(.active), .slide-text-right:not(.active) {
-    display: none !important;
+.slide-text-left, .slide-text-right {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%) translateY(30px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .slide-text-left.active, .slide-text-right.active {
@@ -578,14 +586,15 @@
 
     .hero-slider-container {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
         text-align: center;
     }
 
     .slider-left-pane {
         order: 1;
-        height: auto;
-        min-height: auto;
+        position: relative;
+        height: 140px;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -598,8 +607,9 @@
 
     .slider-right-pane {
         order: 3;
-        height: auto;
-        min-height: auto;
+        position: relative;
+        height: 130px;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -612,17 +622,23 @@
     }
 
     .slide-text-left, .slide-text-right {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) translateY(20px);
         margin: 0 auto;
         max-width: 540px;
         width: 100%;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .slide-text-left.active, .slide-text-right.active {
-        transform: none;
+        opacity: 1;
+        pointer-events: all;
+        transform: translate(-50%, -50%) translateY(0);
     }
 
     .hero-title {
@@ -657,6 +673,14 @@
     .hero-section {
         padding-top: 95px;
         padding-bottom: 30px;
+    }
+
+    .slider-left-pane {
+        height: 125px;
+    }
+
+    .slider-right-pane {
+        height: 125px;
     }
     
     .hero-title {
