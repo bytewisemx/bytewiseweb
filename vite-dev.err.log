@@ -1,0 +1,336 @@
+[2m9:19:09 a.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[ChatBot] Error de comunicación con n8n: Error: n8n respondió vacío. Revisa que el nodo "Respond to Webhook" devuelva un JSON o texto.
+    at readN8nResponse (http://localhost:5173/src/components/ChatBot.tsx?t=1776784671686:93:10)
+    at async sendMessage (http://localhost:5173/src/components/ChatBot.tsx?t=1776784671686:153:20)
+[2m10:36:27 a.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mReferenceError[22m: handleBlogPublish is not defined
+[39m > App src/App.tsx:792:62
+    790 |                  </div>
+    791 |  
+    792 |                  <form className="blog-publish-form" onSubmit={handleBlogPublish}>
+        |                                                                ^
+    793 |                    <div className="blog-form-row">
+    794 |                      <label>
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+ > performWorkOnRoot node_modules/react-dom/cjs/react-dom-client.development.js:16583:34
+
+[2m10:36:27 a.m.[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <App> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m10:36:30 a.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mReferenceError[22m: handleBlogPublish is not defined
+[39m > App src/App.tsx:792:62
+    790 |                  </div>
+    791 |  
+    792 |                  <form className="blog-publish-form" onSubmit={handleBlogPublish}>
+        |                                                                ^
+    793 |                    <div className="blog-form-row">
+    794 |                      <label>
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+ > renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:17450:10
+ > performWorkOnRoot node_modules/react-dom/cjs/react-dom-client.development.js:16583:34
+
+[2m10:36:30 a.m.[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <App> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m11:15:33 a.m.[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 9 errors:
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+ -  in src/App.tsx at 54636..54637
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+ -  in src/App.tsx at 54669..54670
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+ -  in src/App.tsx at 54699..54700
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+ -  in src/App.tsx at 54729..54730
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+ -  in src/App.tsx at 54762..54763
+
+...[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36mD:/proyects Bytewise/Webpage/src/App.tsx[39m
+      at transformWithOxc (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3720:19)
+      at TransformPluginContext.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3788:26)
+      at EnvironmentPluginContainer.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:30048:51)
+      at async loadAndTransform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24177:26)
+      at async viteTransformMiddleware (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24986:20)
+[2m11:15:33 a.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m11:20:45 a.m.[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 4 errors:
+
+[31m[PARSE_ERROR] Error:[0m Expected corresponding JSX closing tag for 'section'.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1614:13 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m1549 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0msection[38;5;249m [0m[38;5;249mc[0m[38;5;249ml[0m[38;5;249ma[0m[38;5;249ms[0m[38;5;249ms[0m[38;5;249mN[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249m=[0m[38;5;249m"[0m[38;5;249mg[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249md[0m[38;5;249m-[0m[38;5;249m3[0m[38;5;249m-[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249m [0m[38;5;249mm[0m[38;5;249mt[0m[38;5;249m-[0m[38;5;249m5[0m[38;5;249m"[0m[38;5;249m>[0m
+ [38;5;240m     │[0m          ───┬───  
+ [38;5;240m     │[0m             ╰───── Opened here
+ [38;5;240m     │[0m 
+ [38;5;246m1614 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0m[38;5;249m/[0mdiv[38;5;249m>[0m
+ [38;5;240m     │[0m             ─┬─  
+ [38;5;240m     │[0m              ╰─── Expected `</section>`
+[38;5;246m──────╯[0m
+
+[31m[PARSE_ERROR] Error:[0m Expected corresponding JSX closing tag for 'main'.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1615:11 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m1138 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0mmain[38;5;249m>[0m
+ [38;5;240m     │[0m        ──┬─  
+ [38;5;240m     │[0m          ╰─── Opened here
+ [38;5;240m     │[0m 
+ [38;5;246m1615 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0m[38;5;249m/[0msection[38;5;249m>[0m
+ [38;5;240m     │[0m           ───┬───  
+ [38;5;240m     │[0m              ╰───── Expected `</main>`
+[38;5;246m──────╯[0m
+
+[31m[PARSE_ERROR] Error:[0m Expected corresponding JSX closing tag for 'div'.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1816:9 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m1097 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0mdiv[38;5;249m [0m[38;5;249mc[0m[38;5;249ml[0m[38;5;249ma[0m[38;5;249ms[0m[38;5;249ms[0m[38;5;249mN[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249m=[0m[38;5;249m"[0m[38;5;249mp[0m[38;5;249ma[0m[38;5;249mg[0m[38;5;249me[0m[38;5;249m"[0m[38;5;249m>[0m
+ [38;5;240m     │[0m      ─┬─  
+ [38;5;240m     │[0m       ╰─── Opened here
+ [38;5;240m     │[0m 
+ [38;5;246m1816 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0m[38;5;249m/[0mmain[38;5;249m>[0m
+ [38;5;240m     │[0m         ──┬─  
+ [38;5;240m     │[0m           ╰─── Expected `</div>`
+[38;5;246m──────╯[0m
+
+[31m[PARSE_ERROR] Error:[0m Expected `,` or `)` but found `{`
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1818:7 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m1096 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249mr[0m[38;5;249me[0m[38;5;249mt[0m[38;5;249mu[0m[38;5;249mr[0m[38;5;249mn[0m[38;5;249m [0m(
+ [38;5;240m     │[0m          ┬  
+ [38;5;240m     │[0m          ╰── Opened here
+ [38;5;240m     │[0m 
+ [38;5;246m1818 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m{[38;5;249m/[0m[38;5;249m*[0m[38;5;249m [0m[38;5;249mS[0m[38;5;249mE[0m[38;5;249mC[0m[38;5;249mT[0m[38;5;249mI[0m[38;5;249mO[0m[38;5;249mN[0m[38;5;249m [0m[38;5;249m1[0m[38;5;249m1[0m[38;5;249m [0m[38;5;249m?[0m[38;5;249m?[0m[38;5;249m"[0m[38;5;249m [0m[38;5;249mF[0m[38;5;249mO[0m[38;5;249mO[0m[38;5;249mT[0m[38;5;249mE[0m[38;5;249mR[0m[38;5;249m [0m[38;5;249m*[0m[38;5;249m/[0m[38;5;249m}[0m
+ [38;5;240m     │[0m       ┬  
+ [38;5;240m     │[0m       ╰── `,` or `)` expected
+[38;5;246m──────╯[0m
+[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36mD:/proyects Bytewise/Webpage/src/App.tsx[39m
+      at transformWithOxc (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3720:19)
+      at TransformPluginContext.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3788:26)
+      at EnvironmentPluginContainer.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:30048:51)
+      at async loadAndTransform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24177:26)
+      at async viteTransformMiddleware (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24986:20)
+[2m11:20:45 a.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m11:21:01 a.m.[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 4 errors:
+
+[31m[PARSE_ERROR] Error:[0m Expected corresponding JSX closing tag for 'section'.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1614:13 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m1549 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0msection[38;5;249m [0m[38;5;249mc[0m[38;5;249ml[0m[38;5;249ma[0m[38;5;249ms[0m[38;5;249ms[0m[38;5;249mN[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249m=[0m[38;5;249m"[0m[38;5;249mg[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249md[0m[38;5;249m-[0m[38;5;249m3[0m[38;5;249m-[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249m [0m[38;5;249mm[0m[38;5;249mt[0m[38;5;249m-[0m[38;5;249m5[0m[38;5;249m"[0m[38;5;249m>[0m
+ [38;5;240m     │[0m          ───┬───  
+ [38;5;240m     │[0m             ╰───── Opened here
+ [38;5;240m     │[0m 
+ [38;5;246m1614 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0m[38;5;249m/[0mdiv[38;5;249m>[0m
+ [38;5;240m     │[0m             ─┬─  
+ [38;5;240m     │[0m              ╰─── Expected `</section>`
+[38;5;246m──────╯[0m
+
+[31m[PARSE_ERROR] Error:[0m Expected corresponding JSX closing tag for 'main'.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1615:11 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m1138 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0mmain[38;5;249m>[0m
+ [38;5;240m     │[0m        ──┬─  
+ [38;5;240m     │[0m          ╰─── Opened here
+ [38;5;240m     │[0m 
+ [38;5;246m1615 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0m[38;5;249m/[0msection[38;5;249m>[0m
+ [38;5;240m     │[0m           ───┬───  
+ [38;5;240m     │[0m              ╰───── Expected `</main>`
+[38;5;246m──────╯[0m
+
+[31m[PARSE_ERROR] Error:[0m Expected corresponding JSX closing tag for 'div'.
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1843:9 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m1097 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0mdiv[38;5;249m [0m[38;5;249mc[0m[38;5;249ml[0m[38;5;249ma[0m[38;5;249ms[0m[38;5;249ms[0m[38;5;249mN[0m[38;5;249ma[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249m=[0m[38;5;249m"[0m[38;5;249mp[0m[38;5;249ma[0m[38;5;249mg[0m[38;5;249me[0m[38;5;249m"[0m[38;5;249m>[0m
+ [38;5;240m     │[0m      ─┬─  
+ [38;5;240m     │[0m       ╰─── Opened here
+ [38;5;240m     │[0m 
+ [38;5;246m1843 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m<[0m[38;5;249m/[0mmain[38;5;249m>[0m
+ [38;5;240m     │[0m         ──┬─  
+ [38;5;240m     │[0m           ╰─── Expected `</div>`
+[38;5;246m──────╯[0m
+
+[31m[PARSE_ERROR] Error:[0m Expected `,` or `)` but found `{`
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1845:7 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m1096 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249mr[0m[38;5;249me[0m[38;5;249mt[0m[38;5;249mu[0m[38;5;249mr[0m[38;5;249mn[0m[38;5;249m [0m(
+ [38;5;240m     │[0m          ┬  
+ [38;5;240m     │[0m          ╰── Opened here
+ [38;5;240m     │[0m 
+ [38;5;246m1845 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m{[38;5;249m/[0m[38;5;249m*[0m[38;5;249m [0m[38;5;249mS[0m[38;5;249mE[0m[38;5;249mC[0m[38;5;249mT[0m[38;5;249mI[0m[38;5;249mO[0m[38;5;249mN[0m[38;5;249m [0m[38;5;249m1[0m[38;5;249m1[0m[38;5;249m [0m[38;5;249m?[0m[38;5;249m?[0m[38;5;249m"[0m[38;5;249m [0m[38;5;249mF[0m[38;5;249mO[0m[38;5;249mO[0m[38;5;249mT[0m[38;5;249mE[0m[38;5;249mR[0m[38;5;249m [0m[38;5;249m*[0m[38;5;249m/[0m[38;5;249m}[0m
+ [38;5;240m     │[0m       ┬  
+ [38;5;240m     │[0m       ╰── `,` or `)` expected
+[38;5;246m──────╯[0m
+[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36mD:/proyects Bytewise/Webpage/src/App.tsx[39m
+      at transformWithOxc (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3720:19)
+      at TransformPluginContext.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3788:26)
+      at EnvironmentPluginContainer.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:30048:51)
+      at async loadAndTransform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24177:26)
+      at async viteTransformMiddleware (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24986:20)
+[2m11:21:01 a.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m11:41:17 a.m.[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 1 error:
+
+[31m[PARSE_ERROR] Error:[0m Unterminated regular expression
+      [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:3670:25 [38;5;246m][0m
+      [38;5;246m│[0m
+ [38;5;246m3670 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249mC[0m[38;5;249ml[0m[38;5;249mi[0m[38;5;249mc[0m[38;5;249mk[0m[38;5;249m=[0m[38;5;249m{[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m [0m[38;5;249m=[0m[38;5;249m>[0m[38;5;249mx[0m[38;5;249m<[0m/button>
+ [38;5;240m     │[0m                         ────┬────  
+ [38;5;240m     │[0m                             ╰────── 
+[38;5;246m──────╯[0m
+[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36mD:/proyects Bytewise/Webpage/src/App.tsx[39m
+      at transformWithOxc (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3720:19)
+      at TransformPluginContext.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3788:26)
+      at EnvironmentPluginContainer.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:30048:51)
+      at async loadAndTransform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24177:26)
+      at async viteTransformMiddleware (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24986:20)
+[2m11:41:17 a.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m12:18:09 p.m.[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 3 errors:
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1:11 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m1 │[0m [38;5;249m﻿[0m[38;5;249mi[0m[38;5;249mm[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m\[0mr[38;5;249m\[0m[38;5;249mn[0m[38;5;249m\[0m[38;5;249mr[0m[38;5;249m\[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mE[0m[38;5;249mf[0m[38;5;249mf[0m[38;5;249me[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mR[0m[38;5;249me[0m[38;5;249mf[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mS[0m[38;5;249mt[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mt[0m[38;5;249my[0m[38;5;249mp[0m[38;5;249me[0m[38;5;249m [0m[38;5;249mR[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mN[0m[38;5;249mo[0m[38;5;249md[0m[38;5;249me[0m[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mm[0m[38;5;249m [0m[38;5;249m'[0m[38;5;249mr[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249m'[0m[38;5;249m;[0m
+ [38;5;240m  │[0m          ┬  
+ [38;5;240m  │[0m          ╰── 
+[38;5;246m───╯[0m
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1:13 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m1 │[0m [38;5;249m﻿[0m[38;5;249mi[0m[38;5;249mm[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m\[0m[38;5;249mr[0m[38;5;249m\[0mn[38;5;249m\[0m[38;5;249mr[0m[38;5;249m\[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mE[0m[38;5;249mf[0m[38;5;249mf[0m[38;5;249me[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mR[0m[38;5;249me[0m[38;5;249mf[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mS[0m[38;5;249mt[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mt[0m[38;5;249my[0m[38;5;249mp[0m[38;5;249me[0m[38;5;249m [0m[38;5;249mR[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mN[0m[38;5;249mo[0m[38;5;249md[0m[38;5;249me[0m[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mm[0m[38;5;249m [0m[38;5;249m'[0m[38;5;249mr[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249m'[0m[38;5;249m;[0m
+ [38;5;240m  │[0m            ┬  
+ [38;5;240m  │[0m            ╰── 
+[38;5;246m───╯[0m
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:1:15 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m1 │[0m [38;5;249m﻿[0m[38;5;249mi[0m[38;5;249mm[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m\[0m[38;5;249mr[0m[38;5;249m\[0m[38;5;249mn[0m[38;5;249m\[0mr[38;5;249m\[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mE[0m[38;5;249mf[0m[38;5;249mf[0m[38;5;249me[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mR[0m[38;5;249me[0m[38;5;249mf[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mu[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mS[0m[38;5;249mt[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249me[0m[38;5;249m,[0m[38;5;249m [0m[38;5;249mt[0m[38;5;249my[0m[38;5;249mp[0m[38;5;249me[0m[38;5;249m [0m[38;5;249mR[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mN[0m[38;5;249mo[0m[38;5;249md[0m[38;5;249me[0m[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mm[0m[38;5;249m [0m[38;5;249m'[0m[38;5;249mr[0m[38;5;249me[0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249m'[0m[38;5;249m;[0m
+ [38;5;240m  │[0m              ┬  
+ [38;5;240m  │[0m              ╰── 
+[38;5;246m───╯[0m
+[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36mD:/proyects Bytewise/Webpage/src/App.tsx[39m
+      at transformWithOxc (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3720:19)
+      at TransformPluginContext.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3788:26)
+      at EnvironmentPluginContainer.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:30048:51)
+      at async loadAndTransform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24177:26)
+      at async viteTransformMiddleware (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24986:20)
+[2m12:18:09 p.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m12:18:31 p.m.[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 4 errors:
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+ -  in src/App.tsx at 33771..33772
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+ -  in src/App.tsx at 33773..33774
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+ -  in src/App.tsx at 33775..33776
+
+[31m[PARSE_ERROR] Error:[0m Invalid Unicode escape sequence
+ -  in src/App.tsx at 33777..33778
+[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36mD:/proyects Bytewise/Webpage/src/App.tsx[39m
+      at transformWithOxc (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3720:19)
+      at TransformPluginContext.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3788:26)
+      at EnvironmentPluginContainer.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:30048:51)
+      at async loadAndTransform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24177:26)
+      at async viteTransformMiddleware (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24986:20)
+[2m12:18:31 p.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m12:19:08 p.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] ReferenceError: art1BancosImg is not defined
+    at http://localhost:5173/src/App.tsx?t=1776881948652:426:10
+[2m12:19:08 p.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m12:19:31 p.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] ReferenceError: art1BancosImg is not defined
+    at http://localhost:5173/src/App.tsx?t=1776881971284:426:10
+[2m12:19:31 p.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m5:40:46 p.m.[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 1 error:
+
+[31m[PARSE_ERROR] Error:[0m Identifier `IconScale` has already been declared
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m src/App.tsx:30:3 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m30 │[0m [38;5;249m [0m[38;5;249m [0mIconScale[38;5;249m,[0m
+ [38;5;240m   │[0m   ────┬────  
+ [38;5;240m   │[0m       ╰────── `IconScale` has already been declared here
+ [38;5;246m31 │[0m [38;5;249m [0m[38;5;249m [0mIconScale[38;5;249m,[0m
+ [38;5;240m   │[0m   ────┬────  
+ [38;5;240m   │[0m       ╰────── It can not be redeclared here
+[38;5;246m────╯[0m
+[39m
+  Plugin: [35mvite:oxc[39m
+  File: [36mD:/proyects Bytewise/Webpage/src/App.tsx[39m
+      at transformWithOxc (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3720:19)
+      at TransformPluginContext.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:3788:26)
+      at EnvironmentPluginContainer.transform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:30048:51)
+      at async loadAndTransform (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24177:26)
+      at async viteTransformMiddleware (file:///D:/proyects%20Bytewise/Webpage/node_modules/vite/dist/node/chunks/node.js:24986:20)
+[2m5:40:46 p.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [2m[console.error] [22m[vite] Failed to reload /src/App.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above)
+[2m5:40:53 p.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mReferenceError[22m: IconChartLine is not defined
+[39m > src/App.tsx:1735:15
+    1733 |                        className="blog-image-button"    
+    1734 |                        onClick={() => setSelectedNewsImage({ src: article.image!, title: article.title })}    
+    1735 |                        aria-label={`Ver imagen completa de: ${article.title}`}    
+         |                 ^
+    1736 |                      >    
+    1737 |                        <img    
+ > App src/App.tsx:1729:36
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+
+[2m5:40:53 p.m.[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <App> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+[2m5:41:18 p.m.[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m [31m[Unhandled error] [1mReferenceError[22m: IconChartLine is not defined
+[39m > src/App.tsx:1735:15
+    1733 |                        className="blog-image-button"    
+    1734 |                        onClick={() => setSelectedNewsImage({ src: article.image!, title: article.title })}    
+    1735 |                        aria-label={`Ver imagen completa de: ${article.title}`}    
+         |                 ^
+    1736 |                      >    
+    1737 |                        <img    
+ > App src/App.tsx:1729:36
+ > Object.react_stack_bottom_frame node_modules/react-dom/cjs/react-dom-client.development.js:25904:19
+ > renderWithHooks node_modules/react-dom/cjs/react-dom-client.development.js:7662:21
+ > updateFunctionComponent node_modules/react-dom/cjs/react-dom-client.development.js:10166:18
+ > beginWork node_modules/react-dom/cjs/react-dom-client.development.js:11778:17
+ > runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:871:29
+ > performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:17641:21
+ > workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:17469:40
+
+[2m5:41:18 p.m.[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [2m[console.warn] [22mAn error occurred in the <App> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
