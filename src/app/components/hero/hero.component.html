@@ -1,37 +1,73 @@
 <!-- SECCIÓN HERO (SPLIT BACKGROUND + INTERACTIVE LAPTOP SLIDER) -->
 <section id="hero" class="hero-section">
-    <!-- Lado derecho del fondo que cambia de color de manera dinámica -->
-    <div class="hero-bg-right" [style.backgroundColor]="bgColors[activeIndex]"></div>
+    <!-- Fondo compuesto por 2 recuadros divididos animados con efectos visuales -->
+    <div class="hero-split-bg">
+        <div class="bg-box bg-box-left" [style.background]="bgLeftGradients[activeIndex]">
+            <div class="outer">
+                <div class="inner">
+                    <div class="bg-pattern left-pattern"></div>
+                    <div class="glow-orb left-orb" [style.background]="bgLeftOrbs[activeIndex]"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Línea divisora central con pulso dinámico -->
+        <div class="split-divider-line">
+            <div class="divider-pulse" [style.backgroundColor]="accentColors[activeIndex]"></div>
+        </div>
+        <div class="bg-box bg-box-right" [style.background]="bgRightGradients[activeIndex]">
+            <div class="outer">
+                <div class="inner">
+                    <div class="bg-pattern right-pattern"></div>
+                    <div class="glow-orb right-orb" [style.background]="bgRightOrbs[activeIndex]"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div class="hero-slider-container">
         <!-- PANEL IZQUIERDO: BADGES Y TÍTULOS -->
         <div class="slider-left-pane">
-            <!-- Slide 0 (Dorado) -->
+            <!-- Slide 0 (Dorado - Ciberseguridad) -->
             <div class="slide-text-left" [class.active]="activeIndex === 0">
-                <div class="badge-slider gold">
-                    <span class="badge-text-slider">Ciberseguridad & Compliance</span>
+                <div class="outer">
+                    <div class="inner">
+                        <div class="hero-category-tag gold">
+                            <span class="tag-accent-line"></span>
+                            <span class="tag-text">Ciberseguridad & Compliance</span>
+                        </div>
+                        <h1 class="hero-title section-heading">
+                            Seguridad blindada <br>bajo la Norma <span class="highlight-text gold">ISO 27001</span>
+                        </h1>
+                    </div>
                 </div>
-                <h1 class="hero-title">
-                    Seguridad blindada <br>bajo la Norma <span class="highlight-text gold">ISO 27001</span>
-                </h1>
             </div>
-            <!-- Slide 1 (Cian) -->
+            <!-- Slide 1 (Cian - Outsourcing TI) -->
             <div class="slide-text-left" [class.active]="activeIndex === 1">
-                <div class="badge-slider cyan">
-                    <span class="badge-text-slider">Outsourcing de TI</span>
+                <div class="outer">
+                    <div class="inner">
+                        <div class="hero-category-tag cyan">
+                            <span class="tag-accent-line"></span>
+                            <span class="tag-text">Outsourcing de TI</span>
+                        </div>
+                        <h1 class="hero-title section-heading">
+                            Infraestructura que <br>impulsa tu <span class="highlight-text cyan">crecimiento</span>
+                        </h1>
+                    </div>
                 </div>
-                <h1 class="hero-title">
-                    Infraestructura que <br>impulsa tu <span class="highlight-text cyan">crecimiento</span>
-                </h1>
             </div>
-            <!-- Slide 2 (Violeta) -->
+            <!-- Slide 2 (Violeta - Consultoría IA) -->
             <div class="slide-text-left" [class.active]="activeIndex === 2">
-                <div class="badge-slider purple">
-                    <span class="badge-text-slider">Consultoría en IA</span>
+                <div class="outer">
+                    <div class="inner">
+                        <div class="hero-category-tag purple">
+                            <span class="tag-accent-line"></span>
+                            <span class="tag-text">Consultoría en IA</span>
+                        </div>
+                        <h1 class="hero-title section-heading">
+                            Automatiza e innova <br>con <span class="highlight-text purple">Inteligencia Artificial</span>
+                        </h1>
+                    </div>
                 </div>
-                <h1 class="hero-title">
-                    Automatiza e innova <br>con <span class="highlight-text purple">Inteligencia Artificial</span>
-                </h1>
             </div>
         </div>
 
@@ -45,17 +81,29 @@
                         
                         <!-- Pantalla Slide 0: Ciberseguridad & Compliance -->
                         <div class="slide-screen-content" [class.active]="activeIndex === 0">
-                            <img src="img/hero_cybersecurity.png" alt="Monitoreo de Ciberseguridad SOC" class="screen-image">
+                            <div class="outer">
+                                <div class="inner">
+                                    <img src="img/hero_cybersecurity.png" alt="Monitoreo de Ciberseguridad SOC" class="screen-image bg">
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Pantalla Slide 1: Outsourcing de TI -->
                         <div class="slide-screen-content" [class.active]="activeIndex === 1">
-                            <img src="img/hero_infrastructure.png" alt="Infraestructura de Datos y Servidores" class="screen-image">
+                            <div class="outer">
+                                <div class="inner">
+                                    <img src="img/hero_infrastructure.png" alt="Infraestructura de Datos y Servidores" class="screen-image bg">
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Pantalla Slide 2: Consultoría en IA -->
                         <div class="slide-screen-content" [class.active]="activeIndex === 2">
-                            <img src="img/hero_ai.png" alt="Automatización con Inteligencia Artificial" class="screen-image">
+                            <div class="outer">
+                                <div class="inner">
+                                    <img src="img/hero_ai.png" alt="Automatización con Inteligencia Artificial" class="screen-image bg">
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -82,33 +130,45 @@
         <div class="slider-right-pane">
             <!-- Slide 0 (Dorado) -->
             <div class="slide-text-right" [class.active]="activeIndex === 0">
-                <p class="hero-subtitle">
-                    Implementamos sistemas de gestión basados en ISO 27001:2022. Desde la evaluación inicial hasta controles avanzados, aseguramos la integridad y confidencialidad de tus datos.
-                </p>
-                <a href="#features" class="btn-learn-more gold">
-                    <span>NUESTROS SERVICIOS</span>
-                    <span class="arrow-line"></span>
-                </a>
+                <div class="outer">
+                    <div class="inner">
+                        <p class="hero-subtitle">
+                            Implementamos sistemas de gestión basados en ISO 27001:2022. Desde la evaluación inicial hasta controles avanzados, aseguramos la integridad y confidencialidad de tus datos.
+                        </p>
+                        <a href="#features" class="btn-learn-more gold">
+                            <span>NUESTROS SERVICIOS</span>
+                            <span class="arrow-line"></span>
+                        </a>
+                    </div>
+                </div>
             </div>
             <!-- Slide 1 (Cian) -->
             <div class="slide-text-right" [class.active]="activeIndex === 1">
-                <p class="hero-subtitle">
-                    Externaliza el soporte y administración de TI con expertos dedicados. Optimiza costes, mejora tu infraestructura tecnológica y céntrate en el core de tu negocio.
-                </p>
-                <a href="#features" class="btn-learn-more cyan">
-                    <span>NUESTROS SERVICIOS</span>
-                    <span class="arrow-line"></span>
-                </a>
+                <div class="outer">
+                    <div class="inner">
+                        <p class="hero-subtitle">
+                            Externaliza el soporte y administración de TI con expertos dedicados. Optimiza costes, mejora tu infraestructura tecnológica y céntrate en el core de tu negocio.
+                        </p>
+                        <a href="#features" class="btn-learn-more cyan">
+                            <span>NUESTROS SERVICIOS</span>
+                            <span class="arrow-line"></span>
+                        </a>
+                    </div>
+                </div>
             </div>
             <!-- Slide 2 (Violeta) -->
             <div class="slide-text-right" [class.active]="activeIndex === 2">
-                <p class="hero-subtitle">
-                    Integra Inteligencia Artificial en tus flujos de trabajo. Automatiza tareas repetitivas, implementa asistentes virtuales avanzados y analiza datos predictivos en tiempo real.
-                </p>
-                <a href="#features" class="btn-learn-more purple">
-                    <span>NUESTROS SERVICIOS</span>
-                    <span class="arrow-line"></span>
-                </a>
+                <div class="outer">
+                    <div class="inner">
+                        <p class="hero-subtitle">
+                            Integra Inteligencia Artificial en tus flujos de trabajo. Automatiza tareas repetitivas, implementa asistentes virtuales avanzados y analiza datos predictivos en tiempo real.
+                        </p>
+                        <a href="#features" class="btn-learn-more purple">
+                            <span>NUESTROS SERVICIOS</span>
+                            <span class="arrow-line"></span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 

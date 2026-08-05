@@ -8,6 +8,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HackerAlertComponent } from './components/hacker-alert/hacker-alert.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 class Particle {
   x: number;
@@ -79,7 +80,8 @@ class Particle {
     ContactComponent,
     FooterComponent,
     HackerAlertComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    ChatbotComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -95,6 +97,18 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private animationFrameId: number | null = null;
 
   ngAfterViewInit() {
+    // Forzar inicio en la parte superior para garantizar las animaciones de scroll
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 10);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
+
     this.canvas = document.getElementById('particles-canvas') as HTMLCanvasElement;
     if (this.canvas) {
       this.ctx = this.canvas.getContext('2d');

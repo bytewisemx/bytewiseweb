@@ -363,6 +363,7 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .card-column {
@@ -371,18 +372,18 @@
 }
 
 .column-1 {
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
 .card.interactive-card {
     width: 100%;
-    max-width: 340px;
+    max-width: 270px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     color: #ffffff;
     cursor: pointer;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     border-radius: 0;
     overflow: visible;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
@@ -405,7 +406,7 @@
 
 .card-title-box {
     position: relative;
-    padding: 180px 18px 24px 18px;
+    padding: 135px 16px 18px 16px;
     width: 100%;
     box-sizing: border-box;
     z-index: 3;
@@ -416,7 +417,7 @@
 
 .card-category-label {
     font-family: var(--font-titles);
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     letter-spacing: 0.12em;
     color: #00c8ff;
     text-transform: uppercase;
@@ -425,24 +426,24 @@
 }
 
 .card.interactive-card h1 {
-    font-size: 1.3rem;
+    font-size: 1.12rem;
     font-weight: 800;
     line-height: 1.25;
-    margin: 0 0 6px;
+    margin: 0 0 4px;
     font-family: var(--font-titles);
     color: #ffffff;
 }
 
 .card-sub-info {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: #cbd5e1;
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.35;
 }
 
 .card.interactive-card > img {
     width: 92%;
-    height: 170px;
+    height: 135px;
     object-fit: cover;
     position: absolute;
     top: -8%;
@@ -682,21 +683,58 @@
     }
 
     .interactive-cards-container {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        align-items: flex-start;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 0 4px;
+    }
+
+    .card-column {
+        width: 50%;
+        max-width: 175px;
+        display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .card-column {
-        width: 100%;
-    }
-
     .column-1 {
-        padding-top: 0px;
+        padding-top: 30px;
     }
 
     .card.interactive-card {
-        max-width: 100%;
-        margin-bottom: 36px;
+        width: 100%;
+        max-width: 175px;
+        margin-bottom: 24px;
+    }
+
+    .card-title-box {
+        padding: 80px 8px 12px 8px;
+    }
+
+    .card-category-label {
+        font-size: 0.52rem;
+        margin-bottom: 2px;
+    }
+
+    .card.interactive-card h1 {
+        font-size: 0.8rem;
+        line-height: 1.2;
+        margin-bottom: 2px;
+    }
+
+    .card-sub-info {
+        font-size: 0.68rem;
+        line-height: 1.25;
+    }
+
+    .card.interactive-card > img {
+        height: 80px;
+        width: 94%;
     }
 
     .open-content img {
@@ -710,4 +748,61 @@
         padding: 50px 18px 24px 18px;
         width: 100%;
     }
+}
+
+/* ==========================================================================
+   CIRCUITOS CON DESTELLO LUMINOSO
+   ========================================================================== */
+.circuit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+}
+
+.circuit-line {
+    fill: none;
+    stroke: rgba(6, 182, 212, 0.35);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.4));
+}
+
+.circuit-node {
+    fill: rgba(6, 182, 212, 0.7);
+    filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.8));
+    animation: circuitNodePulse 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes circuitNodePulse {
+    0% { opacity: 0.5; r: 4; }
+    50% { opacity: 1; r: 6; }
+    100% { opacity: 0.5; r: 4; }
+}
+
+.circuit-spark {
+    fill: rgba(6, 182, 212, 1);
+    filter: url(#circuit-blur);
+    opacity: 1;
+}
+
+.circuit-spark-2 {
+    fill: rgba(139, 92, 246, 1);
+    opacity: 0.95;
+}
+
+.circuit-spark-3 {
+    fill: rgba(245, 158, 11, 1);
+    opacity: 0.9;
+}
+
+.circuit-line-secondary {
+    stroke: rgba(139, 92, 246, 0.25);
+    stroke-width: 1.8;
+    stroke-dasharray: 8 6;
 }

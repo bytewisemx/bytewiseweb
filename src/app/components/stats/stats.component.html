@@ -159,6 +159,56 @@
 
         <!-- GRID INTERACTIVO DE TARJETAS CON EFECTO COVER EXPANDIBLE -->
         <div class="interactive-cards-container">
+            <!-- Circuitos con destello recorriendo las tarjetas -->
+            <svg class="circuit-overlay" viewBox="0 0 800 900" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                    <linearGradient id="circuit-glow-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(6, 182, 212, 0.9)" />
+                        <stop offset="50%" stop-color="rgba(139, 92, 246, 0.9)" />
+                        <stop offset="100%" stop-color="rgba(6, 182, 212, 0.9)" />
+                    </linearGradient>
+                    <filter id="circuit-blur">
+                        <feGaussianBlur stdDeviation="5" />
+                    </filter>
+                    <filter id="circuit-blur-soft">
+                        <feGaussianBlur stdDeviation="2.5" />
+                    </filter>
+                </defs>
+                <!-- Líneas principales de circuito -->
+                <path class="circuit-line" d="M 50,0 V 120 H 200 V 260 H 400 V 380 H 600 V 500 H 750 V 620 H 400 V 740 H 200 V 900" />
+                <path class="circuit-line" d="M 750,0 V 80 H 600 V 200 H 400 V 320 H 200 V 440 H 50 V 560 H 200 V 680 H 600 V 800 H 750 V 900" />
+                <!-- Líneas secundarias decorativas -->
+                <path class="circuit-line circuit-line-secondary" d="M 400,0 V 50 H 300 V 160 H 500 V 300" />
+                <path class="circuit-line circuit-line-secondary" d="M 400,600 V 650 H 550 V 750 H 650 V 900" />
+                <path class="circuit-line circuit-line-secondary" d="M 100,300 H 150 V 500 H 100" />
+                <!-- Nodos de circuito (intersecciones luminosas) -->
+                <circle class="circuit-node" cx="200" cy="120" r="5" />
+                <circle class="circuit-node" cx="400" cy="260" r="6" />
+                <circle class="circuit-node" cx="600" cy="380" r="5" />
+                <circle class="circuit-node" cx="750" cy="500" r="6" />
+                <circle class="circuit-node" cx="400" cy="620" r="5" />
+                <circle class="circuit-node" cx="200" cy="740" r="6" />
+                <circle class="circuit-node" cx="600" cy="200" r="5" />
+                <circle class="circuit-node" cx="200" cy="440" r="5" />
+                <circle class="circuit-node" cx="600" cy="680" r="5" />
+                <circle class="circuit-node" cx="50" cy="560" r="5" />
+                <circle class="circuit-node" cx="400" cy="320" r="5" />
+                <!-- Destello 1 (cyan, rápido) -->
+                <circle class="circuit-spark" cx="0" cy="0" r="10" filter="url(#circuit-blur)">
+                    <animateMotion dur="5s" repeatCount="indefinite"
+                        path="M 50,0 V 120 H 200 V 260 H 400 V 380 H 600 V 500 H 750 V 620 H 400 V 740 H 200 V 900" />
+                </circle>
+                <!-- Destello 2 (violeta, lento) -->
+                <circle class="circuit-spark circuit-spark-2" cx="0" cy="0" r="8" filter="url(#circuit-blur)">
+                    <animateMotion dur="6.5s" repeatCount="indefinite"
+                        path="M 750,0 V 80 H 600 V 200 H 400 V 320 H 200 V 440 H 50 V 560 H 200 V 680 H 600 V 800 H 750 V 900" />
+                </circle>
+                <!-- Destello 3 (dorado, decorativo) -->
+                <circle class="circuit-spark circuit-spark-3" cx="0" cy="0" r="7" filter="url(#circuit-blur-soft)">
+                    <animateMotion dur="8s" repeatCount="indefinite"
+                        path="M 400,0 V 50 H 300 V 160 H 500 V 300 H 400 V 620 V 650 H 550 V 750 H 650 V 900" />
+                </circle>
+            </svg>
             <!-- Columna 0 -->
             <div class="card-column column-0">
                 <!-- Tarjeta 0: Maestría en Seguridad -->

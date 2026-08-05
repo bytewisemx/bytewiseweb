@@ -113,23 +113,35 @@
             </div>
         }
 
-        <!-- ESTADO 2: PANTALLA DE ALIVIO -->
+        <!-- ESTADO 2: PANTALLA DE ALIVIO (CONTORNO DE RECUADRO LIMPIO SIN PESTAÑAS) -->
         @if (isRelievedState) {
             <div class="relief-layer-wrapper animate-relief">
-                <div class="relief-card">
-                    <div class="relief-shield-icon"><img src="img/escudo.png" alt="ByteWise Shield" class="relief-shield-img" /></div>
-                    <h2 class="relief-question">¿Verdad que sí preocupa?</h2>
+                <div class="card clean-card-frame relief-card-clean" (click)="$event.stopPropagation()">
                     
-                    <div class="relief-divider"></div>
+                    <button type="button" class="card-close-btn" (click)="dismissAlert()" aria-label="Cerrar">&times;</button>
                     
-                    <p class="relief-paragraph">
-                        Un ciberataque real ocurre en menos de <strong>30 segundos</strong> y puede paralizar tu negocio por completo. En <strong>ByteWise</strong> diseñamos e implementamos controles robustos de seguridad y cumplimiento bajo ISO 27001 para que nunca tengas que experimentar esta alerta en la vida real.
-                    </p>
+                    <div class="card-content-clean text-center">
+                        <div class="relief-shield-avatar">
+                            <img src="img/escudo.png" alt="ByteWise Shield" class="relief-shield-img" />
+                        </div>
 
-                    <div class="relief-btn-container">
-                        <button type="button" class="relief-cta-btn" (click)="dismissAlert()">
-                            Regresar
-                        </button>
+                        <h2 class="relief-question-clean">¿Verdad que sí preocupa?</h2>
+                        <span class="card-category-tag red-tag">SIMULACIÓN DE SEGURIDAD FINALIZADA</span>
+
+                        <div class="card-divider-clean"></div>
+                        
+                        <p class="card-description-clean">
+                            Un ciberataque real ocurre en menos de <strong>30 segundos</strong> y puede paralizar tu negocio por completo. En <strong>ByteWise</strong> diseñamos e implementamos controles robustos de seguridad y cumplimiento bajo ISO 27001 para que nunca tengas que experimentar este riesgo en la vida real.
+                        </p>
+
+                        <div class="relief-btn-grid">
+                            <button type="button" class="btn-secondary-relief" (click)="dismissAlert()">
+                                Regresar al sitio
+                            </button>
+                            <button type="button" class="contact-me btn-primary-relief" (click)="onContactClick()">
+                                SOLICITAR AUDITORÍA GRATUITA
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

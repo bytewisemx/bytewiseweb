@@ -630,3 +630,11 @@
     .toast-top-right { top: 75px; }
     .toast-bottom-right { bottom: 12px; }
 }
+
+/* ==========================================================================
+   PATRÓN DE DISEÑO RECUADRO FLOTANTE MULTITAPA (PORTFOLIO CARD STYLE)
+   ========================================================================== */
+.relief-card-multi {
+    animation: fadeInModal 0.4s ease-out;
+}
+

@@ -121,4 +121,12 @@ export class HackerAlertComponent implements OnInit, OnDestroy {
     this.isAlertActive = false;
     this.isRelievedState = false;
   }
+  
+  onContactClick() {
+    this.dismissAlert();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
