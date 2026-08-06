@@ -147,10 +147,16 @@
                 <h4 class="card-section-title-clean">Entregables y Alcance Clave:</h4>
                 <div class="card-deliverables-list">
                     @for (item of activeModalCard.deliverables; track item.title) {
-                        <div class="deliverable-item">
-                            <span class="deliverable-bullet">⚡</span>
-                            <div class="deliverable-info">
-                                <strong>{{ item.title }}:</strong> {{ item.desc }}
+                        <div class="premium-feature-card">
+                            <div class="feature-badge-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="feature-card-content">
+                                <h5 class="feature-card-headline">{{ item.title }}</h5>
+                                <p class="feature-card-body">{{ item.desc }}</p>
                             </div>
                         </div>
                     }
