@@ -5,7 +5,7 @@
         <div class="bg-box bg-box-left" [style.background]="bgLeftGradients[activeIndex]">
             <div class="outer">
                 <div class="inner">
-                    <div class="bg-pattern left-pattern"></div>
+                    <div class="bg-pattern left-pattern" [class.slide-0]="activeIndex === 0" [class.slide-1]="activeIndex === 1" [class.slide-2]="activeIndex === 2"></div>
                     <div class="glow-orb left-orb" [style.background]="bgLeftOrbs[activeIndex]"></div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
         <div class="bg-box bg-box-right" [style.background]="bgRightGradients[activeIndex]">
             <div class="outer">
                 <div class="inner">
-                    <div class="bg-pattern right-pattern"></div>
+                    <div class="bg-pattern right-pattern" [class.slide-0]="activeIndex === 0" [class.slide-1]="activeIndex === 1" [class.slide-2]="activeIndex === 2"></div>
                     <div class="glow-orb right-orb" [style.background]="bgRightOrbs[activeIndex]"></div>
                 </div>
             </div>
