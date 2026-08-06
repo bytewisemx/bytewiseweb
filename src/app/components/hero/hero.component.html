@@ -71,79 +71,58 @@
             </div>
         </div>
 
-        <!-- PANEL CENTRAL: MOCKUP DE LAPTOP 3D ISOMÉTRICA CON VOLUMEN REAL Y EXTRUSIÓN -->
+        <!-- PANEL CENTRAL: MOCKUP DE LAPTOP CON PANTALLAS INTERACTIVAS -->
         <div class="slider-center-pane">
-            <div class="laptop-3d-wrapper">
-                <div class="laptop-container" (mouseenter)="onLaptopEnter()" (mouseleave)="onLaptopLeave()">
-                    
-                    <!-- Resplandor ambiental 3D dinámico según el slide activo -->
-                    <div class="laptop-ambient-glow" [ngClass]="{'glow-gold': activeIndex === 0, 'glow-cyan': activeIndex === 1, 'glow-purple': activeIndex === 2}"></div>
-
-                    <!-- Tapa de pantalla en 3D articulada -->
-                    <div class="laptop-screen-lid">
-                        <div class="laptop-screen">
-                            <div class="laptop-webcam"></div>
-                            <div class="screen-glass-glare"></div>
-                            <div class="screen-content-wrapper">
-                                
-                                <!-- Pantalla Slide 0: Ciberseguridad & Compliance -->
-                                <div class="slide-screen-content" [class.active]="activeIndex === 0">
-                                    <div class="outer">
-                                        <div class="inner">
-                                            <img src="img/hero_cybersecurity.png" alt="Monitoreo de Ciberseguridad SOC" class="screen-image bg">
-                                        </div>
-                                    </div>
+            <div class="laptop-container" (mouseenter)="onLaptopEnter()" (mouseleave)="onLaptopLeave()">
+                
+                <!-- Pantalla y marco superior -->
+                <div class="laptop-screen">
+                    <div class="screen-content-wrapper">
+                        
+                        <!-- Pantalla Slide 0: Ciberseguridad & Compliance -->
+                        <div class="slide-screen-content" [class.active]="activeIndex === 0">
+                            <div class="outer">
+                                <div class="inner">
+                                    <img src="img/hero_cybersecurity.png" alt="Monitoreo de Ciberseguridad SOC" class="screen-image bg">
                                 </div>
-
-                                <!-- Pantalla Slide 1: Outsourcing de TI -->
-                                <div class="slide-screen-content" [class.active]="activeIndex === 1">
-                                    <div class="outer">
-                                        <div class="inner">
-                                            <img src="img/hero_infrastructure.png" alt="Infraestructura de Datos y Servidores" class="screen-image bg">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Pantalla Slide 2: Consultoría en IA -->
-                                <div class="slide-screen-content" [class.active]="activeIndex === 2">
-                                    <div class="outer">
-                                        <div class="inner">
-                                            <img src="img/hero_ai.png" alt="Automatización con Inteligencia Artificial" class="screen-image bg">
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Contenedor para los símbolos 3D flotantes -->
-                    <div class="floating-symbols-container">
-                        @for (sym of floatingSymbols; track sym.id) {
-                            <span class="floating-symbol" [style]="sym.style">{{ sym.text }}</span>
-                        }
-                    </div>
-
-                    <!-- Bisagra cilíndrica metálica 3D -->
-                    <div class="laptop-hinge-3d"></div>
-
-                    <!-- Base inferior metálica extrusionada 3D con cubierta de teclado y trackpad -->
-                    <div class="laptop-base-3d">
-                        <div class="keyboard-deck">
-                            <div class="keyboard-lines">
-                                <span></span><span></span><span></span><span></span>
+                        <!-- Pantalla Slide 1: Outsourcing de TI -->
+                        <div class="slide-screen-content" [class.active]="activeIndex === 1">
+                            <div class="outer">
+                                <div class="inner">
+                                    <img src="img/hero_infrastructure.png" alt="Infraestructura de Datos y Servidores" class="screen-image bg">
+                                </div>
                             </div>
-                            <div class="trackpad-recess"></div>
                         </div>
-                        <div class="base-front-edge">
-                            <div class="base-notch"></div>
-                        </div>
-                        <div class="base-bottom-plate"></div>
-                    </div>
 
-                    <!-- Sombra proyectada realista en el suelo 3D -->
-                    <div class="laptop-floor-shadow"></div>
+                        <!-- Pantalla Slide 2: Consultoría en IA -->
+                        <div class="slide-screen-content" [class.active]="activeIndex === 2">
+                            <div class="outer">
+                                <div class="inner">
+                                    <img src="img/hero_ai.png" alt="Automatización con Inteligencia Artificial" class="screen-image bg">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+
+                <!-- Contenedor para los símbolos 3D flotantes -->
+                <div class="floating-symbols-container">
+                    @for (sym of floatingSymbols; track sym.id) {
+                        <span class="floating-symbol" [style]="sym.style">{{ sym.text }}</span>
+                    }
+                </div>
+                <!-- Bisagra de la laptop -->
+                <div class="laptop-hinge"></div>
+                <!-- Base inferior metálica con la muesca central -->
+                <div class="laptop-base">
+                    <div class="base-notch"></div>
+                </div>
+                <!-- Sombra de apoyo de la laptop -->
+                <div class="laptop-shadow"></div>
             </div>
         </div>
 
