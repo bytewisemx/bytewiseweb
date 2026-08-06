@@ -670,8 +670,40 @@
     border-color: rgba(245, 158, 11, 0.25);
 }
 
-.sidebar-icon {
-    font-size: 1.3rem;
+.sidebar-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.sidebar-icon-wrap.cyan {
+    color: #38bdf8;
+    background: rgba(6, 182, 212, 0.12);
+    border-color: rgba(6, 182, 212, 0.3);
+}
+
+.sidebar-icon-wrap.gold {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.sidebar-icon-wrap.purple {
+    color: #c084fc;
+    background: rgba(168, 85, 247, 0.12);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+.sidebar-info-item:hover .sidebar-icon-wrap {
+    transform: scale(1.08);
 }
 
 .sidebar-meta {
