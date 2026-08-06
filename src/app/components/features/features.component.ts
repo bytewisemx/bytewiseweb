@@ -441,11 +441,17 @@ export class FeaturesComponent implements OnInit, AfterViewInit, OnDestroy {
   openModal(id: string) {
     this.activeServiceModal = id;
     this.activeModalCard = this.serviceCards.find(c => c.id === id) || null;
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.style.overflow = 'hidden';
+    }
   }
 
   closeModal() {
     this.activeServiceModal = null;
     this.activeModalCard = null;
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.style.overflow = '';
+    }
   }
 
   onContactClick() {

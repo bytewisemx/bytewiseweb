@@ -31,8 +31,8 @@
     --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 
     /* Fuentes */
-    --font-titles: 'TikTok Sans', 'Inter', system-ui, -apple-system, sans-serif;
-    --font-body: 'TikTok Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    --font-titles: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    --font-body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
 
     /* Transiciones */
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -142,6 +142,265 @@
 }
 
 /* ==========================================================================
+   GLASS FLOATING CARD / TOAST MESSAGE (TIPO VIDRIO ULTRA PREMIM)
+   ========================================================================== */
+.glass-float-card {
+    position: relative;
+    width: min(100%, 360px);
+    padding: 18px 20px 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+    background-color: rgba(10, 16, 28, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 20px;
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65),
+                inset 0 1px 2px rgba(255, 255, 255, 0.4),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(6, 182, 212, 0.12);
+    overflow: hidden;
+    color: #ffffff;
+    font-family: 'Inter', var(--font-body), sans-serif;
+    isolation: isolate;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+}
+
+/* Entrada Suave y Formal (Formal Glass Entrance) */
+.glass-float-card.formal-entrance {
+    animation: formalGlassEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes formalGlassEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(28px) scale(0.95);
+        filter: blur(8px);
+    }
+    60% {
+        opacity: 0.9;
+        filter: blur(1px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+.glass-float-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75),
+                inset 0 1px 2px rgba(255, 255, 255, 0.6),
+                0 0 35px rgba(6, 182, 212, 0.25);
+}
+
+/* Reflejo de cristal superior */
+.glass-float-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 80%);
+    transform: rotate(-15deg);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.45;
+}
+
+/* Línea de acento lateral luminosa estilo cyan/gold */
+.glass-card-accent-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #00f2fe 0%, #38bdf8 60%, rgba(6, 182, 212, 0.2) 100%);
+    box-shadow: 0 0 12px #00f2fe;
+    border-radius: 4px 0 0 4px;
+}
+
+.glass-float-card.slide-0 .glass-card-accent-line {
+    background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 60%, rgba(245, 158, 11, 0.2) 100%);
+    box-shadow: 0 0 12px #fbbf24;
+}
+
+.glass-float-card.slide-2 .glass-card-accent-line {
+    background: linear-gradient(180deg, #e879f9 0%, #c084fc 60%, rgba(168, 85, 247, 0.2) 100%);
+    box-shadow: 0 0 12px #e879f9;
+}
+
+/* Botón de cierre 'x' estilo cristal */
+.glass-float-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.glass-float-close:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+    transform: scale(1.1);
+}
+
+/* Insignia circular redonda en oro/cian de la captura */
+.glass-float-badge {
+    position: absolute;
+    top: 16px;
+    left: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
+    border: 1.5px solid rgba(251, 191, 36, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fbbf24;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    z-index: 2;
+}
+
+.glass-float-card.slide-1 .glass-float-badge {
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(6, 182, 212, 0.05) 100%);
+    border-color: rgba(0, 242, 254, 0.6);
+    color: #00f2fe;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.glass-float-card.slide-2 .glass-float-badge {
+    background: radial-gradient(circle, rgba(232, 121, 249, 0.15) 0%, rgba(168, 85, 247, 0.05) 100%);
+    border-color: rgba(232, 121, 249, 0.6);
+    color: #e879f9;
+    box-shadow: 0 0 15px rgba(232, 121, 249, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.glass-float-badge svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+}
+
+/* Contenido interno alineado a la derecha de la insignia */
+.glass-float-content {
+    margin-left: 54px;
+    margin-right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 2;
+    position: relative;
+}
+
+.glass-float-header {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.glass-float-status-value {
+    color: #38bdf8;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+.glass-float-card.slide-0 .glass-float-status-value {
+    color: #fbbf24;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+}
+
+.glass-float-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    line-height: 1.35;
+    color: #ffffff;
+    margin: 2px 0 4px;
+}
+
+.glass-float-metric {
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.82);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.metric-value {
+    font-weight: 800;
+    color: #ffffff;
+}
+
+/* Badge geométrico wireframe inferior izquierdo de la captura */
+.glass-float-geo-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 18px;
+    width: 24px;
+    height: 24px;
+    color: rgba(251, 191, 36, 0.7);
+    z-index: 2;
+}
+
+.glass-float-card.slide-1 .glass-float-geo-badge {
+    color: rgba(0, 242, 254, 0.7);
+}
+
+.glass-float-card.slide-2 .glass-float-geo-badge {
+    color: rgba(232, 121, 249, 0.7);
+}
+
+.glass-float-geo-badge svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 1.5;
+}
+
+/* Barra de progreso inferior fluorescente tipo vidrio */
+.glass-float-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 45%;
+    background: linear-gradient(90deg, #00f2fe, #38bdf8);
+    box-shadow: 0 0 8px #00f2fe;
+    border-radius: 0 2px 2px 0;
+    transition: width 0.6s ease;
+}
+
+.glass-float-card.slide-0 .glass-float-progress-bar {
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    box-shadow: 0 0 8px #fbbf24;
+}
+
+.glass-float-card.slide-2 .glass-float-progress-bar {
+    background: linear-gradient(90deg, #e879f9, #c084fc);
+    box-shadow: 0 0 8px #e879f9;
+}
+
+/* ==========================================================================
    RESET Y ESTILOS BASE
    ========================================================================== */
 *, *::before, *::after {
@@ -153,11 +412,15 @@
     -ms-hyphens: none !important;
 }
 
+html, body, button, input, select, textarea, p, span, a, div, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', var(--font-body), system-ui, -apple-system, sans-serif;
+}
+
 html {
     scroll-behavior: smooth;
     background-color: hsl(var(--bg-dark));
     color: hsl(var(--text-primary));
-    font-family: var(--font-body);
+    font-family: 'Space Grotesk', var(--font-body);
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
@@ -167,10 +430,11 @@ body {
     position: relative;
     min-height: 100vh;
     overflow-x: hidden;
+    font-family: 'Space Grotesk', var(--font-body);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-titles);
+    font-family: 'Space Grotesk', var(--font-titles);
     font-weight: 600;
     line-height: 1.25;
 }
@@ -328,9 +592,12 @@ a {
 }
 
 .gradient-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #38bdf8 !important;
+    -webkit-text-fill-color: #38bdf8 !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
 }
 
 /* ==========================================================================

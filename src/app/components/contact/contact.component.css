@@ -20,26 +20,25 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 5px 14px;
-    background: rgba(245, 158, 11, 0.12);
-    border: 1px solid rgba(245, 158, 11, 0.35);
-    border-radius: 30px;
-    font-family: var(--font-titles);
-    font-size: 0.72rem;
+    padding: 4px 0;
+    background: transparent;
+    border: none !important;
+    font-family: 'Space Grotesk', var(--font-titles), sans-serif;
+    font-size: 0.76rem;
     font-weight: 700;
-    color: #f59e0b;
-    letter-spacing: 0.12em;
-    margin-bottom: 14px;
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+    color: #ffffff;
+    letter-spacing: 0.14em;
+    margin-bottom: 16px;
+    box-shadow: none !important;
 }
 
 .badge-dot {
-    width: 7px;
-    height: 7px;
-    background-color: #f59e0b;
+    width: 6px;
+    height: 6px;
+    background-color: #00f2fe;
     border-radius: 50%;
-    box-shadow: 0 0 8px #f59e0b;
-    animation: blink 1.5s infinite alternate;
+    box-shadow: 0 0 8px #00f2fe;
+    animation: blink 1.8s infinite ease-in-out;
 }
 
 @keyframes blink {

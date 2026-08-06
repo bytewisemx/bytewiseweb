@@ -42,31 +42,37 @@ export class HackerAlertComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit() {
-    // Popup 1: aparece a los 5s, dura 6s (esquina inferior izquierda)
+    this.startPopupSequence();
+  }
+
+  private startPopupSequence() {
+    // Popup 1: aparece a los 3s, dura 7s (esquina inferior izquierda)
     this.schedulePopup(
       () => { if (!this.isAlertActive) this.showPopup1 = true; },
       () => { this.showPopup1 = false; },
-      5000, 6000
+      3000, 7000
     );
 
-    // Popup 2: aparece a los 18s, dura 7s (esquina superior derecha)
+    // Popup 2: aparece a los 14s, dura 7s (esquina superior derecha)
     this.schedulePopup(
       () => { if (!this.isAlertActive) this.showPopup2 = true; },
       () => { this.showPopup2 = false; },
-      18000, 7000
+      14000, 7000
     );
 
-    // Popup 3: aparece a los 35s, dura 8s (esquina inferior derecha)
+    // Popup 3: aparece a los 26s, dura 8s (esquina inferior derecha)
     this.schedulePopup(
       () => { if (!this.isAlertActive) this.showPopup3 = true; },
       () => { this.showPopup3 = false; },
-      35000, 8000
+      26000, 8000
     );
 
-    // Animación Hacking / Ransomware principal: se activa automáticamente a los 60s (1 minuto)
-    this.triggerTimeout = setTimeout(() => {
-      this.startHackingEffect();
-    }, 60000);
+    // Animación Hacking / Ransomware principal: se activa automáticamente a los 90s
+    if (!this.triggerTimeout) {
+      this.triggerTimeout = setTimeout(() => {
+        this.startHackingEffect();
+      }, 90000);
+    }
   }
 
   private schedulePopup(showFn: () => void, hideFn: () => void, delayMs: number, durationMs: number) {
