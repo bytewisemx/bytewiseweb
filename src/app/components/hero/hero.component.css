@@ -104,7 +104,7 @@
 .bg-pattern {
     position: absolute;
     inset: 0;
-    background-image: url('/bytewiseweb/img/circuit_pattern.png'), url('img/circuit_pattern.png');
+    background-image: url('/assets/img/circuit_pattern.png'), url('assets/img/circuit_pattern.png');
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 0.22;
