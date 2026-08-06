@@ -30,26 +30,26 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Gradientes y orbes luminosos dinámicos para los 2 recuadros divididos del fondo
   bgLeftGradients = [
-    'radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.18) 0%, #06070d 75%)',  // Slide 0: Dorado
-    'radial-gradient(circle at 30% 40%, rgba(6, 182, 212, 0.22) 0%, #040810 75%)',   // Slide 1: Cian
-    'radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.20) 0%, #06050e 75%)'   // Slide 2: Violeta
+    'radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.15) 0%, #030408 80%)',  // Slide 0: Dorado
+    'radial-gradient(circle at 20% 40%, rgba(0, 242, 254, 0.22) 0%, rgba(4, 12, 24, 0.95) 45%, #02040a 85%)',   // Slide 1: Cian Cinematográfico
+    'radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.18) 0%, #030209 80%)'   // Slide 2: Violeta
   ];
 
   bgRightGradients = [
-    'linear-gradient(135deg, hsl(38, 85%, 26%) 0%, #06070d 100%)',   // Slide 0: Dorado ocre
-    'linear-gradient(135deg, #040810 0%, hsl(188, 85%, 16%) 100%)',   // Slide 1: Cian profundo
-    'linear-gradient(135deg, hsl(263, 70%, 18%) 0%, #06050e 100%)'   // Slide 2: Violeta profundo
+    'linear-gradient(135deg, rgba(180, 110, 10, 0.25) 0%, #030408 100%)',   // Slide 0: Dorado ocre
+    'linear-gradient(135deg, #02040a 0%, rgba(6, 182, 212, 0.25) 60%, #02050e 100%)',   // Slide 1: Cian profundo
+    'linear-gradient(135deg, rgba(100, 40, 180, 0.25) 0%, #030209 100%)'   // Slide 2: Violeta profundo
   ];
 
   bgLeftOrbs = [
     'radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, transparent 70%)',
-    'radial-gradient(circle, rgba(6, 182, 212, 0.45) 0%, transparent 70%)',
+    'radial-gradient(circle, rgba(6, 182, 212, 0.55) 0%, transparent 70%)',
     'radial-gradient(circle, rgba(139, 92, 246, 0.45) 0%, transparent 70%)'
   ];
 
   bgRightOrbs = [
     'radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, transparent 70%)',
-    'radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, transparent 70%)',
+    'radial-gradient(circle, rgba(56, 189, 248, 0.55) 0%, transparent 70%)',
     'radial-gradient(circle, rgba(167, 139, 250, 0.4) 0%, transparent 70%)'
   ];
 
