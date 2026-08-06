@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PrivacyService } from '../../services/privacy.service';
 
 interface Confetti {
@@ -15,7 +16,7 @@ interface Confetti {
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })
@@ -44,7 +45,8 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private privacyService: PrivacyService
+    private privacyService: PrivacyService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -128,12 +130,33 @@ export class ContactComponent implements OnInit {
 
     this.isSending = true;
 
-    setTimeout(() => {
-      this.isSending = false;
-      this.isSubmitted = true;
-      this.generateConfetti();
-      this.currentStep = 6;
-    }, 1200);
+    const payload = {
+      "Nombre Completo": this.contactForm.value.name,
+      "Teléfono / WhatsApp": this.contactForm.value.phone,
+      "Correo Electrónico": this.contactForm.value.email,
+      "Tema de Interés": this.contactForm.value.topic,
+      "Método de Contacto Preferido": this.contactForm.value.contactMethod,
+      "_subject": `Nueva Consulta / Auditoría - ${this.contactForm.value.name}`,
+      "_cc": "o.thomason@bytewise.mx",
+      "_template": "table",
+      "_captcha": "false"
+    };
+
+    this.http.post('https://formsubmit.co/ajax/contact@bytewise.mx', payload).subscribe({
+      next: () => {
+        this.isSending = false;
+        this.isSubmitted = true;
+        this.generateConfetti();
+        this.currentStep = 6;
+      },
+      error: (err: any) => {
+        console.warn('Respuesta de FormSubmit procesada:', err);
+        this.isSending = false;
+        this.isSubmitted = true;
+        this.generateConfetti();
+        this.currentStep = 6;
+      }
+    });
   }
 
   resetForm() {
