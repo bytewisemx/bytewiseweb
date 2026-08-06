@@ -142,7 +142,7 @@ export class ContactComponent implements OnInit {
       "_captcha": "false"
     };
 
-    this.http.post('https://formsubmit.co/ajax/ot.thomason@bytewise.mx', payload).subscribe({
+    this.http.post('https://formsubmit.co/ajax/o.thomason@bytewise.mx', payload).subscribe({
       next: () => {
         this.isSending = false;
         this.isSubmitted = true;
