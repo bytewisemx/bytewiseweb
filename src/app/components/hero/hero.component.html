@@ -71,12 +71,17 @@
             </div>
         </div>
 
-        <!-- PANEL CENTRAL: MOCKUP DE LAPTOP CON PANTALLAS INTERACTIVAS -->
+        <!-- PANEL CENTRAL: MOCKUP DE LAPTOP CON PANTALLAS INTERACTIVAS Y EFECTO 3D REALISTA -->
         <div class="slider-center-pane">
             <div class="laptop-container" (mouseenter)="onLaptopEnter()" (mouseleave)="onLaptopLeave()">
                 
+                <!-- Resplandor ambiental 3D dinámico según el slide activo -->
+                <div class="laptop-ambient-glow" [ngClass]="{'glow-gold': activeIndex === 0, 'glow-cyan': activeIndex === 1, 'glow-purple': activeIndex === 2}"></div>
+
                 <!-- Pantalla y marco superior -->
                 <div class="laptop-screen">
+                    <div class="laptop-webcam"></div>
+                    <div class="screen-glass-glare"></div>
                     <div class="screen-content-wrapper">
                         
                         <!-- Pantalla Slide 0: Ciberseguridad & Compliance -->

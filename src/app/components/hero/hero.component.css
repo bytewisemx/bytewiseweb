@@ -297,25 +297,50 @@
 .btn-learn-more.cyan { color: var(--s-color); }
 .btn-learn-more.purple { color: var(--p-color); }
 
-/* --- LAPTOP --- */
+/* --- LAPTOP 3D HYPER-REALISTA --- */
 .slider-center-pane {
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1200px;
+    perspective: 1400px;
 }
 
 .laptop-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 490px;
     position: relative;
-    transform: rotateX(5deg);
+    transform: rotateX(8deg) rotateY(-2deg);
     transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
 }
 
 .laptop-container:hover {
-    transform: rotateX(5deg) scale(1.1);
+    transform: rotateX(4deg) rotateY(1deg) scale(1.05);
+}
+
+/* Glow Ambiental Neón Trasero */
+.laptop-ambient-glow {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.55;
+    z-index: 1;
+    transition: all 0.8s ease;
+    pointer-events: none;
+}
+
+.laptop-ambient-glow.glow-gold {
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, rgba(245, 158, 11, 0.05) 70%, transparent 100%);
+}
+
+.laptop-ambient-glow.glow-cyan {
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.45) 0%, rgba(6, 182, 212, 0.05) 70%, transparent 100%);
+}
+
+.laptop-ambient-glow.glow-purple {
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, rgba(168, 85, 247, 0.05) 70%, transparent 100%);
 }
 
 .floating-symbols-container {
@@ -362,14 +387,42 @@
 .laptop-screen {
     position: relative;
     aspect-ratio: 16/10;
-    background: #0f1016;
-    border: 10px solid #16171d;
-    border-top-width: 12px;
-    border-bottom-width: 12px;
-    border-radius: 12px 12px 0 0;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(0,0,0,0.4);
+    background: #08090d;
+    border: 11px solid #1c1e26;
+    border-top-width: 14px;
+    border-bottom-width: 14px;
+    border-radius: 16px 16px 3px 3px;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.12),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 15px 35px rgba(0, 0, 0, 0.6);
     overflow: hidden;
-    z-index: 2;
+    z-index: 3;
+    transform-style: preserve-3d;
+}
+
+/* Lente de Webcam Superior */
+.laptop-webcam {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 2px #38bdf8;
+    z-index: 12;
+}
+
+/* Reflejo de Cristal 3D sobre la pantalla */
+.screen-glass-glare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 35%, transparent 50%);
+    pointer-events: none;
+    z-index: 10;
 }
 
 .screen-content-wrapper {
@@ -605,47 +658,62 @@
 
 /* Partes laptop base */
 .laptop-hinge {
-    height: 8px;
-    width: 25%;
-    background: #111217;
+    height: 9px;
+    width: 28%;
+    background: linear-gradient(to bottom, #11131a 0%, #1c1e26 100%);
     margin: 0 auto;
-    border-bottom: 2px solid #08080a;
+    border-bottom: 2px solid #08090d;
+    border-radius: 2px 2px 0 0;
     position: relative;
     z-index: 4;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15);
 }
 
 .laptop-base {
-    height: 14px;
-    width: 104%;
-    margin-left: -2%;
-    background: linear-gradient(to bottom, #e5e7eb 0%, #9ca3af 50%, #374151 100%);
-    border-radius: 0 0 16px 16px;
+    height: 16px;
+    width: 106%;
+    margin-left: -3%;
+    background: linear-gradient(to bottom, 
+        #e2e8f0 0%, 
+        #cbd5e1 15%, 
+        #94a3b8 40%, 
+        #475569 75%, 
+        #1e293b 100%);
+    border-radius: 2px 2px 18px 18px;
     position: relative;
     z-index: 5;
-    border-bottom: 2px solid #1f2937;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 3px solid #0f172a;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.75),
+        0 5px 15px rgba(0, 0, 0, 0.5),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.4);
     transform-style: preserve-3d;
 }
 
 .base-notch {
-    width: 64px;
-    height: 5px;
-    background: #090a0e;
-    border-radius: 0 0 5px 5px;
+    width: 68px;
+    height: 6px;
+    background: linear-gradient(to bottom, #090a0e 0%, #1e293b 100%);
+    border-radius: 0 0 6px 6px;
     margin: 0 auto;
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .laptop-shadow {
-    width: 96%;
-    height: 10px;
-    background: rgba(0, 0, 0, 0.75);
-    filter: blur(8px);
-    margin: 4px auto 0;
+    width: 98%;
+    height: 16px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 80%);
+    filter: blur(10px);
+    margin: 6px auto 0;
     border-radius: 50%;
+    transform: scaleY(0.6);
 }
 
 /* --- CONTROLES DE NAVEGACIÓN (FLECHAS Y DOTS CENTRALES) --- */
