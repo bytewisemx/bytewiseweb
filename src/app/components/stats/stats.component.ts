@@ -60,14 +60,14 @@ export class StatsComponent implements OnInit, OnDestroy {
       title: 'MISIÓN',
       subtitle: 'Compromiso & Relaciones Seguras',
       content: 'Ofrecer servicios de calidad certificada a nuestros clientes, basados en el total entendimiento de sus necesidades y requerimientos apegados a nuestros valores estableciendo relaciones seguras.',
-      image: 'img/impacto_mision.png'
+      image: 'img/exec_impacto_mision.png'
     },
     {
       type: 'vision',
       title: 'VISIÓN',
       subtitle: 'Liderazgo en Entorno Digital',
       content: 'Ser reconocidos como empresa líder en soluciones de ciberseguridad mediante un servicio personalizado y customizado según las necesidades y demandas del entorno digital requerido.',
-      image: 'img/impacto_vision.png'
+      image: 'img/exec_impacto_vision.png'
     },
     {
       type: 'valores',
@@ -81,14 +81,14 @@ export class StatsComponent implements OnInit, OnDestroy {
         { name: 'RESPONSABILIDAD', desc: 'Actuar de manera proactiva y consciente en la protección y resguardo de la información y activos digitales de nuestros clientes.' },
         { name: 'VANGUARDIA', desc: 'Ser una empresa que además de la innovación tecnológica tenga una cultura organizacional que promueva la exploración, experimentación y adaptación constante.' }
       ],
-      image: 'img/impacto_valores.png'
+      image: 'img/exec_impacto_valores.png'
     },
     {
       type: 'elegirnos',
       title: '¿POR QUÉ ELEGIRNOS?',
       subtitle: 'Seguridad de la Información & Continuidad de Negocio',
       content: 'Entendemos la imperativa necesidad de incorporar las organizaciones a los estándares de seguridad actual para promover la seguridad de la información y la continuidad del negocio en cualquier situación de riesgo, adaptando la solución según el requerimiento.',
-      image: 'img/impacto_elegirnos.png'
+      image: 'img/exec_impacto_elegirnos.png'
     }
   ];
 
@@ -99,7 +99,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       company: 'Grupo Millenium',
       subtitle: 'Testimonio empresarial · Milenium',
       quote: '“Trabajar con ByteWise nos dio claridad total sobre nuestra seguridad. Detectaron riesgos que no teníamos en el radar y nos guiaron paso a paso para corregirlos. Hoy operamos con mucha más confianza y control.”',
-      image: 'img/avatar_alejandro.png'
+      image: 'img/exec_avatar_alejandro.png'
     },
     {
       initials: 'IL',
@@ -107,7 +107,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       company: 'E-Net-Corp',
       subtitle: 'Testimonio práctico · E-Net-Corp',
       quote: '“El equipo de ByteWise fue muy profesional y claro en todo momento. Nos ayudaron a ordenar nuestros procesos y mejorar la protección de la información sin complicarnos. Se nota que saben lo que hacen.”',
-      image: 'img/avatar_israel.png'
+      image: 'img/exec_avatar_israel.png'
     }
   ];
 
@@ -120,7 +120,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       subtitle: 'Gestión de Riesgos & Gobierno de Seguridad',
       description: 'Formación avanzada en gestión de riesgos, protección de datos, gobierno de seguridad y estrategias para la continuidad del negocio.',
       bgColor: '#0f2b4a',
-      image: 'img/team_master_security.png'
+      image: 'img/exec_master_security.png'
     },
     {
       id: 1,
@@ -129,7 +129,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       subtitle: 'Evaluación de SGSI & Cumplimiento de Controles',
       description: 'Capacidad para evaluar sistemas de gestión de seguridad de la información (SGSI), identificar brechas y asegurar el cumplimiento de controles conforme a estándares internacionales.',
       bgColor: '#1e3a5f',
-      image: 'img/team_iso_auditor.png'
+      image: 'img/exec_auditor.png'
     },
     {
       id: 2,
@@ -138,7 +138,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       subtitle: 'Diseño & Preparación para Certificación',
       description: 'Experiencia en diseño, implementación y mantenimiento de SGSI, desde el diagnóstico inicial hasta la preparación para auditoría de certificación.',
       bgColor: '#0d3349',
-      image: 'img/team_iso_lead.png'
+      image: 'img/exec_lead_implementer.png'
     },
     {
       id: 3,
@@ -147,7 +147,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       subtitle: 'Evaluación Ofensiva & Mitigación Pre-Explotación',
       description: 'Evaluación de sistemas, redes y aplicaciones desde la perspectiva de un atacante para identificar y mitigar riesgos antes de que sean explotados.',
       bgColor: '#2d1a47',
-      image: 'img/team_pentesting.png'
+      image: 'img/exec_pentesting.png'
     },
     {
       id: 4,
@@ -156,7 +156,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       subtitle: 'Recuperación de Evidencia Digital & Dictámenes',
       description: 'Recuperación y análisis de evidencia digital en dispositivos físicos y móviles, con generación de dictámenes técnicos utilizables en procesos legales.',
       bgColor: '#162842',
-      image: 'img/hero_cybersecurity.png'
+      image: 'img/exec_forensics.png'
     },
     {
       id: 5,
@@ -165,7 +165,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       subtitle: 'Automatización & Asistentes Operativos',
       description: 'Desarrollo e implementación de soluciones de IA para automatización de procesos, asistentes virtuales y optimización de operaciones.',
       bgColor: '#311442',
-      image: 'img/hero_ai.png'
+      image: 'img/exec_ai.png'
     },
     {
       id: 6,
@@ -174,7 +174,7 @@ export class StatsComponent implements OnInit, OnDestroy {
       subtitle: 'Sistemas a la Medida, Alta Seguridad & Escalabilidad',
       description: 'Creación de sistemas y plataformas adaptadas a necesidades específicas, integrando seguridad, escalabilidad y eficiencia operativa.',
       bgColor: '#0a2d3e',
-      image: 'img/hero_infrastructure.png'
+      image: 'img/exec_dev.png'
     }
   ];
 
