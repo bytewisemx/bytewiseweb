@@ -297,35 +297,47 @@
 .btn-learn-more.cyan { color: var(--s-color); }
 .btn-learn-more.purple { color: var(--p-color); }
 
-/* --- LAPTOP 3D HYPER-REALISTA --- */
+/* --- LAPTOP 3D ISOMÉTRICA CON MÁXIMO VOLUMEN Y SOBRESALIENTE --- */
 .slider-center-pane {
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1400px;
+    perspective: 1600px;
+}
+
+.laptop-3d-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    transform-style: preserve-3d;
+    animation: laptopFloat3D 6s ease-in-out infinite alternate;
+}
+
+@keyframes laptopFloat3D {
+    0% { transform: translateY(0px) rotateZ(0deg); }
+    100% { transform: translateY(-10px) rotateZ(-1deg); }
 }
 
 .laptop-container {
     width: 100%;
-    max-width: 490px;
     position: relative;
-    transform: rotateX(8deg) rotateY(-2deg);
+    transform: rotateX(18deg) rotateY(-12deg) rotateZ(2deg);
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
 }
 
 .laptop-container:hover {
-    transform: rotateX(4deg) rotateY(1deg) scale(1.05);
+    transform: rotateX(10deg) rotateY(-4deg) scale(1.06);
 }
 
 /* Glow Ambiental Neón Trasero */
 .laptop-ambient-glow {
     position: absolute;
-    inset: -20px;
+    inset: -30px;
     border-radius: 50%;
-    filter: blur(40px);
-    opacity: 0.55;
+    filter: blur(45px);
+    opacity: 0.6;
     z-index: 1;
     transition: all 0.8s ease;
     pointer-events: none;
@@ -384,6 +396,14 @@
     }
 }
 
+/* Tapa de Pantalla 3D Articulada */
+.laptop-screen-lid {
+    transform: rotateX(-10deg) translateZ(8px);
+    transform-style: preserve-3d;
+    position: relative;
+    z-index: 3;
+}
+
 .laptop-screen {
     position: relative;
     aspect-ratio: 16/10;
@@ -393,11 +413,10 @@
     border-bottom-width: 14px;
     border-radius: 16px 16px 3px 3px;
     box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.12),
-        inset 0 0 0 1px rgba(0, 0, 0, 0.9),
-        0 15px 35px rgba(0, 0, 0, 0.6);
+        -10px 15px 30px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.15),
+        inset 0 0 0 1px rgba(0, 0, 0, 0.9);
     overflow: hidden;
-    z-index: 3;
     transform-style: preserve-3d;
 }
 
@@ -656,64 +675,110 @@
     margin-top: 2px;
 }
 
-/* Partes laptop base */
-.laptop-hinge {
-    height: 9px;
-    width: 28%;
-    background: linear-gradient(to bottom, #11131a 0%, #1c1e26 100%);
-    margin: 0 auto;
-    border-bottom: 2px solid #08090d;
-    border-radius: 2px 2px 0 0;
+/* Bisagra Cilíndrica 3D Metalizada */
+.laptop-hinge-3d {
+    height: 11px;
+    width: 32%;
+    background: linear-gradient(90deg, #090a0e 0%, #475569 25%, #94a3b8 50%, #475569 75%, #090a0e 100%);
+    margin: -3px auto 0;
+    border-radius: 6px 6px 0 0;
     position: relative;
     z-index: 4;
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-.laptop-base {
-    height: 16px;
-    width: 106%;
-    margin-left: -3%;
+/* Base Inferior Extrusionada en 3D (Hacia el frente) */
+.laptop-base-3d {
+    height: 38px;
+    width: 108%;
+    margin-left: -4%;
     background: linear-gradient(to bottom, 
-        #e2e8f0 0%, 
-        #cbd5e1 15%, 
-        #94a3b8 40%, 
-        #475569 75%, 
-        #1e293b 100%);
-    border-radius: 2px 2px 18px 18px;
+        #f8fafc 0%, 
+        #cbd5e1 12%, 
+        #64748b 35%, 
+        #334155 70%, 
+        #0f172a 100%);
+    border-radius: 3px 3px 22px 22px;
     position: relative;
     z-index: 5;
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
-    border-bottom: 3px solid #0f172a;
-    box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.75),
-        0 5px 15px rgba(0, 0, 0, 0.5),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+    transform: rotateX(24deg);
+    transform-origin: top center;
     transform-style: preserve-3d;
+    box-shadow: 
+        -20px 30px 60px rgba(0, 0, 0, 0.85),
+        0 15px 25px rgba(0, 0, 0, 0.6),
+        inset 0 1px 2px rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3px 12px;
+}
+
+/* Cubierta de Teclado y Trackpad */
+.keyboard-deck {
+    height: 18px;
+    background: rgba(15, 23, 42, 0.92);
+    border-radius: 4px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: 1px;
+}
+
+.keyboard-lines {
+    display: flex;
+    gap: 6px;
+    width: 65%;
+}
+
+.keyboard-lines span {
+    height: 3px;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 1px;
+    box-shadow: 0 0 4px rgba(6, 182, 212, 0.4);
+}
+
+.trackpad-recess {
+    width: 32px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+}
+
+/* Borde Frontal Biselado de la Base */
+.base-front-edge {
+    position: relative;
+    width: 100%;
 }
 
 .base-notch {
-    width: 68px;
+    width: 72px;
     height: 6px;
-    background: linear-gradient(to bottom, #090a0e 0%, #1e293b 100%);
+    background: linear-gradient(to bottom, #020617 0%, #1e293b 100%);
     border-radius: 0 0 6px 6px;
     margin: 0 auto;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-top: none;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9);
 }
 
-.laptop-shadow {
-    width: 98%;
-    height: 16px;
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 80%);
-    filter: blur(10px);
-    margin: 6px auto 0;
+/* Sombra Proyectada de Suelo en Perspectiva 3D */
+.laptop-floor-shadow {
+    position: absolute;
+    bottom: -45px;
+    left: 2%;
+    width: 96%;
+    height: 35px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 75%);
+    filter: blur(14px);
     border-radius: 50%;
-    transform: scaleY(0.6);
+    transform: rotateX(70deg) rotateZ(-4deg);
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* --- CONTROLES DE NAVEGACIÓN (FLECHAS Y DOTS CENTRALES) --- */
