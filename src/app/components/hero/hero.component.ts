@@ -97,24 +97,35 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
     const host = this.el.nativeElement;
     this.prepareSplitHeadings();
 
-    // Visualización inicial limpia de la Slide 0
-    const slide0Left = host.querySelector('.slide-text-left:nth-child(1)');
-    const slide0Right = host.querySelector('.slide-text-right:nth-child(1)');
-    const slide0Screen = host.querySelector('.slide-screen-content:nth-child(1)');
+    const leftSlides = Array.from(host.querySelectorAll('.slide-text-left')) as HTMLElement[];
+    const rightSlides = Array.from(host.querySelectorAll('.slide-text-right')) as HTMLElement[];
+    const screenSlides = Array.from(host.querySelectorAll('.slide-screen-content')) as HTMLElement[];
 
-    if (slide0Left && slide0Right && slide0Screen) {
-      const outers = Array.from(slide0Left.querySelectorAll('.outer'))
-        .concat(Array.from(slide0Right.querySelectorAll('.outer')))
-        .concat(Array.from(slide0Screen.querySelectorAll('.outer')));
-      const inners = Array.from(slide0Left.querySelectorAll('.inner'))
-        .concat(Array.from(slide0Right.querySelectorAll('.inner')))
-        .concat(Array.from(slide0Screen.querySelectorAll('.inner')));
-      const images = Array.from(slide0Screen.querySelectorAll('.bg'));
+    // Inicializar los contenedores de las pantallas para que las imágenes estén listas y visibles
+    screenSlides.forEach((screen, idx) => {
+      const outers = Array.from(screen.querySelectorAll('.outer'));
+      const inners = Array.from(screen.querySelectorAll('.inner'));
+      const images = Array.from(screen.querySelectorAll('.bg'));
+      if (idx === 0) {
+        gsap.set(outers, { yPercent: 0, opacity: 1 });
+        gsap.set(inners, { yPercent: 0 });
+        gsap.set(images, { yPercent: 0 });
+      } else {
+        gsap.set(outers, { yPercent: 100, opacity: 0 });
+        gsap.set(inners, { yPercent: -100 });
+        gsap.set(images, { yPercent: 15 });
+      }
+    });
+
+    if (leftSlides[0] && rightSlides[0]) {
+      const outers = Array.from(leftSlides[0].querySelectorAll('.outer'))
+        .concat(Array.from(rightSlides[0].querySelectorAll('.outer')));
+      const inners = Array.from(leftSlides[0].querySelectorAll('.inner'))
+        .concat(Array.from(rightSlides[0].querySelectorAll('.inner')));
       const chars = this.splitCharsMap.get(0) || [];
 
       gsap.set(outers, { yPercent: 0, opacity: 1 });
       gsap.set(inners, { yPercent: 0 });
-      gsap.set(images, { yPercent: 0 });
       if (chars.length > 0) {
         gsap.set(chars, { autoAlpha: 1, yPercent: 0 });
       }
