@@ -137,12 +137,12 @@ export class ContactComponent implements OnInit {
       "Tema de Interés": this.contactForm.value.topic,
       "Método de Contacto Preferido": this.contactForm.value.contactMethod,
       "_subject": `Nueva Consulta / Auditoría - ${this.contactForm.value.name}`,
-      "_cc": "o.thomason@bytewise.mx",
+      "_cc": "contact@bytewise.mx",
       "_template": "table",
       "_captcha": "false"
     };
 
-    this.http.post('https://formsubmit.co/ajax/contact@bytewise.mx', payload).subscribe({
+    this.http.post('https://formsubmit.co/ajax/ot.thomason@bytewise.mx', payload).subscribe({
       next: () => {
         this.isSending = false;
         this.isSubmitted = true;
