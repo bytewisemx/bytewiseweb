@@ -239,6 +239,15 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
   private splitHeadingIntoSpans(heading: HTMLElement): HTMLElement[] {
     const chars: HTMLElement[] = [];
     const walk = (node: Node, parent: HTMLElement) => {
+      // Preservar elementos highlight-text como unidades animadas completas sin romper en letras traslúcidas
+      if (node.nodeType === Node.ELEMENT_NODE && (node as HTMLElement).classList.contains('highlight-text')) {
+        const el = node as HTMLElement;
+        el.classList.add('clip-text-char');
+        el.style.display = 'inline-block';
+        chars.push(el);
+        return;
+      }
+
       if (node.nodeType === Node.TEXT_NODE) {
         const text = node.textContent || '';
         const frag = document.createDocumentFragment();

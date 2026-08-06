@@ -265,26 +265,42 @@
     -webkit-hyphens: none !important;
 }
 
+.highlight-text {
+    display: inline-block;
+    vertical-align: top;
+    word-break: keep-all !important;
+    word-wrap: normal !important;
+    white-space: nowrap !important;
+}
+
 .highlight-text.cyan {
     background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 60%, #06b6d4 100%);
+    background-clip: text;
     -webkit-background-clip: text;
+    color: transparent;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 16px rgba(0, 242, 254, 0.75));
+    filter: drop-shadow(0 0 16px rgba(0, 242, 254, 0.8));
     font-weight: 900;
 }
 
 .highlight-text.gold {
     background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    background-clip: text;
     -webkit-background-clip: text;
+    color: transparent;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.6));
+    filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.7));
+    font-weight: 900;
 }
 
 .highlight-text.purple {
     background: linear-gradient(135deg, #e879f9 0%, #c084fc 100%);
+    background-clip: text;
     -webkit-background-clip: text;
+    color: transparent;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.6));
+    filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.7));
+    font-weight: 900;
 }
 
 /* Títulos del Panel Derecho con Relieve 3D */
