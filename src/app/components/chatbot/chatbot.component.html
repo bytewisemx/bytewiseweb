@@ -1,9 +1,10 @@
 <!-- BOTÓN PRINCIPAL INTUITIVO Y SOBRIO DE CHATBOT (ESQUINA SUPERIOR DERECHA) -->
 <button class="chatbot-trigger-btn" (click)="toggleChatbot()" aria-label="Abrir asistente de IA">
-  <svg class="chat-icon-svg" viewBox="0 0 28 28" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M24 13.5C24 18.1944 19.5228 22 14 22C12.35 22 10.7853 21.6631 9.4 21.0556L4 23L5.6 18.8C4.59385 17.2667 4 15.4556 4 13.5C4 8.80558 8.47715 5 14 5C19.5228 5 24 8.80558 24 13.5Z" 
-          stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(6, 182, 212, 0.15)"/>
-    <text x="14" y="16.2" font-family="'TikTok Sans', sans-serif" font-size="8.5" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="0.3">IA</text>
+  <svg class="chat-icon-svg" viewBox="0 0 32 32" width="44" height="44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M26 14.5C26 19.7467 21.0751 24 15 24C13.187 24 11.4727 23.63 9.9554 22.9649L4 25L5.7535 20.3957C4.6508 18.7188 4 16.6974 4 14.5C4 9.25329 8.92487 5 15 5C21.0751 5 26 9.25329 26 14.5Z" 
+          fill="rgba(15, 23, 42, 0.9)" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="15" y="17.8" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">IA</text>
+    <circle cx="23" cy="8" r="3" fill="#ffffff" stroke="#0a0e17" stroke-width="1.5"/>
   </svg>
 </button>
 
@@ -14,7 +15,6 @@
     <div class="bot-info-group">
       <div class="bot-avatar-container">
         <img src="img/escudo.png" alt="ByteWise Shield" class="bot-avatar-img" />
-        <span class="bot-online-indicator"></span>
       </div>
       <div class="bot-title-box">
         <div class="bot-name">ByteWise AI</div>
@@ -34,11 +34,6 @@
     <div class="messages-list">
       @for (msg of messages; track msg.id) {
         <div class="chat-bubble-wrapper" [class.user]="msg.sender === 'user'" [class.bot]="msg.sender === 'bot'">
-          @if (msg.sender === 'bot') {
-            <div class="bubble-avatar">
-              <img src="img/escudo.png" alt="Shield" />
-            </div>
-          }
           <div class="chat-bubble">
             <p class="bubble-text">{{ msg.text }}</p>
             <span class="bubble-time">{{ msg.timestamp | date:'HH:mm' }}</span>
@@ -48,9 +43,6 @@
 
       @if (isLoading) {
         <div class="chat-bubble-wrapper bot">
-          <div class="bubble-avatar">
-            <img src="img/escudo.png" alt="Shield" />
-          </div>
           <div class="chat-bubble typing">
             <div class="typing-dots">
               <span></span>

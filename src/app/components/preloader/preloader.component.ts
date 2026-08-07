@@ -10,22 +10,23 @@ export class PreloaderComponent implements OnInit {
   isHidden = false;
 
   ngOnInit() {
-    const hide = () => {
-      // Esperar a que termine la animación del escudo (2.8s) + breve pausa
+    const minDisplayTime = 2800;
+    const startTime = Date.now();
+
+    const finishLoading = () => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+
       setTimeout(() => {
         this.isHidden = true;
-      }, 3200);
+      }, remainingTime);
     };
 
     if (document.readyState === 'complete') {
-      hide();
+      finishLoading();
     } else {
-      window.addEventListener('load', hide);
+      window.addEventListener('load', finishLoading, { once: true });
+      setTimeout(finishLoading, 3800);
     }
-
-    // Fallback de seguridad
-    setTimeout(() => {
-      this.isHidden = true;
-    }, 5000);
   }
 }

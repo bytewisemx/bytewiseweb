@@ -4,20 +4,12 @@
             <img src="img/logooficial.png" alt="ByteWise Logo" class="logo-img">
         </a>
         
-        <nav class="nav-menu" [class.open]="isMenuOpen">
-            <a href="#hero" class="nav-link" [class.active]="activeLink === 'hero'" (click)="setLink('hero')">Inicio</a>
-            <a href="#features" class="nav-link" [class.active]="activeLink === 'features'" (click)="setLink('features')">Servicios</a>
-            <a href="#stats" class="nav-link" [class.active]="activeLink === 'stats'" (click)="setLink('stats')">Impacto</a>
-            <a href="#contact" class="nav-link" [class.active]="activeLink === 'contact'" (click)="setLink('contact')">Contacto</a>
+        <nav class="nav-menu" (mouseleave)="onNavMouseLeave()">
+            <div class="liquid-indicator" [ngStyle]="indicatorStyle"></div>
+            <a #linkHero href="#hero" class="nav-link" [class.active]="activeLink === 'hero'" (mouseenter)="onLinkHover($event)" (click)="setLink('hero', $event)">Inicio</a>
+            <a #linkFeatures href="#features" class="nav-link" [class.active]="activeLink === 'features'" (mouseenter)="onLinkHover($event)" (click)="setLink('features', $event)">Servicios</a>
+            <a #linkStats href="#stats" class="nav-link" [class.active]="activeLink === 'stats'" (mouseenter)="onLinkHover($event)" (click)="setLink('stats', $event)">Impacto</a>
+            <a #linkContact href="#contact" class="nav-link" [class.active]="activeLink === 'contact'" (mouseenter)="onLinkHover($event)" (click)="setLink('contact', $event)">Contacto</a>
         </nav>
-
-        <div class="nav-actions">
-            <!-- Botón de Menú Móvil -->
-            <button class="mobile-menu-btn" [class.open]="isMenuOpen" (click)="toggleMenu()" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
     </div>
 </header>

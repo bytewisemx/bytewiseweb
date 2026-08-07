@@ -262,16 +262,25 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
       if (node.nodeType === Node.TEXT_NODE) {
         const text = node.textContent || '';
         const frag = document.createDocumentFragment();
-        for (const char of text) {
-          if (char === ' ' || char === '\n' || char === '\r') {
-            frag.appendChild(document.createTextNode(char));
-          } else {
-            const span = document.createElement('span');
-            span.className = 'clip-text-char';
-            span.style.display = 'inline-block';
-            span.textContent = char;
-            frag.appendChild(span);
-            chars.push(span);
+        const words = text.split(/(\s+)/); // Split keeping spaces
+
+        for (const word of words) {
+          if (/^\s+$/.test(word)) {
+            frag.appendChild(document.createTextNode(word));
+          } else if (word.length > 0) {
+            const wordSpan = document.createElement('span');
+            wordSpan.style.display = 'inline-block';
+            wordSpan.style.whiteSpace = 'nowrap';
+            
+            for (const char of word) {
+              const span = document.createElement('span');
+              span.className = 'clip-text-char';
+              span.style.display = 'inline-block';
+              span.textContent = char;
+              wordSpan.appendChild(span);
+              chars.push(span);
+            }
+            frag.appendChild(wordSpan);
           }
         }
         parent.replaceChild(frag, node);
@@ -375,7 +384,6 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
         .concat(Array.from(currentScreen.querySelectorAll('.outer')));
       
       const currentImages = Array.from(currentScreen.querySelectorAll('.bg'));
-
       tl.to(currentImages, { yPercent: -15 * dFactor, duration: 0.6 }, 0)
         .to(currentOuters, { yPercent: -100 * dFactor, opacity: 0, duration: 0.6 }, 0);
     }
@@ -417,6 +425,37 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
             from: "random"
           }
         }, 0.15);
+      }
+
+      // Animar el botón global 3D
+      const colors = ['#f59e0b', '#06b6d4', '#a78bfa'];
+      const nextColor = colors[nextIndex];
+      const globalCubeSlider = host.querySelector('#global-cube-slider') as HTMLElement;
+      
+      if (globalCubeSlider) {
+        if (dFactor === 1) {
+          globalCubeSlider.style.setProperty('--cube-bottom-bg', nextColor);
+          tl.to(globalCubeSlider, { 
+            rotateX: 90, 
+            duration: 0.85, 
+            ease: "power2.inOut",
+            onComplete: () => {
+              globalCubeSlider.style.setProperty('--cube-front-bg', nextColor);
+              gsap.set(globalCubeSlider, { rotateX: 0 });
+            }
+          }, 0);
+        } else {
+          globalCubeSlider.style.setProperty('--cube-top-bg', nextColor);
+          tl.to(globalCubeSlider, { 
+            rotateX: -90, 
+            duration: 0.85, 
+            ease: "power2.inOut",
+            onComplete: () => {
+              globalCubeSlider.style.setProperty('--cube-front-bg', nextColor);
+              gsap.set(globalCubeSlider, { rotateX: 0 });
+            }
+          }, 0);
+        }
       }
     }
   }

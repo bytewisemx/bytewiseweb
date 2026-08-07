@@ -385,24 +385,18 @@
     width: min(400px, 90vw);
     z-index: 99999;
     pointer-events: auto;
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
-    background-color: rgba(10, 16, 30, 0.65);
-    border: 1.5px solid rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(28px) saturate(190%);
-    -webkit-backdrop-filter: blur(28px) saturate(190%);
-    box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.65),
-        inset 0 1px 2px rgba(255, 255, 255, 0.4),
-        inset 0 -1px 2px rgba(0, 0, 0, 0.5),
-        0 0 30px rgba(6, 182, 212, 0.15);
+    background: rgba(12, 16, 26, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.2);
     color: #ffffff;
     font-family: 'Space Grotesk', var(--font-titles), sans-serif;
     isolation: isolate;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.4s ease,
-                box-shadow 0.4s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease;
 }
 
 /* Reflejo de cristal superior */
@@ -413,20 +407,17 @@
     left: -50%;
     width: 200%;
     height: 48%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 80%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 80%);
     transform: rotate(-12deg);
     pointer-events: none;
     z-index: 0;
-    opacity: 0.5;
+    opacity: 0.3;
 }
 
 .toast-popup:hover {
-    transform: translateY(-3px) scale(1.01);
-    border-color: rgba(255, 255, 255, 0.38);
-    box-shadow: 
-        0 25px 60px rgba(0, 0, 0, 0.75),
-        inset 0 1px 2px rgba(255, 255, 255, 0.6),
-        0 0 35px rgba(6, 182, 212, 0.25);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
 }
 
 /* Posiciones */
@@ -445,27 +436,23 @@
     right: 28px;
 }
 
-/* Entrada Suave y Formal (Formal Glass Entrance) */
+/* Entrada Lenta y Elegante */
 .toast-slide-left {
-    animation: formalGlassSlideLeft 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: formalGlassSlideLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .toast-slide-right {
-    animation: formalGlassSlideRight 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: formalGlassSlideRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes formalGlassSlideLeft {
     0% {
-        transform: translateX(-45px) translateY(20px) scale(0.94);
+        transform: translateX(-60px) translateY(20px);
         opacity: 0;
-        filter: blur(8px);
-    }
-    60% {
-        opacity: 0.9;
-        filter: blur(1px);
+        filter: blur(10px);
     }
     100% {
-        transform: translateX(0) translateY(0) scale(1);
+        transform: translateX(0) translateY(0);
         opacity: 1;
         filter: blur(0);
     }
@@ -473,16 +460,12 @@
 
 @keyframes formalGlassSlideRight {
     0% {
-        transform: translateX(45px) translateY(20px) scale(0.94);
+        transform: translateX(60px) translateY(20px);
         opacity: 0;
-        filter: blur(8px);
-    }
-    60% {
-        opacity: 0.9;
-        filter: blur(1px);
+        filter: blur(10px);
     }
     100% {
-        transform: translateX(0) translateY(0) scale(1);
+        transform: translateX(0) translateY(0);
         opacity: 1;
         filter: blur(0);
     }
@@ -493,15 +476,16 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 5px;
+    width: 4px;
     height: 100%;
-    border-radius: 20px 0 0 20px;
+    border-radius: 16px 0 0 16px;
     z-index: 2;
 }
 
-.accent-blue {
-    background: linear-gradient(180deg, #00f2fe, #38bdf8);
-    box-shadow: 0 0 14px rgba(0, 242, 254, 0.6);
+.accent-white {
+    background: #ffffff;
+    opacity: 0.6;
+    box-shadow: none;
 }
 
 /* Cuerpo del toast (sin logo, centrado en legibilidad alta) */
@@ -540,9 +524,9 @@
 }
 
 .toast-text strong, .text-blue {
-    color: #38bdf8 !important;
-    font-weight: 800;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    color: #ffffff !important;
+    font-weight: 700;
+    text-shadow: none;
 }
 
 /* Botón cerrar estilo cristal */
@@ -550,13 +534,13 @@
     position: absolute;
     top: 14px;
     right: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 1.1rem;
     width: 26px;
     height: 26px;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
     line-height: 1;
     display: flex;
@@ -568,17 +552,17 @@
 }
 
 .toast-close:hover {
-    color: #ef4444;
-    background: rgba(239, 68, 68, 0.2);
-    border-color: rgba(239, 68, 68, 0.4);
-    transform: scale(1.1);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
 }
 
 /* Barra de progreso (timer) */
 .toast-timer {
-    height: 3.5px;
+    height: 2px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.08);
     position: relative;
     z-index: 2;
 }
@@ -589,18 +573,8 @@
     transform-origin: left center;
 }
 
-.timer-6s {
-    background: linear-gradient(90deg, #f59e0b, #d97706);
-    animation: shrink-bar 6s linear forwards;
-}
-
-.timer-7s {
-    background: linear-gradient(90deg, #00c8ff, #06b6d4);
-    animation: shrink-bar 7s linear forwards;
-}
-
-.timer-8s {
-    background: linear-gradient(90deg, #8b5cf6, #a855f7);
+.timer-6s, .timer-7s, .timer-8s {
+    background: rgba(255, 255, 255, 0.6);
     animation: shrink-bar 8s linear forwards;
 }
 
@@ -671,5 +645,12 @@
    ========================================================================== */
 .relief-card-multi {
     animation: fadeInModal 0.4s ease-out;
+}
+
+/* Ocultar popups flotantes en dispositivos móviles */
+@media (max-width: 768px) {
+    .toast-popup {
+        display: none !important;
+    }
 }
 

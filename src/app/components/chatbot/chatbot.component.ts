@@ -45,7 +45,7 @@ export class ChatbotComponent implements OnInit, AfterViewChecked {
     this.messages.push({
       id: 'msg_welcome',
       sender: 'bot',
-      text: '¡Hola! Soy el asistente inteligente de **ByteWise**. ¿En qué puedo ayudarte a blindar tu infraestructura o impulsar tu TI hoy?',
+      text: '¡Hola! Soy el asistente inteligente de ByteWise. ¿En qué puedo ayudarte a blindar tu infraestructura o impulsar tu TI hoy?',
       timestamp: new Date()
     });
   }

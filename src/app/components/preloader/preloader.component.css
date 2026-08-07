@@ -33,7 +33,10 @@
     width: 150px;
     height: 150px;
     margin-bottom: 28px;
-    perspective: 600px;
+    perspective: 800px;
+    -webkit-perspective: 800px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
     animation: shield-spin-3d 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
@@ -41,10 +44,10 @@
     0% {
         transform: rotateY(0deg) scale(0.85);
     }
-    40% {
-        transform: rotateY(360deg) scale(1.05);
+    50% {
+        transform: rotateY(360deg) scale(1.08);
     }
-    60% {
+    70% {
         transform: rotateY(360deg) scale(1);
     }
     100% {
@@ -62,6 +65,8 @@
     object-fit: contain;
     pointer-events: none;
     user-select: none;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
 }
 
 /* Capa base: escala de grises completa */
@@ -103,7 +108,16 @@
     width: 100%;
     height: 100%;
     z-index: 3;
-    transform: rotate(-90deg);
+    animation: ring-rotate-spin 2.8s linear infinite;
+}
+
+@keyframes ring-rotate-spin {
+    0% {
+        transform: rotate(-90deg);
+    }
+    100% {
+        transform: rotate(270deg);
+    }
 }
 
 .ring-track {

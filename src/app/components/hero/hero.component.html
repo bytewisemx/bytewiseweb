@@ -32,7 +32,7 @@
                 <div class="outer">
                     <div class="inner">
                         <h1 class="hero-title section-heading">
-                            Seguridad <span class="highlight-text gold">blindada</span> <br>bajo la Norma <span class="highlight-text gold" style="white-space: nowrap; display: inline-block;">ISO 27001</span>
+                            Seguridad <span class="highlight-text gold">blindada</span> bajo la Norma <span class="highlight-text gold" style="white-space: nowrap; display: inline-block;">ISO 27001</span>
                         </h1>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="outer">
                     <div class="inner">
                         <h1 class="hero-title section-heading">
-                            Infraestructura que <br>impulsa tu <span class="highlight-text cyan">crecimiento</span>
+                            Infraestructura que impulsa tu <span class="highlight-text cyan">crecimiento</span>
                         </h1>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="outer">
                     <div class="inner">
                         <h1 class="hero-title section-heading">
-                            Automatiza e innova <br>con <span class="highlight-text purple">Inteligencia Artificial</span>
+                            Automatiza e innova con <span class="highlight-text purple">Inteligencia Artificial</span>
                         </h1>
                     </div>
                 </div>
@@ -120,16 +120,9 @@
             <div class="slide-text-right" [class.active]="activeIndex === 0">
                 <div class="outer">
                     <div class="inner">
-                        <h3 class="right-pane-title gold">Protección <span style="white-space: nowrap;">ISO 27001 & SOC</span></h3>
                         <p class="hero-subtitle">
                             Implementamos sistemas de gestión basados en <span style="white-space: nowrap;">ISO 27001:2022</span>. Desde la evaluación inicial hasta controles avanzados, aseguramos la integridad y confidencialidad de tus datos.
                         </p>
-                        <a href="#features" class="btn-learn-more gold">
-                            <span class="btn-glass-box">
-                                <span class="btn-text">NUESTROS SERVICIOS</span>
-                            </span>
-                            <span class="slide-number-floating">01</span>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -137,16 +130,9 @@
             <div class="slide-text-right" [class.active]="activeIndex === 1">
                 <div class="outer">
                     <div class="inner">
-                        <h3 class="right-pane-title cyan">Gestión y Operaciones de TI</h3>
                         <p class="hero-subtitle">
                             Externaliza el soporte y administración de TI con expertos dedicados. Optimiza costes, mejora tu infraestructura tecnológica y céntrate en el core de tu negocio.
                         </p>
-                        <a href="#features" class="btn-learn-more cyan">
-                            <span class="btn-glass-box">
-                                <span class="btn-text">NUESTROS SERVICIOS</span>
-                            </span>
-                            <span class="slide-number-floating">02</span>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -154,18 +140,22 @@
             <div class="slide-text-right" [class.active]="activeIndex === 2">
                 <div class="outer">
                     <div class="inner">
-                        <h3 class="right-pane-title purple">Automatización e IA Predictiva</h3>
                         <p class="hero-subtitle">
                             Integra Inteligencia Artificial en tus flujos de trabajo. Automatiza tareas repetitivas, implementa asistentes virtuales avanzados y analiza datos predictivos en tiempo real.
                         </p>
-                        <a href="#features" class="btn-learn-more purple">
-                            <span class="btn-glass-box">
-                                <span class="btn-text">NUESTROS SERVICIOS</span>
-                            </span>
-                            <span class="slide-number-floating">03</span>
-                        </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Botón Global Enclavado -->
+            <div class="global-button-wrapper">
+                <a href="#features" class="btn-learn-more cube-btn">
+                    <span class="cube-slider" id="global-cube-slider">
+                        <span class="cube-face cube-top">NUESTROS SERVICIOS</span>
+                        <span class="cube-face cube-front">NUESTROS SERVICIOS</span>
+                        <span class="cube-face cube-bottom">NUESTROS SERVICIOS</span>
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -178,9 +168,9 @@
             </button>
             
             <div class="slider-dots">
-                <span class="dot" [class.active]="activeIndex === 0" (click)="goToSlide(0)" aria-label="Slide 1"></span>
-                <span class="dot" [class.active]="activeIndex === 1" (click)="goToSlide(1)" aria-label="Slide 2"></span>
-                <span class="dot" [class.active]="activeIndex === 2" (click)="goToSlide(2)" aria-label="Slide 3"></span>
+                <span class="dot" [class.active]="activeIndex === 0" [style.backgroundColor]="activeIndex === 0 ? accentColors[0] : ''" (click)="goToSlide(0)" aria-label="Slide 1"></span>
+                <span class="dot" [class.active]="activeIndex === 1" [style.backgroundColor]="activeIndex === 1 ? accentColors[1] : ''" (click)="goToSlide(1)" aria-label="Slide 2"></span>
+                <span class="dot" [class.active]="activeIndex === 2" [style.backgroundColor]="activeIndex === 2 ? accentColors[2] : ''" (click)="goToSlide(2)" aria-label="Slide 3"></span>
             </div>
 
             <button type="button" class="control-arrow next" (click)="nextSlide()" aria-label="Siguiente">

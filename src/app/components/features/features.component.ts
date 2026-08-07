@@ -443,6 +443,7 @@ export class FeaturesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.activeModalCard = this.serviceCards.find(c => c.id === id) || null;
     if (isPlatformBrowser(this.platformId)) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     }
   }
 
@@ -451,6 +452,7 @@ export class FeaturesComponent implements OnInit, AfterViewInit, OnDestroy {
     this.activeModalCard = null;
     if (isPlatformBrowser(this.platformId)) {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
   }
 
