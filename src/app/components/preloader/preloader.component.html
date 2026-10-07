@@ -1,21 +1,50 @@
 <div class="preloader" [class.hidden]="isHidden">
     <div class="preloader-content">
-        <!-- Escudo con efecto de relleno de color -->
+        <!-- Escudo con efecto de escaneo e iluminación cibernética -->
         <div class="shield-loader-wrap">
-            <!-- Capa base en escala de grises -->
-            <img src="img/escudo.png" alt="ByteWise Shield" class="shield-img shield-grayscale" />
-            <!-- Capa coloreada con máscara de revelado progresivo -->
-            <img src="img/escudo.png" alt="" class="shield-img shield-color" aria-hidden="true" />
-            <!-- Anillo de progreso circundante -->
+            <!-- Halo ambiental 100% circular sin artefactos rectangulares -->
+            <div class="shield-ambient-glow"></div>
+
+            <!-- Anillo SVG de precisión tecnológica con gradiente de alta definición -->
             <svg class="shield-ring" viewBox="0 0 160 160">
-                <circle class="ring-track" cx="80" cy="80" r="74" />
-                <circle class="ring-progress" cx="80" cy="80" r="74" />
+                <defs>
+                    <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#00f2fe" />
+                        <stop offset="50%" stop-color="#3b82f6" />
+                        <stop offset="100%" stop-color="#a855f7" />
+                    </linearGradient>
+                </defs>
+                <!-- Guía orbital exterior sutil -->
+                <circle class="ring-track-outer" cx="80" cy="80" r="76" />
+                <!-- Anillo de progreso dinámico principal -->
+                <circle class="ring-progress" cx="80" cy="80" r="72" />
+                <!-- Anillo orbital interior punteado -->
+                <circle class="ring-track-inner" cx="80" cy="80" r="64" />
             </svg>
-            <!-- Destello de brillo al completarse -->
-            <div class="shield-glow"></div>
+
+            <!-- Contenedor del Escudo nítido de alta resolución -->
+            <div class="shield-canvas">
+                <!-- Capa monocromática base -->
+                <img src="img/escudo.png" alt="ByteWise Shield" class="shield-img shield-base" />
+                <!-- Capa a color con revelado progresivo fluido -->
+                <div class="shield-color-wrapper">
+                    <img src="img/escudo.png" alt="" class="shield-img shield-color" aria-hidden="true" />
+                </div>
+                <!-- Haz de luz cibernético de barrido vertical -->
+                <div class="shield-scanline"></div>
+            </div>
+
+            <!-- Destello de pulso circular al completarse -->
+            <div class="shield-pulse-ring"></div>
         </div>
-        <!-- Texto de marca -->
-        <p class="preload-brand-text">BYTEWISE</p>
-        <p class="preload-sub-text">Data & Cybersecurity</p>
+
+        <!-- Identidad de Marca Tipográfica de Vanguardia -->
+        <div class="preload-brand-group">
+            <p class="preload-brand-text">BYTEWISE</p>
+            <div class="preload-status-bar">
+                <span class="status-pulse-dot"></span>
+                <span class="preload-sub-text">DATA & CYBERSECURITY</span>
+            </div>
+        </div>
     </div>
 </div>

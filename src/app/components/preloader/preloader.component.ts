@@ -10,7 +10,7 @@ export class PreloaderComponent implements OnInit {
   isHidden = false;
 
   ngOnInit() {
-    const minDisplayTime = 2800;
+    const minDisplayTime = 2600;
     const startTime = Date.now();
 
     const finishLoading = () => {
