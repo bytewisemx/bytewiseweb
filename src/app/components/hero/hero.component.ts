@@ -30,33 +30,33 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Gradientes y orbes luminosos dinámicos para los 2 recuadros divididos del fondo
   bgLeftGradients = [
-    'radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.15) 0%, #030408 80%)',  // Slide 0: Dorado
+    'radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.16) 0%, #030408 80%)',  // Slide 0: Azul Cobalto Tecnológico
     'radial-gradient(circle at 20% 40%, rgba(0, 242, 254, 0.22) 0%, rgba(4, 12, 24, 0.95) 45%, #02040a 85%)',   // Slide 1: Cian Cinematográfico
-    'radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.18) 0%, #030209 80%)'   // Slide 2: Violeta
+    'radial-gradient(circle at 20% 50%, rgba(226, 232, 240, 0.12) 0%, rgba(100, 116, 139, 0.05) 50%, #030406 80%)'   // Slide 2: Blanco / Gris Platino
   ];
 
   bgRightGradients = [
-    'linear-gradient(135deg, rgba(180, 110, 10, 0.25) 0%, #030408 100%)',   // Slide 0: Dorado ocre
+    'linear-gradient(135deg, rgba(29, 78, 216, 0.22) 0%, #030408 100%)',   // Slide 0: Azul Zafiro Profundo
     'linear-gradient(135deg, #02040a 0%, rgba(6, 182, 212, 0.25) 60%, #02050e 100%)',   // Slide 1: Cian profundo
-    'linear-gradient(135deg, rgba(100, 40, 180, 0.25) 0%, #030209 100%)'   // Slide 2: Violeta profundo
+    'linear-gradient(135deg, rgba(148, 163, 184, 0.15) 0%, rgba(30, 41, 59, 0.3) 60%, #030406 100%)'   // Slide 2: Blanco / Gris Platino
   ];
 
   bgLeftOrbs = [
-    'radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, transparent 70%)',
+    'radial-gradient(circle, rgba(37, 99, 235, 0.45) 0%, transparent 70%)',
     'radial-gradient(circle, rgba(6, 182, 212, 0.55) 0%, transparent 70%)',
-    'radial-gradient(circle, rgba(139, 92, 246, 0.45) 0%, transparent 70%)'
+    'radial-gradient(circle, rgba(226, 232, 240, 0.35) 0%, transparent 70%)'
   ];
 
   bgRightOrbs = [
-    'radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, transparent 70%)',
+    'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
     'radial-gradient(circle, rgba(56, 189, 248, 0.55) 0%, transparent 70%)',
-    'radial-gradient(circle, rgba(167, 139, 250, 0.4) 0%, transparent 70%)'
+    'radial-gradient(circle, rgba(203, 213, 225, 0.35) 0%, transparent 70%)'
   ];
 
   accentColors = [
-    '#f59e0b', // Slide 0: Dorado
+    '#2563eb', // Slide 0: Azul Cobalto
     '#06b6d4', // Slide 1: Cian
-    '#a78bfa'  // Slide 2: Violeta
+    '#e2e8f0'  // Slide 2: Blanco / Gris Platino
   ];
 
   // Lógica de Símbolos Flotantes
@@ -68,7 +68,7 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
     '0001', '1010', '011', '100', '0x1', '0xF', '</>', '{}', 
     '⚡', '✦', '◇', '▲', '◈', '❖', '⌬', '⎔', '⌘', '⚙'
   ];
-  symbolColors = ['#f59e0b', '#06b6d4', '#a78bfa'];
+  symbolColors = ['#3b82f6', '#06b6d4', '#e2e8f0'];
 
   private splitCharsMap: Map<number, HTMLElement[]> = new Map();
 
@@ -428,30 +428,36 @@ export class HeroComponent implements OnInit, OnDestroy, AfterViewInit {
       }
 
       // Animar el botón global 3D
-      const colors = ['#f59e0b', '#06b6d4', '#a78bfa'];
+      const colors = ['#2563eb', '#06b6d4', '#e2e8f0'];
+      const textColors = ['#ffffff', '#ffffff', '#090d16'];
       const nextColor = colors[nextIndex];
+      const nextTextColor = textColors[nextIndex];
       const globalCubeSlider = host.querySelector('#global-cube-slider') as HTMLElement;
       
       if (globalCubeSlider) {
         if (dFactor === 1) {
           globalCubeSlider.style.setProperty('--cube-bottom-bg', nextColor);
+          globalCubeSlider.style.setProperty('--cube-bottom-color', nextTextColor);
           tl.to(globalCubeSlider, { 
             rotateX: 90, 
             duration: 0.85, 
             ease: "power2.inOut",
             onComplete: () => {
               globalCubeSlider.style.setProperty('--cube-front-bg', nextColor);
+              globalCubeSlider.style.setProperty('--cube-front-color', nextTextColor);
               gsap.set(globalCubeSlider, { rotateX: 0 });
             }
           }, 0);
         } else {
           globalCubeSlider.style.setProperty('--cube-top-bg', nextColor);
+          globalCubeSlider.style.setProperty('--cube-top-color', nextTextColor);
           tl.to(globalCubeSlider, { 
             rotateX: -90, 
             duration: 0.85, 
             ease: "power2.inOut",
             onComplete: () => {
               globalCubeSlider.style.setProperty('--cube-front-bg', nextColor);
+              globalCubeSlider.style.setProperty('--cube-front-color', nextTextColor);
               gsap.set(globalCubeSlider, { rotateX: 0 });
             }
           }, 0);

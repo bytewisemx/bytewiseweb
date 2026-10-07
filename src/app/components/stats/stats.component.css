@@ -223,12 +223,12 @@
 }
 
 /* ==========================================================================
-   ORGANIZACIONES Y TESTIMONIOS EMPRESARIALES
+   ORGANIZACIONES Y TESTIMONIOS EMPRESARIALES (DISEÑO MINIMALISTA SOBRIO)
    ========================================================================== */
 .clients-impacto-wrapper {
     margin-top: 90px;
-    padding-top: 40px;
-    border-top: 1px dashed rgba(6, 182, 212, 0.2);
+    padding-top: 45px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .clients-header-block {
@@ -239,15 +239,15 @@
 
 .clients-intro-text {
     font-size: 1.05rem;
-    color: #cbd5e1;
+    color: #94a3b8;
     line-height: 1.65;
     margin-bottom: 20px;
 }
 
 .collaborators-subnote {
-    font-size: 0.9rem;
-    color: #94a3b8;
-    font-style: italic;
+    font-size: 0.88rem;
+    color: #64748b;
+    font-style: normal;
     margin-top: 16px;
 }
 
@@ -261,66 +261,109 @@
     height: 380px;
 }
 
+.slide-col-testimonial .hero {
+    border-radius: 14px;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+}
+
+/* Tarjeta de Testimonio Minimalista Sobria: sin difuminados neón ni resplandores fluorescentes */
 .testimonial-glass-card {
-    min-height: 280px;
-    max-height: 360px;
+    min-height: 290px;
+    max-height: 370px;
+    background: rgba(10, 16, 28, 0.90) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    box-shadow: 
+        0 24px 50px -15px rgba(0, 0, 0, 0.85),
+        0 1px 2px rgba(255, 255, 255, 0.04) !important;
+    padding: 34px 38px !important;
 }
 
-.testimonial-user-badge {
+.testimonial-card-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-between;
     gap: 16px;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 }
 
-.user-avatar-initials {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #00c8ff, #8b5cf6);
-    color: #ffffff;
-    font-family: var(--font-titles);
-    font-weight: 800;
-    font-size: 1.15rem;
+.quote-mark-icon {
+    color: rgba(148, 163, 184, 0.22);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 16px rgba(6, 182, 212, 0.4);
     flex-shrink: 0;
+    margin-top: 2px;
 }
 
 .user-meta {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 }
 
 .user-fullname {
     font-family: var(--font-titles);
     font-weight: 700;
-    font-size: 1.1rem;
-    color: #ffffff;
+    font-size: 1.15rem;
+    color: #f8fafc;
+    letter-spacing: -0.01em;
 }
 
 .user-subtitle-tag {
-    font-size: 0.82rem;
-    color: #00c8ff;
-    font-weight: 500;
+    font-size: 0.84rem;
+    color: #94a3b8;
+    font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
 .testimonial-quote-text {
     font-size: 0.98rem;
-    line-height: 1.65;
+    line-height: 1.72;
     color: #e2e8f0;
-    font-style: italic;
-    margin: 0 0 16px;
+    font-style: normal;
+    margin: 0 0 22px;
+    font-weight: 400;
 }
 
-.company-tag-footer {
+.testimonial-footer-row {
+    display: flex;
+    align-items: center;
+}
+
+.company-badge-pill {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
     font-family: var(--font-titles);
-    font-size: 0.76rem;
-    color: #94a3b8;
+    font-size: 0.74rem;
+    color: #cbd5e1;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* Indicadores minimalistas para el slider de testimonios */
+.testimonials-slider-main .indicator {
+    margin-top: 2rem;
+}
+
+.testimonials-slider-main .indicator .btn {
+    height: 4px;
+    width: 22px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.18);
+    margin: 4px 5px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonials-slider-main .indicator .btn.active {
+    width: 42px;
+    background: rgba(255, 255, 255, 0.85);
 }
 
 /* ==========================================================================
@@ -329,7 +372,7 @@
 .team-impacto-wrapper {
     margin-top: 100px;
     padding-top: 50px;
-    border-top: 1px dashed rgba(6, 182, 212, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .team-header-block {
@@ -340,9 +383,9 @@
 
 .team-subheading {
     font-family: var(--font-titles);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #00c8ff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #94a3b8;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 8px;

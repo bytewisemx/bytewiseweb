@@ -42,8 +42,8 @@
   height: 100%;
   background-image:
     radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.08), transparent 30%),
-    radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.08), transparent 32%);
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.04), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.03), transparent 32%);
   background-size: 22px 22px, auto, auto;
   background-position: 0 0, center, center;
   opacity: 0.32;
@@ -56,7 +56,7 @@
   position: absolute;
   inset: auto 12% -4rem;
   height: 9rem;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.08), transparent 64%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.04), transparent 64%);
   filter: blur(12px);
   opacity: 0.45;
   pointer-events: none;
@@ -118,7 +118,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.18), transparent 52%);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent 52%);
   opacity: 0;
   transition: opacity 500ms ease;
   pointer-events: none;
@@ -128,8 +128,8 @@
 .service-deconstructed-card:hover,
 .service-deconstructed-card:focus-within {
   box-shadow:
-    0 36px 72px rgba(0, 0, 0, 0.42),
-    0 0 0 1px rgba(6, 182, 212, 0.15) inset;
+    0 36px 72px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(255, 255, 255, 0.16) inset;
 }
 
 .service-deconstructed-card:hover::before,
@@ -226,8 +226,8 @@
 .service-deconstructed-card:hover .service-deconstructed-card__frame-path,
 .service-deconstructed-card:focus-within .service-deconstructed-card__frame-path {
   stroke-dashoffset: 0;
-  stroke: rgba(6, 182, 212, 0.96);
-  filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.3));
+  stroke: rgba(255, 255, 255, 0.85);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.18));
 }
 
 .service-deconstructed-card__layer--content {
@@ -291,7 +291,7 @@
 .service-deconstructed-card:hover .service-deconstructed-card__meta-line,
 .service-deconstructed-card:focus-within .service-deconstructed-card__meta-line {
   transform: scaleX(1);
-  background: rgba(6, 182, 212, 0.95);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .service-deconstructed-card__fragment--heading {
@@ -348,12 +348,12 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   overflow: hidden;
-  border: 1px solid rgba(6, 182, 212, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0;
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.18), rgba(139, 92, 246, 0.24));
+  background: rgba(255, 255, 255, 0.06);
   box-shadow:
     0 10px 24px rgba(0, 0, 0, 0.26),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition:
@@ -367,11 +367,10 @@
 .service-deconstructed-card:hover .service-deconstructed-card__cta,
 .service-deconstructed-card:focus-within .service-deconstructed-card__cta {
   transform: translateY(-1px);
-  border-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
   box-shadow:
-    0 14px 30px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(6, 182, 212, 0.08) inset,
-    0 0 24px rgba(6, 182, 212, 0.18);
+    0 14px 30px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
 }
 
 .service-deconstructed-card__cta-fill {
@@ -408,7 +407,7 @@
 }
 
 .service-deconstructed-card__cta:focus-visible {
-  outline: 2px solid rgba(6, 182, 212, 0.9);
+  outline: 2px solid rgba(255, 255, 255, 0.8);
   outline-offset: 3px;
 }
 
@@ -498,19 +497,19 @@
 }
 
 .sd-modal-wrapper {
-  background: rgba(8, 17, 35, 0.95);
-  border: 1px solid rgba(6, 182, 212, 0.25);
+  background: rgba(12, 17, 28, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 0;
   width: min(100%, 650px);
   max-height: 85vh;
   box-shadow: 
-    0 25px 60px rgba(0, 0, 0, 0.6),
-    0 0 40px rgba(6, 182, 212, 0.15);
+    0 25px 60px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(0, 0, 0, 0.4);
   overflow-y: auto;
   position: relative;
   animation: sdModalScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   scrollbar-width: thin;
-  scrollbar-color: rgba(6, 182, 212, 0.3) rgba(8, 17, 35, 0.5);
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(8, 14, 25, 0.6);
   text-align: left;
 }
 
@@ -518,10 +517,10 @@
   width: 6px;
 }
 .sd-modal-wrapper::-webkit-scrollbar-track {
-  background: rgba(8, 17, 35, 0.5);
+  background: rgba(8, 14, 25, 0.6);
 }
 .sd-modal-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(6, 182, 212, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 3px;
 }
 
@@ -568,7 +567,7 @@
 .sd-modal-tag {
   font-family: var(--font-titles);
   font-size: 0.72rem;
-  color: #00c8ff;
+  color: #94a3b8;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   display: inline-block;
@@ -586,7 +585,7 @@
 
 .sd-modal-divider {
   height: 1px;
-  background: linear-gradient(90deg, rgba(6, 182, 212, 0.35) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.16) 0%, transparent 100%);
   margin: 1.25rem 0;
 }
 
@@ -598,8 +597,8 @@
 }
 
 .sd-modal-highlight-box {
-  background: rgba(6, 182, 212, 0.06);
-  border-left: 3px solid #00c8ff;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid rgba(255, 255, 255, 0.5);
   padding: 1.2rem;
   border-radius: 0;
   margin-bottom: 1.75rem;
@@ -607,7 +606,7 @@
 
 .sd-modal-highlight-box h4 {
   margin: 0 0 0.5rem;
-  color: #00c8ff;
+  color: #ffffff;
   font-size: 0.9rem;
   font-family: var(--font-titles);
   letter-spacing: 0.04em;
@@ -648,7 +647,7 @@
 }
 
 .sd-modal-list-icon {
-  color: #00c8ff;
+  color: #cbd5e1;
   font-size: 0.9rem;
   margin-top: 0.15rem;
   flex-shrink: 0;
@@ -670,15 +669,15 @@
 }
 
 .sd-modal-level-card:hover {
-  background: rgba(6, 182, 212, 0.04);
-  border-color: rgba(6, 182, 212, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .sd-modal-level-name {
   display: block;
   font-family: var(--font-titles);
   font-size: 0.78rem;
-  color: #00c8ff;
+  color: #ffffff;
   text-transform: uppercase;
   margin-bottom: 0.25rem;
 }
@@ -699,9 +698,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: transparent;
-  border: 1px solid;
-  border-image: linear-gradient(to right, #00c8ff, #8b5cf6) 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
   padding: 10px 24px;
   border-radius: 0;
@@ -713,8 +711,10 @@
 }
 
 .sd-modal-contact-btn:hover {
-  background: rgba(6, 182, 212, 0.1);
-  box-shadow: 0 0 16px rgba(6, 182, 212, 0.2);
+  background: #ffffff;
+  color: #0b1120;
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes sdModalFadeIn {
@@ -830,11 +830,11 @@
 }
 
 .service-deconstructed-card.random-glow {
-    border: 1px solid rgba(6, 182, 212, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .service-deconstructed-card.active-card {
-    border: 1px solid rgba(6, 182, 212, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
     z-index: 10;
 }
 
@@ -909,7 +909,7 @@
     flex-direction: column;
     border-radius: 16px;
     border: 1.5px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 35px rgba(6, 182, 212, 0.25);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.05);
     color: #ffffff;
     font-family: var(--font-body);
 }
@@ -1022,7 +1022,7 @@
 .card-avatar {
     width: 95px;
     height: 95px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(6, 182, 212, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
     border-radius: 50%;
     object-position: center;
     object-fit: cover;
@@ -1030,7 +1030,7 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%) translateY(-50px);
-    border: 2px solid #06b6d4;
+    border: 2px solid rgba(255, 255, 255, 0.35);
     background: #0b0f19;
 }
 
@@ -1080,7 +1080,7 @@
     font-weight: 700;
     font-size: 12px;
     margin-bottom: 10px;
-    color: #06b6d4;
+    color: #cbd5e1;
     letter-spacing: 0.08em;
     font-family: var(--font-titles);
 }
@@ -1110,11 +1110,11 @@
 
 .social-tag {
     padding: 4px 12px;
-    background: rgba(6, 182, 212, 0.12);
-    border: 1px solid rgba(6, 182, 212, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
     font-size: 0.75rem;
-    color: #38bdf8;
+    color: #e2e8f0;
     font-family: var(--font-titles);
     font-weight: 600;
 }
@@ -1156,14 +1156,14 @@
 .card-buttons button.is-active,
 .card-buttons button:hover {
     color: #ffffff;
-    border-bottom: 3px solid #06b6d4;
+    border-bottom: 3px solid #ffffff;
     background: linear-gradient(
         to bottom,
-        rgba(6, 182, 212, 0) 0%,
-        rgba(6, 182, 212, 0.15) 44%,
-        rgba(6, 182, 212, 0.3) 100%
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.08) 44%,
+        rgba(255, 255, 255, 0.16) 100%
     );
-    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .card-section {
@@ -1194,8 +1194,8 @@
 .card-timeline::after {
     background: linear-gradient(
         to top,
-        rgba(6, 182, 212, 0) 0%,
-        rgba(6, 182, 212, 0.9) 100%
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 100%
     );
     content: "";
     left: 20px;
@@ -1278,7 +1278,7 @@
     transition: 0.3s;
     padding-right: 8px;
     border-right: 1px solid rgba(255, 255, 255, 0.15);
-    stroke: #06b6d4;
+    stroke: rgba(255, 255, 255, 0.85);
 }
 
 .contact-me {

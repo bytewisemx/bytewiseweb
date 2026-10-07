@@ -103,7 +103,7 @@ export class StatsComponent implements OnInit, OnDestroy {
     },
     {
       initials: 'IL',
-      name: 'Mtro Israel Llorot',
+      name: 'Mtro Israel Llort',
       company: 'E-Net-Corp',
       subtitle: 'Testimonio práctico · E-Net-Corp',
       quote: '“El equipo de ByteWise fue muy profesional y claro en todo momento. Nos ayudaron a ordenar nuestros procesos y mejorar la protección de la información sin complicarnos. Se nota que saben lo que hacen.”',
